@@ -11,7 +11,7 @@ namespace Fordere.RestService
 
             var content = new FormUrlEncodedContent(new Dictionary<string, string>
                                                     {
-                                                        { "privatekey", "6LcvJVUUAAAAADjtGYIbT_qZcjsvObUtF-Yyps1s" },
+                                                        { "privatekey", "TODO" },
                                                         { "remoteip", userIp },
                                                         { "response", response }
                                                     });
