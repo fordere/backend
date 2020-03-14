@@ -1,8 +1,7 @@
-using Fordere.ServiceInterface.Messages.Table;
-
+using forderebackend.ServiceModel.Messages.Table;
 using ServiceStack.DataAnnotations;
 
-namespace Fordere.RestService.Entities.Final
+namespace forderebackend.ServiceInterface.Entities.Final
 {
     public class FinalDayTable : IFordereObject
     {

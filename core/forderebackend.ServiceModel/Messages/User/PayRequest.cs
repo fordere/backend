@@ -1,6 +1,6 @@
 ﻿using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.User
+namespace forderebackend.ServiceModel.Messages.User
 {
     [Route("/payments/pay", "POST", Summary = "Executes the Stripe payment for the given user")]
     public class PayRequest : IReturnVoid

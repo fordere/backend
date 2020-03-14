@@ -1,6 +1,6 @@
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Final
+namespace forderebackend.ServiceModel.Messages.Final
 {
     [Route("/finalday/competition/{FinalDayCompetitionId}/group/{GroupId}", "POST", Summary = "Save a single Group")]
     public class SaveGroupRequest : IReturnVoid

@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Linq;
-
-using Fordere.RestService.Entities;
-using Fordere.ServiceInterface.Dtos;
-using Fordere.ServiceInterface.Messages;
-using Fordere.ServiceInterface.Messages.Match;
-
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceModel.Dtos;
+using forderebackend.ServiceModel.Messages;
+using forderebackend.ServiceModel.Messages.Match;
 using ServiceStack;
 using ServiceStack.Auth;
 using ServiceStack.Data;
 using ServiceStack.OrmLite;
 using ServiceStack.Web;
 
-namespace Fordere.RestService.Filters
+namespace forderebackend.ServiceInterface.Filters
 {
     public static class Filter
     {

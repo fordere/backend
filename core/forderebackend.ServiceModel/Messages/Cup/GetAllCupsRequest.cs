@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-
-using Fordere.ServiceInterface.Dtos;
-
+using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Cup
+namespace forderebackend.ServiceModel.Messages.Cup
 {
     [Route("/cups", "GET", Summary = "Get all cups.")]
     public class GetAllCupsRequest : IReturn<List<Cup2Dto>>

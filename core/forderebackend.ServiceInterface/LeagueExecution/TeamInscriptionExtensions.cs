@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Fordere.RestService.Entities;
+using forderebackend.ServiceInterface.Entities;
 
-namespace Fordere.RestService.LeagueExecution
+namespace forderebackend.ServiceInterface.LeagueExecution
 {
     public static class TeamInscriptionExtensions
     {

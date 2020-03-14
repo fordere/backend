@@ -1,13 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-
-using Fordere.RestService.Entities;
-using Fordere.RestService.LeagueExecution.Standings.OrderRules;
-
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceInterface.LeagueExecution.Standings.OrderRules;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService.LeagueExecution.Standings
+namespace forderebackend.ServiceInterface.LeagueExecution.Standings
 {
     public static class StandingsCalculator
     {

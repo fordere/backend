@@ -1,6 +1,6 @@
 ﻿using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.User
+namespace forderebackend.ServiceModel.Messages.User
 {
     [Route("/payments/open", "GET", Summary = "Gets all users which have already payed for the current season")]
     public class GetOpenPayments : IReturn<UsersResponse>

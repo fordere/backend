@@ -1,8 +1,7 @@
-using Fordere.ServiceInterface.Dtos.FinalDay;
-
+using forderebackend.ServiceModel.Dtos.FinalDay;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Final
+namespace forderebackend.ServiceModel.Messages.Final
 {
     [Route("/finalday/competition/{FinalDayCompetitionId}/group", "POST", Summary = "Add a Group to the given FinalDay Competition")]
     public class AddGroupRequest : IReturn<GroupDto>

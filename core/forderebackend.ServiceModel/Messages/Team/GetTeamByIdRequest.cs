@@ -1,9 +1,7 @@
-﻿
-using Fordere.ServiceInterface.Dtos;
-
+﻿using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Team
+namespace forderebackend.ServiceModel.Messages.Team
 {
     [Route("/teams/{Id}", "GET", Summary = "Get team by Id.")]
     

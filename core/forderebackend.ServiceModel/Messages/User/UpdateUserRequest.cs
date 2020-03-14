@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-
-using Fordere.ServiceInterface.Dtos;
-
+using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.User
+namespace forderebackend.ServiceModel.Messages.User
 {
     [Route("/users", "PUT", Summary = "Update a user.")]
     public class UpdateUserRequest : IReturn<UserDto>

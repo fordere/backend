@@ -1,16 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using Fordere.RestService.Entities;
-
-using Fordere.ServiceInterface.Dtos;
-using Fordere.ServiceInterface.Messages;
-using Fordere.ServiceInterface.Messages.News;
-
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceModel.Dtos;
+using forderebackend.ServiceModel.Messages;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     
     public class StatisticsService : BaseService

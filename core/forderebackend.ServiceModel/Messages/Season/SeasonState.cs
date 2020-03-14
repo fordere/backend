@@ -1,4 +1,4 @@
-﻿namespace Fordere.ServiceInterface.Messages.Season
+﻿namespace forderebackend.ServiceModel.Messages.Season
 {
     public enum SeasonState
     {

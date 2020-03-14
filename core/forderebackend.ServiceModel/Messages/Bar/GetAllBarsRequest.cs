@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
-
-
-using Fordere.ServiceInterface.Dtos;
-
+using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Bar
+namespace forderebackend.ServiceModel.Messages.Bar
 {
     [Route("/bars", "GET", Summary = "Get all bars.")]
     

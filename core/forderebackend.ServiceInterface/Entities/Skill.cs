@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fordere.RestService.Entities
+namespace forderebackend.ServiceInterface.Entities
 {
     public class Skill
     {

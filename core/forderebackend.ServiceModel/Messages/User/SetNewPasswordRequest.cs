@@ -1,6 +1,6 @@
 ﻿using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.User
+namespace forderebackend.ServiceModel.Messages.User
 {
     [Route("/recovery/password", "POST", Summary = "Set a new password using a Recovery Token.")]
     public class SetNewPasswordRequest : IReturnVoid

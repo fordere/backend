@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
+using forderebackend.ServiceModel.Dtos.FinalDay;
+using forderebackend.ServiceModel.Messages.Season;
 
-using Fordere.ServiceInterface.Dtos.FinalDay;
-using Fordere.ServiceInterface.Messages.Season;
-
-namespace Fordere.ServiceInterface.Dtos
+namespace forderebackend.ServiceModel.Dtos
 {
     public class SeasonDto : NameDto
     {

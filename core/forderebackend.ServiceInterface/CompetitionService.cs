@@ -3,24 +3,21 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Net;
-
-using Fordere.RestService.Entities;
-using Fordere.RestService.Extensions;
-using Fordere.RestService.LeagueExecution;
-using Fordere.RestService.LeagueExecution.Standings;
-
-using Fordere.RestService.Smtp;
-using Fordere.ServiceInterface.Dtos;
-using Fordere.ServiceInterface.Messages.Competition;
-using Fordere.ServiceInterface.Messages.LeagueRegistration;
-using Fordere.ServiceInterface.Messages.News;
-using Fordere.ServiceInterface.Messages.Season;
-
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceInterface.Extensions;
+using forderebackend.ServiceInterface.LeagueExecution;
+using forderebackend.ServiceInterface.LeagueExecution.Standings;
+using forderebackend.ServiceInterface.Smtp;
+using forderebackend.ServiceModel.Dtos;
+using forderebackend.ServiceModel.Messages.Competition;
+using forderebackend.ServiceModel.Messages.LeagueRegistration;
+using forderebackend.ServiceModel.Messages.News;
+using forderebackend.ServiceModel.Messages.Season;
 using ServiceStack;
 using ServiceStack.Auth;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     public class CompetitionService : BaseService
     {

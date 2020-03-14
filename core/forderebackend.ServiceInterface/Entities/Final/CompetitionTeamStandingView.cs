@@ -1,6 +1,6 @@
-using Fordere.ServiceInterface.Messages.Final;
+using forderebackend.ServiceModel.Messages.Final;
 
-namespace Fordere.RestService.Entities.Final
+namespace forderebackend.ServiceInterface.Entities.Final
 {
     public class CompetitionTeamStandingView
     {

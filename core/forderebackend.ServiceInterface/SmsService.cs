@@ -1,9 +1,8 @@
-﻿using Fordere.RestService.Sms;
-using Fordere.ServiceInterface.Messages.Sms;
-
+﻿using forderebackend.ServiceInterface.Sms;
+using forderebackend.ServiceModel.Messages.Sms;
 using ServiceStack;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     public class SmsService : BaseService
     {

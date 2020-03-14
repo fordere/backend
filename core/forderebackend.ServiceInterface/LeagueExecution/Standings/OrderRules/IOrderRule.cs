@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
+using forderebackend.ServiceInterface.Entities;
 
-using Fordere.RestService.Entities;
-
-namespace Fordere.RestService.LeagueExecution.Standings.OrderRules
+namespace forderebackend.ServiceInterface.LeagueExecution.Standings.OrderRules
 {
     public interface IOrderRule : IComparer<TableEntry>
     {

@@ -1,4 +1,4 @@
-﻿namespace Fordere.ServiceInterface.Dtos
+﻿namespace forderebackend.ServiceModel.Dtos
 {
     public abstract class BaseDto
     {

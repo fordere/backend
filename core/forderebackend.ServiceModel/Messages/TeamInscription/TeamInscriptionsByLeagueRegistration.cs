@@ -2,7 +2,7 @@
 
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.TeamInscription
+namespace forderebackend.ServiceModel.Messages.TeamInscription
 {
     [Route("/teaminscriptions/competition/{CompetitionId}")]
     

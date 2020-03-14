@@ -1,6 +1,6 @@
 ﻿using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.TeamInscription
+namespace forderebackend.ServiceModel.Messages.TeamInscription
 {
     [Route("/teaminscriptions/{TeamInscriptionId}", "DELETE", Summary = "Delete a teaminscription.")]
     public class DeleteTeamInscriptionRequest

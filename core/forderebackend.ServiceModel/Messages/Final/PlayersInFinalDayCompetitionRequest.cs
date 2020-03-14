@@ -1,8 +1,7 @@
-﻿using Fordere.ServiceInterface.Dtos.FinalDay;
-
+﻿using forderebackend.ServiceModel.Dtos.FinalDay;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Final
+namespace forderebackend.ServiceModel.Messages.Final
 {
     [Route("/finalday/competitions/{FinalDayCompetitionId}/players", "GET")]
     public class PlayersInFinalDayCompetitionRequest : IReturn<FinalDayPlayerInCompetitionDto[]>

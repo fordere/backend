@@ -1,6 +1,6 @@
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Competition
+namespace forderebackend.ServiceModel.Messages.Competition
 {
     [Route("/leagues/{LeagueId}/assignfromteaminscription/{TeamInscriptionId}", "POST")]
     public class CreateTeamAndMatchFromTeamInscriptionRequest : IReturnVoid

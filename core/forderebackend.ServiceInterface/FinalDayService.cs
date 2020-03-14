@@ -1,11 +1,9 @@
-﻿
-using Fordere.ServiceInterface.Dtos.FinalDay;
-using Fordere.ServiceInterface.Messages.Final;
-
+﻿using forderebackend.ServiceModel.Dtos.FinalDay;
+using forderebackend.ServiceModel.Messages.Final;
 using ServiceStack;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     
     class FinalDayService : BaseService

@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-
-using Fordere.ServiceInterface.Dtos;
-
+using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.User
+namespace forderebackend.ServiceModel.Messages.User
 {
     [Route("/users/{UserId}/matches", "GET", Summary = "Get all matches of a user.")]
     [Route("/users/{UserId}/matches/{SeasonId}", "GET", Summary = "Get all matches of a user for a specific season.")]

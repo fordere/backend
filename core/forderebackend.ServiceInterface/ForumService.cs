@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Linq;
-
-using Fordere.RestService.Entities.Forum;
-
-using Fordere.ServiceInterface.Dtos;
-using Fordere.ServiceInterface.Messages.Forum;
-
+using forderebackend.ServiceInterface.Entities.Forum;
+using forderebackend.ServiceModel.Dtos;
+using forderebackend.ServiceModel.Messages.Forum;
 using ServiceStack;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     
     public class ForumService : BaseService

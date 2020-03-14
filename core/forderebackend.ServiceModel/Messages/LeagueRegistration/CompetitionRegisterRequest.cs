@@ -2,7 +2,7 @@
 
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.LeagueRegistration
+namespace forderebackend.ServiceModel.Messages.LeagueRegistration
 {
     [Route("/competitions/{CompetitionId}/register", "POST", Summary = "Register for a league.")]
     

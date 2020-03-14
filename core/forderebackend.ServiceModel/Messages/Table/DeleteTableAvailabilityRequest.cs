@@ -2,7 +2,7 @@
 
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Table
+namespace forderebackend.ServiceModel.Messages.Table
 {
     [Route("/tables/{TableId}/availabilities", "DELETE", Summary = "Get all tables available in a bar")]
     

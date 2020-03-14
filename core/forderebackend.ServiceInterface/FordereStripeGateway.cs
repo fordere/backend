@@ -7,14 +7,12 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-
 using ServiceStack;
 using ServiceStack.Stripe.Types;
 using ServiceStack.Text;
-
 using TaskExtensions = ServiceStack.TaskExtensions;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     public class FordereStripeGateway : IRestGateway
     {

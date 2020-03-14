@@ -1,4 +1,4 @@
-namespace Fordere.ServiceInterface.Messages.Final
+namespace forderebackend.ServiceModel.Messages.Final
 {
     public enum FinalDayCompetitionState
     {

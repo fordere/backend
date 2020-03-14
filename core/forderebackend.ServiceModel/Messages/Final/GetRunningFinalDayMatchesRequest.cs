@@ -1,9 +1,7 @@
-
-using Fordere.ServiceInterface.Dtos;
-
+using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Final
+namespace forderebackend.ServiceModel.Messages.Final
 {
     [Route("/finalday/{FinalDayId}/matches/running", "GET")]
     

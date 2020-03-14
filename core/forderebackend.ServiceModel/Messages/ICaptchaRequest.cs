@@ -1,6 +1,4 @@
-﻿using Fordere.ServiceInterface.Dtos;
-
-namespace Fordere.ServiceInterface.Messages
+﻿namespace forderebackend.ServiceModel.Messages
 {
     public interface ICaptchaRequest
     {

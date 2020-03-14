@@ -1,8 +1,6 @@
-﻿using Fordere.ServiceInterface.Dtos;
+﻿using ServiceStack;
 
-using ServiceStack;
-
-namespace Fordere.ServiceInterface.Messages
+namespace forderebackend.ServiceModel.Messages
 {
     [Route("/tournamentregistration/", "POST")]
     public class TournamentRegistrationRequest

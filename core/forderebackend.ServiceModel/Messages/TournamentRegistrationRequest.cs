@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Fordere.ServiceInterface.Dtos;
-
+﻿using System.Collections.Generic;
+using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages
+namespace forderebackend.ServiceModel.Messages
 {
     [Route("/tournamentregistration/sts", "POST")]
     public class TournamentRegistrationStsRequest

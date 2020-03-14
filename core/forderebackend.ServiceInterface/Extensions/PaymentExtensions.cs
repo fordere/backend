@@ -1,7 +1,7 @@
-﻿using Fordere.RestService.Entities;
-using Fordere.ServiceInterface.Dtos;
+﻿using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceModel.Dtos;
 
-namespace Fordere.RestService.Extensions
+namespace forderebackend.ServiceInterface.Extensions
 {
     public static class PaymentExtensions
     {

@@ -1,12 +1,10 @@
 ﻿using System.Threading.Tasks;
-
-using Fordere.RestService.Entities;
-
+using forderebackend.ServiceInterface.Entities;
 using ServiceStack;
 using ServiceStack.Auth;
 using ServiceStack.Configuration;
 
-namespace Fordere.RestService.Sms
+namespace forderebackend.ServiceInterface.Sms
 {
     public class SmsSender
     {

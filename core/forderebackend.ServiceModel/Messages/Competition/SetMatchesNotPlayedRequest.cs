@@ -2,7 +2,7 @@
 
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Competition
+namespace forderebackend.ServiceModel.Messages.Competition
 {
     [Route("/competitions/{CompetitionId}/updateNotPlayed", "GET", Summary = "Sets the not played match on all not played matches in a competition")]
     

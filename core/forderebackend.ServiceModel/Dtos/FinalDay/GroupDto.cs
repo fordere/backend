@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Fordere.ServiceInterface.Dtos.FinalDay
+namespace forderebackend.ServiceModel.Dtos.FinalDay
 {
     public class GroupDto
     {

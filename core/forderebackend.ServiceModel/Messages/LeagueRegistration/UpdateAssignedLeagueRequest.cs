@@ -1,11 +1,8 @@
 using System.Collections.Generic;
-
-
-using Fordere.ServiceInterface.Dtos;
-
+using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.LeagueRegistration
+namespace forderebackend.ServiceModel.Messages.LeagueRegistration
 {
     [Route("/teaminscriptions/{Id}/updateassignedleague", "POST", Summary = "Saves a single league registration")]
     

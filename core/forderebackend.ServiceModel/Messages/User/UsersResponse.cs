@@ -1,9 +1,8 @@
-﻿using Fordere.ServiceInterface.Dtos;
+﻿using System.Collections.Generic;
+using forderebackend.ServiceModel.Dtos;
 
-namespace Fordere.ServiceInterface.Messages.User
+namespace forderebackend.ServiceModel.Messages.User
 {
-    using System.Collections.Generic;
-
     public class UsersResponse : PagedResponse
     {
         public UsersResponse()

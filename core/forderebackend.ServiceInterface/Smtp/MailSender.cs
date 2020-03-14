@@ -1,16 +1,13 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-
-using Fordere.RestService.Entities;
-using Fordere.ServiceInterface.Dtos;
-using Fordere.ServiceInterface.Messages;
-
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceModel.Messages;
 using ServiceStack;
 using ServiceStack.Auth;
 using ServiceStack.Logging;
 
-namespace Fordere.RestService.Smtp
+namespace forderebackend.ServiceInterface.Smtp
 {
     public static class MailSender
     {

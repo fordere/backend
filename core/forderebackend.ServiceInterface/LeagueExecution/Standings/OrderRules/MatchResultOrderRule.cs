@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-
-using Fordere.RestService.Entities;
-
+using forderebackend.ServiceInterface.Entities;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService.LeagueExecution.Standings.OrderRules
+namespace forderebackend.ServiceInterface.LeagueExecution.Standings.OrderRules
 {
     public class MatchResultOrderRule : IOrderRule
     {

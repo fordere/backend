@@ -1,9 +1,7 @@
-﻿
-using Fordere.ServiceInterface.Dtos;
-
+﻿using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.League
+namespace forderebackend.ServiceModel.Messages.League
 {
     [Route("/leagues", "POST", Summary = "Create league")]
     

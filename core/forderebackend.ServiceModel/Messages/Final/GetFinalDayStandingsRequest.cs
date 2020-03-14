@@ -2,7 +2,7 @@
 
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Final
+namespace forderebackend.ServiceModel.Messages.Final
 {
     [Route("/season/current/finaldaystandings", "GET", Summary = "Gets all standings for the current seasons finalday")]
     [Route("/season/{SeasonId}/finaldaystandings", "GET", Summary = "Gets all standings for the current seasons finalday")]

@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
+using forderebackend.ServiceInterface.Entities;
 
-using Fordere.RestService.Entities;
-
-namespace Fordere.RestService.LeagueExecution
+namespace forderebackend.ServiceInterface.LeagueExecution
 {
     public interface IMatchCreator
     {

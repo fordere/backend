@@ -1,15 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
-
-using Fordere.RestService.Entities;
-using Fordere.RestService.Extensions;
-
-using Fordere.ServiceInterface.Messages.Table;
-
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceInterface.Extensions;
+using forderebackend.ServiceModel.Messages.Table;
 using ServiceStack;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     
     public class TableAvailabilityService : BaseService
@@ -21,7 +18,7 @@ namespace Fordere.RestService
             var dayOfWeek = (int)request.Day.DayOfWeek;
             var tableAvailability = this.Db.Single<TableAvailability>(x => x.TableId == request.TableId && x.FirstTimeSlotDayOfWeek == dayOfWeek);
 
-            tableAvailability.Throw404NotFoundIfNull("An diesem Tag ist dieser Tisch nicht verfügbar!");
+            tableAvailability.Throw404NotFoundIfNull("An diesem Tag ist dieser Tisch nicht verfÃ¼gbar!");
 
             var possibleTimeSlots = TimeSlotFactory.GetPossibleTimeSlots(request.Day, tableAvailability);
 

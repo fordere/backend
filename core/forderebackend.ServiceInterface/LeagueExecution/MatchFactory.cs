@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using Fordere.RestService.Entities;
-using Fordere.RestService.Extensions;
-using Fordere.ServiceInterface.Dtos;
-
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceInterface.Extensions;
+using forderebackend.ServiceModel.Dtos;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService.LeagueExecution
+namespace forderebackend.ServiceInterface.LeagueExecution
 {
     public static class MatchFactory
     {

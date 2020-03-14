@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-
-using Fordere.ServiceInterface.Dtos.FinalDay;
-
+using forderebackend.ServiceModel.Dtos.FinalDay;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Final
+namespace forderebackend.ServiceModel.Messages.Final
 {
     // TODO ssh: Check api
     [Route("/finalday/{FinalDayId}/finished", "GET", Summary = "Get's all finished FinalDayCompetitions of a season")]

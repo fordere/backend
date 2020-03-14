@@ -2,7 +2,7 @@
 
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Final
+namespace forderebackend.ServiceModel.Messages.Final
 {
     [Route("/finalday/competition/{Id}/putteamover", "POST", Summary = "Puts teams depending on given parameters into a group/finaldaycompetition")]
     

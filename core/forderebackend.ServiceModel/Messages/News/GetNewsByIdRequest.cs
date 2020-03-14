@@ -1,8 +1,7 @@
-﻿using Fordere.ServiceInterface.Dtos;
-
+﻿using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.News
+namespace forderebackend.ServiceModel.Messages.News
 {
     [Route("/news/{Id}", "GET", Summary = "Get news by Id.")]
     public class GetNewsByIdRequest : IReturn<NewsDto>

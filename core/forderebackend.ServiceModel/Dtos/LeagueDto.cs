@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 
-
-
-namespace Fordere.ServiceInterface.Dtos
+namespace forderebackend.ServiceModel.Dtos
 {
     public class LeagueDto : NameDto
     {

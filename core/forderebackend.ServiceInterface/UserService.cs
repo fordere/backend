@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using Fordere.RestService.Entities;
-using Fordere.RestService.Extensions;
-using Fordere.RestService.Smtp;
-using Fordere.ServiceInterface.Dtos;
-using Fordere.ServiceInterface.Messages.User;
-
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceInterface.Extensions;
+using forderebackend.ServiceInterface.Smtp;
+using forderebackend.ServiceModel.Dtos;
+using forderebackend.ServiceModel.Messages.User;
 using ServiceStack;
 using ServiceStack.Auth;
 using ServiceStack.Logging;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     public class UserService : BaseService
     {

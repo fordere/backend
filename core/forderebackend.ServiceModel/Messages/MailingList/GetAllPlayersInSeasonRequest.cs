@@ -1,9 +1,7 @@
-﻿
-using Fordere.ServiceInterface.Dtos;
-
+﻿using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.MailingList
+namespace forderebackend.ServiceModel.Messages.MailingList
 {
     [Route("/mailinglist/season/{SeasonId}", "GET", Summary = "Gets all mails of all players in a season")]
     

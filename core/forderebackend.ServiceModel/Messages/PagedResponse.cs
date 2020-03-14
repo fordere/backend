@@ -1,4 +1,4 @@
-﻿namespace Fordere.ServiceInterface.Messages
+﻿namespace forderebackend.ServiceModel.Messages
 {
     public abstract class PagedResponse
     {

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using forderebackend.ServiceInterface.Entities;
 
-using Fordere.RestService.Entities;
-using Fordere.RestService.Entities.Final;
-
-namespace Fordere.RestService.FinalDay
+namespace forderebackend.ServiceInterface.FinalDay
 {
     public class DoubleKoCompetitionMode : ICompetitionMode
     {

@@ -1,4 +1,4 @@
-﻿namespace Fordere.ServiceInterface.Dtos.FinalDay
+﻿namespace forderebackend.ServiceModel.Dtos.FinalDay
 {
     public class FinalDayPlayerInCompetitionDto
     {

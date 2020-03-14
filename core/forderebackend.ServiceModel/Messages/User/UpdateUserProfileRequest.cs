@@ -1,6 +1,6 @@
 ﻿using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.User
+namespace forderebackend.ServiceModel.Messages.User
 {
     [Route("/users/me/profile", "PUT", Summary = "Update user profile (Firstname, Lastname, Email, Password, PhoneNumber).")]
     [Route("/users/profile", "PUT", Summary = "Update user profile (Firstname, Lastname, E-Mail, Password, PhoneNumber).")]

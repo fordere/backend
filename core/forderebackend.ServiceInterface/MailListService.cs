@@ -1,16 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
-
-using Fordere.RestService.Entities;
-
-using Fordere.ServiceInterface.Dtos;
-using Fordere.ServiceInterface.Messages.MailingList;
-
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceModel.Dtos;
+using forderebackend.ServiceModel.Messages.MailingList;
 using ServiceStack;
 using ServiceStack.Auth;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     
     public class MailListService : BaseService

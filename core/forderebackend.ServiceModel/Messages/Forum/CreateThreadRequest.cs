@@ -1,9 +1,7 @@
-
-using Fordere.ServiceInterface.Dtos;
-
+using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Forum
+namespace forderebackend.ServiceModel.Messages.Forum
 {
     [Route("/forum/threads", "POST", Summary = "Create a new thread")]
     

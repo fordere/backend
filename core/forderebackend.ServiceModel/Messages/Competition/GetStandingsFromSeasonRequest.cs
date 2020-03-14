@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
-
-
-using Fordere.ServiceInterface.Dtos;
-
+using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Competition
+namespace forderebackend.ServiceModel.Messages.Competition
 {
     [Route("/seasons/{SeasonId}/standings", "GET", Summary = "Get all ranking tables of a season.")]
     

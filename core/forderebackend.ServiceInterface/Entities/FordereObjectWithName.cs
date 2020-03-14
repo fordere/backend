@@ -1,4 +1,4 @@
-namespace Fordere.RestService.Entities
+namespace forderebackend.ServiceInterface.Entities
 {
     public interface IFordereObjectWithName : IFordereObject
     {

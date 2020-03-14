@@ -1,14 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-
-using Fordere.RestService.Entities.Final;
-using Fordere.ServiceInterface.Dtos.FinalDay;
-using Fordere.ServiceInterface.Messages.Final;
-
+using forderebackend.ServiceInterface.Entities.Final;
+using forderebackend.ServiceModel.Dtos.FinalDay;
+using forderebackend.ServiceModel.Messages.Final;
 using ServiceStack;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     public class GroupService : BaseService
     {

@@ -1,4 +1,4 @@
-namespace Fordere.ServiceInterface.Messages.Table
+namespace forderebackend.ServiceModel.Messages.Table
 {
     public enum TableType : int
     {

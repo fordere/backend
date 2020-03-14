@@ -1,6 +1,6 @@
-﻿using Fordere.RestService.Entities;
+﻿using forderebackend.ServiceInterface.Entities;
 
-namespace Fordere.RestService.LeagueExecution.Standings.OrderRules
+namespace forderebackend.ServiceInterface.LeagueExecution.Standings.OrderRules
 {
     public class GoalDifferenceOrderRule : IOrderRule
     {

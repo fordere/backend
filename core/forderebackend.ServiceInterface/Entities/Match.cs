@@ -1,12 +1,9 @@
 using System;
-
-using Fordere.RestService.Entities.Final;
-using Fordere.RestService.LeagueExecution;
-using Fordere.RestService.LeagueExecution.Standings;
-
+using forderebackend.ServiceInterface.Entities.Final;
+using forderebackend.ServiceInterface.LeagueExecution.Standings;
 using ServiceStack.DataAnnotations;
 
-namespace Fordere.RestService.Entities
+namespace forderebackend.ServiceInterface.Entities
 {
     public class Match : IFordereObject
     {

@@ -1,8 +1,7 @@
-﻿using Fordere.ServiceInterface.Dtos;
-
+﻿using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Table
+namespace forderebackend.ServiceModel.Messages.Table
 {
     [Route("/tables/{Id}", "POST", Summary = "Create a single table")]
     public class CreateTableRequest : IReturn<TableDto>

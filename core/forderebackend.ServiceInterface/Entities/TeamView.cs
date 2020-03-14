@@ -1,6 +1,6 @@
 
 
-namespace Fordere.RestService.Entities
+namespace forderebackend.ServiceInterface.Entities
 {
     
     public class TeamView

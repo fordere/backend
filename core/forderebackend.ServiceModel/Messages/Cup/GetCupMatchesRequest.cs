@@ -1,8 +1,7 @@
-﻿using Fordere.ServiceInterface.Dtos;
-
+﻿using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Cup
+namespace forderebackend.ServiceModel.Messages.Cup
 {
     [Route("/cups/{Id}/matches", "GET")]
     [Route("/cups/{Id}/round/{CupRound}", "GET")]

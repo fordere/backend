@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Data;
-
-using Fordere.RestService.Entities;
-using Fordere.RestService.Entities.Final;
-using Fordere.ServiceInterface.Messages.Final;
-
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceInterface.Entities.Final;
+using forderebackend.ServiceModel.Messages.Final;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService.FinalDay
+namespace forderebackend.ServiceInterface.FinalDay
 {
     public class CompetitionModeFactory
     {

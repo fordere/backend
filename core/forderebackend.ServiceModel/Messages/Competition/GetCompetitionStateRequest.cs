@@ -1,9 +1,7 @@
-﻿
-using Fordere.ServiceInterface.Dtos;
-
+﻿using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Competition
+namespace forderebackend.ServiceModel.Messages.Competition
 {
     [Route("/competitions/{CompetitionId}/state", "GET", Summary = "Returns the state of a competition")]
     

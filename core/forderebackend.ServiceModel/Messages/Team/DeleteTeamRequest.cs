@@ -2,7 +2,7 @@
 
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Team
+namespace forderebackend.ServiceModel.Messages.Team
 {
     [Route("/teams/{Id}", "DELETE", Summary = "Delete a team.")]
     

@@ -2,17 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-
-using Fordere.ServiceInterface.Messages;
-using Fordere.ServiceInterface.Messages.User;
-
+using forderebackend.ServiceModel.Messages;
 using Newtonsoft.Json.Linq;
-
 using ServiceStack;
 using ServiceStack.Auth;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     /// <summary>
     /// Last ServiceStack updated failed to  mark the Member as const -> can't be used on Attributes :/.

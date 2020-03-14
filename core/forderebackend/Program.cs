@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
+using forderebackend.ServiceInterface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -9,9 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Funq;
 using Microsoft.Extensions.Configuration;
 using ServiceStack;
-using Fordere.RestService;
 using ServiceStack.Text;
-using Fordere.WebConsole;
 
 namespace forderebackend
 {

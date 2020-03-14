@@ -1,23 +1,18 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-
-using Fordere.RestService.Entities;
-
-using Fordere.RestService.Utilities;
-using Fordere.ServiceInterface.Messages.Calendar;
-
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceModel.Messages.Calendar;
 using Ical.Net;
 using Ical.Net.CalendarComponents;
 using Ical.Net.DataTypes;
 using Ical.Net.Serialization;
-
 using ServiceStack;
 using ServiceStack.Auth;
 using ServiceStack.Configuration;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     
     class CalendarService : BaseService

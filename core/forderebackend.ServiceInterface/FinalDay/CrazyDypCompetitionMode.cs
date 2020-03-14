@@ -1,13 +1,11 @@
 using System.Collections.Generic;
 using System.Data;
-
-using Fordere.RestService.Entities;
-using Fordere.RestService.Entities.Final;
-using Fordere.RestService.Extensions;
-
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceInterface.Entities.Final;
+using forderebackend.ServiceInterface.Extensions;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService.FinalDay
+namespace forderebackend.ServiceInterface.FinalDay
 {
     public class CrazyDypCompetitionMode : ICompetitionMode
     {

@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
+using forderebackend.ServiceModel.Messages.Final;
 
-using Fordere.ServiceInterface.Messages.Final;
-
-namespace Fordere.ServiceInterface.Dtos
+namespace forderebackend.ServiceModel.Dtos
 {
     public class CompetitionStandingDto
     {

@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
+using forderebackend.ServiceModel.Dtos;
 
-using Fordere.ServiceInterface.Dtos;
-
-namespace Fordere.ServiceInterface.Messages.User
+namespace forderebackend.ServiceModel.Messages.User
 {
     public class MatchesResponse : PagedResponse
     {

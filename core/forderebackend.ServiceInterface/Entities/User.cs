@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Fordere.RestService.Entities
+namespace forderebackend.ServiceInterface.Entities
 {
     public class UserContact : IFordereObjectWithName
     {

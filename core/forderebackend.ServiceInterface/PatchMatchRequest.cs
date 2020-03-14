@@ -1,10 +1,8 @@
 using System;
-
-using Fordere.ServiceInterface.Dtos;
-
+using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     [Route("/matches/{Id}", "PATCH", Summary = "Updates a single match")]
     public class PatchMatchRequest : IReturn<MatchDto>

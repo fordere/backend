@@ -1,8 +1,7 @@
 using System;
+using forderebackend.ServiceModel.Messages.Table;
 
-using Fordere.ServiceInterface.Messages.Table;
-
-namespace Fordere.ServiceInterface.Dtos
+namespace forderebackend.ServiceModel.Dtos
 {
     // TODO SSH: Why this DTO? Eigentlich sollte das MatchView Entity reichen...
     // allerdings.. :)

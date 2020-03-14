@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-
-using Fordere.ServiceInterface.Messages.Season;
-
+using forderebackend.ServiceModel.Messages.Season;
 using ServiceStack.DataAnnotations;
 
-namespace Fordere.RestService.Entities
+namespace forderebackend.ServiceInterface.Entities
 {
     public class Season : IFordereObjectWithName
     {

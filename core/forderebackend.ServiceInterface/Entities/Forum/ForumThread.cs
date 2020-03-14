@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
-
 using ServiceStack.DataAnnotations;
 
-namespace Fordere.RestService.Entities.Forum
+namespace forderebackend.ServiceInterface.Entities.Forum
 {
     public class ForumThread : IFordereObject
     {

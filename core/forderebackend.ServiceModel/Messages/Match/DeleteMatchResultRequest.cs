@@ -1,9 +1,7 @@
-﻿
-using Fordere.ServiceInterface.Dtos;
-
+﻿using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Match
+namespace forderebackend.ServiceModel.Messages.Match
 {
     [Route("/matches/{MatchId}/result", "DELETE")]
     

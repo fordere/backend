@@ -1,9 +1,7 @@
-﻿
-using Fordere.ServiceInterface.Dtos;
-
+﻿using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Match
+namespace forderebackend.ServiceModel.Messages.Match
 {
     [Route("/leagues/{LeagueId}/open-matches/usermails", "GET", Summary = "Gets all player emails for all open matches in a league.")]
     

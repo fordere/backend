@@ -1,10 +1,7 @@
-﻿
-using Fordere.RestService.Smtp;
-using Fordere.ServiceInterface.Messages;
+﻿using forderebackend.ServiceInterface.Smtp;
+using forderebackend.ServiceModel.Messages;
 
-using ServiceStack;
-
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     
     public class ContactService : BaseService

@@ -1,8 +1,7 @@
-using Fordere.ServiceInterface.Dtos;
-
+using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Season
+namespace forderebackend.ServiceModel.Messages.Season
 {
     [Route("/seasons/current", "GET", Summary = "Gets the current running season")]
     public class GetCurrentSeasonRequest : IReturn<SeasonDto>

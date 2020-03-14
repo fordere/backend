@@ -1,6 +1,6 @@
 using ServiceStack.DataAnnotations;
 
-namespace Fordere.RestService.Entities.Final
+namespace forderebackend.ServiceInterface.Entities.Final
 {
     public class CompetitionTeamStanding
     {

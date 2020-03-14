@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
-
-
-using Fordere.ServiceInterface.Dtos;
-
+using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Season
+namespace forderebackend.ServiceModel.Messages.Season
 {
     [Route("/seasons/{SeasonId}/teams", "GET", Summary = "Get all teams in a season")]
     

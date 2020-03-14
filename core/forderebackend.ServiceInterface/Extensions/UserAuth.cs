@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-
-using Fordere.RestService.Utilities;
-using Fordere.ServiceInterface.Dtos;
-using Fordere.ServiceInterface.Messages.User;
-
+﻿using System.Collections.Generic;
+using forderebackend.ServiceModel.Dtos;
+using forderebackend.ServiceModel.Messages.User;
 using ServiceStack;
 using ServiceStack.Auth;
 using ServiceStack.Configuration;
 
-namespace Fordere.RestService.Extensions
+namespace forderebackend.ServiceInterface.Extensions
 {
     public class UserAuthMetaKeys
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Fordere.RestService.Utilities
+namespace forderebackend.ServiceInterface.Utilities
 {
     public static class StringCipher
     {

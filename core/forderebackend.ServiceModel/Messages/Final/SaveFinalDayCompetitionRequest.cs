@@ -1,10 +1,8 @@
-﻿
-using Fordere.ServiceInterface.Dtos.FinalDay;
-using Fordere.ServiceInterface.Messages.Table;
-
+﻿using forderebackend.ServiceModel.Dtos.FinalDay;
+using forderebackend.ServiceModel.Messages.Table;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Final
+namespace forderebackend.ServiceModel.Messages.Final
 {
     [Route("/finalday/competition/{Id}", "POST", Summary = "Saves a single finalday competition")]
     

@@ -1,11 +1,8 @@
 ﻿using System;
-
-
-using Fordere.ServiceInterface.Dtos;
-
+using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.News
+namespace forderebackend.ServiceModel.Messages.News
 {
     [Route("/news", "POST", Summary = "Add a news.")]
     

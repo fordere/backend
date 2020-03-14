@@ -4,22 +4,18 @@ using System.Data;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-
-using Fordere.RestService.Entities;
-using Fordere.RestService.Extensions;
-using Fordere.RestService.LeagueExecution;
-using Fordere.RestService.LeagueExecution.Standings;
-
-using Fordere.ServiceInterface.Dtos;
-using Fordere.ServiceInterface.Messages.Match;
-using Fordere.ServiceInterface.Messages.Season;
-using Fordere.ServiceInterface.Messages.User;
-
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceInterface.Extensions;
+using forderebackend.ServiceInterface.LeagueExecution.Standings;
+using forderebackend.ServiceModel.Dtos;
+using forderebackend.ServiceModel.Messages.Match;
+using forderebackend.ServiceModel.Messages.Season;
+using forderebackend.ServiceModel.Messages.User;
 using ServiceStack;
 using ServiceStack.Auth;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     
     public class MatchService : BaseService

@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
-
-using Fordere.ServiceInterface.Messages.Final;
-using Fordere.ServiceInterface.Messages.Table;
-
+using forderebackend.ServiceModel.Messages.Final;
+using forderebackend.ServiceModel.Messages.Table;
 using ServiceStack.DataAnnotations;
 
-namespace Fordere.RestService.Entities.Final
+namespace forderebackend.ServiceInterface.Entities.Final
 {
     public class FinalDayCompetition : IFordereObjectWithName
     {

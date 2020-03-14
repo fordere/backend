@@ -1,17 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
-
-using Fordere.RestService.Entities;
-using Fordere.RestService.Extensions;
-
-using Fordere.ServiceInterface.Dtos;
-using Fordere.ServiceInterface.Messages.LeagueRegistration;
-using Fordere.ServiceInterface.Messages.TeamInscription;
-
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceInterface.Extensions;
+using forderebackend.ServiceModel.Dtos;
+using forderebackend.ServiceModel.Messages.LeagueRegistration;
+using forderebackend.ServiceModel.Messages.TeamInscription;
 using ServiceStack;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     
     public class TeamInscriptionService : BaseService

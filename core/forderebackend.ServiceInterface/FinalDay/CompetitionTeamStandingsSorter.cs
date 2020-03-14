@@ -1,11 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceInterface.Entities.Final;
 
-using Fordere.RestService.Entities;
-using Fordere.RestService.Entities.Final;
-using Fordere.ServiceInterface.Messages.User;
-
-namespace Fordere.RestService.FinalDay
+namespace forderebackend.ServiceInterface.FinalDay
 {
     public static class CompetitionTeamStandingsSorter
     {

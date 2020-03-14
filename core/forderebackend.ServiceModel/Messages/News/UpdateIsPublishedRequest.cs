@@ -2,7 +2,7 @@
 
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.News
+namespace forderebackend.ServiceModel.Messages.News
 {
     [Route("/news/{Id}", "PATCH", Summary = "Patch update IsPublished.")]
     

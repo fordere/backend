@@ -1,8 +1,7 @@
-﻿using Fordere.ServiceInterface.Dtos;
-
+﻿using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.User
+namespace forderebackend.ServiceModel.Messages.User
 {
     [Route("/users/{Id}", "GET", Summary = "Get user by Id.")]
     public class GetUserByIdRequest : IReturn<UserDto>

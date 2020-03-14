@@ -1,13 +1,10 @@
 ﻿using System.Linq;
-
-using Fordere.RestService.Entities;
-using Fordere.RestService.Entities.Forum;
-using Fordere.RestService.Extensions;
-using Fordere.ServiceInterface.Dtos;
-
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceInterface.Entities.Forum;
+using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     public static class Mapping
     {

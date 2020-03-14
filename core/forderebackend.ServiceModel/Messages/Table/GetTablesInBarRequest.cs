@@ -1,9 +1,7 @@
-﻿
-using Fordere.ServiceInterface.Dtos;
-
+﻿using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Table
+namespace forderebackend.ServiceModel.Messages.Table
 {
     [Route("/bar/{BarId}/tables", "GET", Summary = "Gets all available tables in a bar")]
     

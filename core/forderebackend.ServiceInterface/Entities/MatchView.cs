@@ -1,12 +1,9 @@
 using System;
-
-using Fordere.RestService.LeagueExecution.Standings;
-
-using Fordere.ServiceInterface.Messages.Table;
-
+using forderebackend.ServiceInterface.LeagueExecution.Standings;
+using forderebackend.ServiceModel.Messages.Table;
 using ServiceStack.DataAnnotations;
 
-namespace Fordere.RestService.Entities
+namespace forderebackend.ServiceInterface.Entities
 {
     
     public class MatchView
@@ -56,7 +53,7 @@ namespace Fordere.RestService.Entities
         {
             get
             {
-                // TODO: This logic is duplicted in match.. de ganz Forfait shit is chli müäsam implementiert.. 
+                // TODO: This logic is duplicted in match.. de ganz Forfait shit is chli mÃ¼Ã¤sam implementiert.. 
                 if (HomeTeamIsForfaitOut)
                 {
                     return StandingsCalculator.SetsLossForfait;

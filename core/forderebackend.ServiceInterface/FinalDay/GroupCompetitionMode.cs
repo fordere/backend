@@ -1,14 +1,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-
-using Fordere.RestService.Entities;
-using Fordere.RestService.Entities.Final;
-using Fordere.RestService.LeagueExecution;
-
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceInterface.Entities.Final;
+using forderebackend.ServiceInterface.LeagueExecution;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService.FinalDay
+namespace forderebackend.ServiceInterface.FinalDay
 {
     public class GroupCompetitionMode : ICompetitionMode
     {
@@ -40,7 +38,7 @@ namespace Fordere.RestService.FinalDay
         {
             if (teamsInGroup == null)
             {
-                // Wenn keine Teams der Gruppe zugewiesen wurden müssen
+                // Wenn keine Teams der Gruppe zugewiesen wurden mÃ¼ssen
                 // auch keine Matches erstellt werden
                 return new List<Match>();
             }
@@ -51,7 +49,7 @@ namespace Fordere.RestService.FinalDay
 
         public List<Match> GenerateMatchAfterMatchResultEntered(Match match)
         {
-            // TODO SSH eigentlich würde es reichen nur die vom match betroffene Gruppe zu aktualisieren
+            // TODO SSH eigentlich wÃ¼rde es reichen nur die vom match betroffene Gruppe zu aktualisieren
             var groups = dbConnection.Select<Group>(x => x.FinalDayCompetitionId == match.FinalDayCompetitionId.Value);
             foreach (var group in groups)
             {

@@ -1,16 +1,12 @@
 ﻿using System.Linq;
-
-using Fordere.RestService.Entities;
-
-using Fordere.ServiceInterface.Dtos;
-using Fordere.ServiceInterface.Messages.Bar;
-
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceModel.Dtos;
+using forderebackend.ServiceModel.Messages.Bar;
 using ServiceStack;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
-    
     public class BarService : BaseService
     {
         [Authenticate]

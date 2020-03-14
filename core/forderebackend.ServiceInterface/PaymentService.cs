@@ -3,20 +3,16 @@ using System.Linq;
 using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
-
-using Fordere.RestService.Entities;
-using Fordere.RestService.Extensions;
-
-using Fordere.ServiceInterface.Messages.Season;
-using Fordere.ServiceInterface.Messages.User;
-
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceInterface.Extensions;
+using forderebackend.ServiceModel.Messages.Season;
+using forderebackend.ServiceModel.Messages.User;
 using ServiceStack;
-using ServiceStack.Configuration;
 using ServiceStack.Logging;
 using ServiceStack.OrmLite;
 using ServiceStack.Stripe.Types;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     
     public class PaymentService : BaseService

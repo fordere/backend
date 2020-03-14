@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-
-
-
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Table
+namespace forderebackend.ServiceModel.Messages.Table
 {
     [Route("/tables/{TableId}/{Day}/timeslots", "GET", Summary = "Get timeslots for a specific day.")]
     

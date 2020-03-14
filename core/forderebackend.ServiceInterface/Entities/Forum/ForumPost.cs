@@ -1,9 +1,8 @@
 ﻿using System;
-
 using ServiceStack.Auth;
 using ServiceStack.DataAnnotations;
 
-namespace Fordere.RestService.Entities.Forum
+namespace forderebackend.ServiceInterface.Entities.Forum
 {
     public class ForumPost : IFordereObject
     {

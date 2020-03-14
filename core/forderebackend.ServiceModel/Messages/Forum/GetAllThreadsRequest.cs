@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
-
-
-using Fordere.ServiceInterface.Dtos;
-
+using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Forum
+namespace forderebackend.ServiceModel.Messages.Forum
 {
     [Route("/forum", "GET", Summary = "Gets all threads from the forum")]
     

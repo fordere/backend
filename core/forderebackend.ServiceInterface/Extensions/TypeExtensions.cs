@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Globalization;
-
 using ServiceStack;
 
-namespace Fordere.RestService.Extensions
+namespace forderebackend.ServiceInterface.Extensions
 {
     public static class TypeExtensions
     {

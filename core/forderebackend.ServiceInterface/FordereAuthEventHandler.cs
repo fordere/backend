@@ -1,13 +1,10 @@
 ﻿using System.Collections.Generic;
-
-
-using Fordere.RestService.Smtp;
-
+using forderebackend.ServiceInterface.Smtp;
 using ServiceStack;
 using ServiceStack.Auth;
 using ServiceStack.Web;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     
     public class FordereAuthEventHandler : AuthEvents

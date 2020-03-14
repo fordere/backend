@@ -1,15 +1,13 @@
 ﻿using System.Data;
 using System.Linq;
-
-using Fordere.RestService.Entities;
-using Fordere.RestService.LeagueExecution;
-
-using Fordere.ServiceInterface.Dtos;
-using Fordere.ServiceInterface.Messages.Cup;
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceInterface.LeagueExecution;
+using forderebackend.ServiceModel.Dtos;
+using forderebackend.ServiceModel.Messages.Cup;
 using ServiceStack;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     
     public class CupService : BaseService

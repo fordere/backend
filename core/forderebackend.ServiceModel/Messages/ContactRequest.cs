@@ -1,8 +1,6 @@
-﻿using Fordere.ServiceInterface.Dtos;
+﻿using ServiceStack;
 
-using ServiceStack;
-
-namespace Fordere.ServiceInterface.Messages
+namespace forderebackend.ServiceModel.Messages
 {
     [Route("/contact", "POST", Summary = "Contact the fordere")]
     public class ContactRequest : IReturnVoid, ICaptchaRequest

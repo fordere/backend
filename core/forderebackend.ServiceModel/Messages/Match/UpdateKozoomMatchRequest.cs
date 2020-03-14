@@ -1,6 +1,6 @@
 ﻿using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Match
+namespace forderebackend.ServiceModel.Messages.Match
 {
     [Route("/kozoom", "POST")]
     public class UpdateKozoomMatchRequest : IReturnVoid

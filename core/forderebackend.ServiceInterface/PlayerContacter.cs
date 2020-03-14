@@ -1,13 +1,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
-using Fordere.RestService.Entities;
-using Fordere.RestService.Sms;
-using Fordere.RestService.Smtp;
-
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceInterface.Sms;
+using forderebackend.ServiceInterface.Smtp;
 using ServiceStack.Auth;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     public class PlayerContacter
     {
@@ -43,7 +41,7 @@ namespace Fordere.RestService
 
         private static bool HasValidMail(UserAuth user)
         {
-            // TODO SSH: könnten wir noch machen... 
+            // TODO SSH: kÃ¶nnten wir noch machen... 
             return false;
         }
 

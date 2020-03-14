@@ -1,4 +1,4 @@
-﻿namespace Fordere.ServiceInterface.Dtos
+﻿namespace forderebackend.ServiceModel.Dtos
 {
     // TODO SSH: Why do we need this DTO, it should work with the plain int...
     public class CompetitionStateDto

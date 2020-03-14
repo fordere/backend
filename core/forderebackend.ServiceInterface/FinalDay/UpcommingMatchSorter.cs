@@ -2,13 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-
-using Fordere.RestService.Entities;
-using Fordere.RestService.Entities.Final;
-
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceInterface.Entities.Final;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService.FinalDay
+namespace forderebackend.ServiceInterface.FinalDay
 {
     public class UpcommingMatchSorter
     {

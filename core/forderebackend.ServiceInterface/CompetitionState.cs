@@ -1,4 +1,4 @@
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     public enum CompetitionState
     {

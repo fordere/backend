@@ -1,6 +1,6 @@
 ﻿using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Sms
+namespace forderebackend.ServiceModel.Messages.Sms
 {
     [Route("/sms", "POST", Summary = "Sends an SMS")]
     public class SendSmsRequest : IReturnVoid

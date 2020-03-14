@@ -2,7 +2,7 @@
 
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Competition
+namespace forderebackend.ServiceModel.Messages.Competition
 {
     [Route("/competitions/{Id}/intermediateRoundStandings", "GET", Summary = "Get all ranking tables of a competition.")]
     

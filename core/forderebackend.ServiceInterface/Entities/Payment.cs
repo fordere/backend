@@ -1,7 +1,7 @@
 ﻿using ServiceStack.Auth;
 using ServiceStack.DataAnnotations;
 
-namespace Fordere.RestService.Entities
+namespace forderebackend.ServiceInterface.Entities
 {
     public class Payment : IFordereObject
     {

@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
+using forderebackend.ServiceInterface.Entities;
 
-using Fordere.RestService.Entities;
-
-namespace Fordere.RestService.FinalDay
+namespace forderebackend.ServiceInterface.FinalDay
 {
     public interface ICompetitionMode
     {

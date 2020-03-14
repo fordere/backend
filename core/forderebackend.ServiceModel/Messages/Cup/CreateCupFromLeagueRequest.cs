@@ -1,7 +1,7 @@
-﻿using Fordere.ServiceInterface.Dtos;
+﻿using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Cup
+namespace forderebackend.ServiceModel.Messages.Cup
 {
     [Route("/cups/{Id}/create/{CompetitionId}", "GET", Summary = "Generates all firstround matches for a cup.")]
     public class CreateCupFromLeagueRequest : IReturn<CupDto>

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using forderebackend.ServiceInterface.Entities;
 
-using Fordere.RestService.Entities;
-
-namespace Fordere.RestService.LeagueExecution
+namespace forderebackend.ServiceInterface.LeagueExecution
 {
     public class DoubleRoundMatchCreator : IMatchCreator
     {

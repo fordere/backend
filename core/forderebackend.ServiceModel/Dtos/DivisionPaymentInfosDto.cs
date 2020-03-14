@@ -1,4 +1,4 @@
-﻿namespace Fordere.ServiceInterface.Dtos
+﻿namespace forderebackend.ServiceModel.Dtos
 {
     public class DivisionPaymentInfosDto
     {

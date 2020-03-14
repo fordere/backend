@@ -1,17 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using Fordere.RestService.Entities;
-using Fordere.RestService.Entities.Final;
-using Fordere.ServiceInterface.Dtos;
-using Fordere.ServiceInterface.Messages.Final;
-using Fordere.ServiceInterface.Messages.Season;
-
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceInterface.Entities.Final;
+using forderebackend.ServiceModel.Dtos;
+using forderebackend.ServiceModel.Messages.Final;
+using forderebackend.ServiceModel.Messages.Season;
 using ServiceStack;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     public class FinalDayStandingsService : BaseService
     {

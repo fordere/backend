@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Net.Http;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     public static class CaptchaSolver
     {

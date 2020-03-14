@@ -1,8 +1,7 @@
 using System;
+using forderebackend.ServiceModel.Messages.Final;
 
-using Fordere.ServiceInterface.Messages.Final;
-
-namespace Fordere.ServiceInterface.Dtos.FinalDay
+namespace forderebackend.ServiceModel.Dtos.FinalDay
 {
     public class FinalDayCompetitionProgressDto
     {

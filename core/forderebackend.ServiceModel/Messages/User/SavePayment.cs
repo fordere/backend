@@ -1,6 +1,6 @@
 ﻿using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.User
+namespace forderebackend.ServiceModel.Messages.User
 {
     [Route("/payments", "POST", Summary = "Does save the payment-state for a given user")]
     public class SavePayment : IReturnVoid

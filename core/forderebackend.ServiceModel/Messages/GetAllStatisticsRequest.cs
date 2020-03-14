@@ -1,9 +1,7 @@
-﻿
-using Fordere.ServiceInterface.Dtos;
-
+﻿using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages
+namespace forderebackend.ServiceModel.Messages
 {
     [Route("/statistics/{SeasonId}", "GET", Summary = "Get all statistics")]
     

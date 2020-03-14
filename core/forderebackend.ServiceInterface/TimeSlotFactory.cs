@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Fordere.RestService.Entities;
+using forderebackend.ServiceInterface.Entities;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     public static class TimeSlotFactory
     {

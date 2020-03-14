@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Net;
 using System.Net.Mail;
-
 using ServiceStack.Configuration;
 
-namespace Fordere.RestService.Smtp
+namespace forderebackend.ServiceInterface.Smtp
 {
     /// <summary>
     /// Wrapper class arround SmtpClient to use our configuration (app.config).

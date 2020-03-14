@@ -1,10 +1,8 @@
 using System.Collections.Generic;
-
-using Fordere.ServiceInterface.Dtos.FinalDay;
-
+using forderebackend.ServiceModel.Dtos.FinalDay;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Final
+namespace forderebackend.ServiceModel.Messages.Final
 {
     [Route("/finalday/competition/{FinalDayCompetitionId}/group/moveteam/{TeamInGroupId}", "POST", Summary = "Moves a TeamInGroup (Settlement)")]
     public class MoveTeamInGroupRequest : IReturn<List<TeamInGroupViewDto>>

@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceInterface.Extensions;
 
-using Fordere.RestService.Entities;
-using Fordere.RestService.Extensions;
-
-namespace Fordere.RestService.LeagueExecution
+namespace forderebackend.ServiceInterface.LeagueExecution
 {
     public class SingleRoundMatchCreator : IMatchCreator
     {

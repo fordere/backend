@@ -1,8 +1,7 @@
-﻿using Fordere.ServiceInterface.Dtos;
-
+﻿using forderebackend.ServiceModel.Dtos;
 using ServiceStack.DataAnnotations;
 
-namespace Fordere.RestService.Entities
+namespace forderebackend.ServiceInterface.Entities
 {
     public class TableEntryView : IFordereObject
     {

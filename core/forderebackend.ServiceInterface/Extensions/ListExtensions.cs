@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Fordere.RestService.Extensions
+namespace forderebackend.ServiceInterface.Extensions
 {
     public static class ListExtensions
     {

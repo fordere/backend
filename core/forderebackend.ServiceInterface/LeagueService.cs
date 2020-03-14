@@ -1,19 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-
-using Fordere.RestService.Entities;
-using Fordere.RestService.Extensions;
-using Fordere.RestService.LeagueExecution;
-using Fordere.RestService.LeagueExecution.Standings;
-
-using Fordere.ServiceInterface.Dtos;
-using Fordere.ServiceInterface.Messages.Competition;
-using Fordere.ServiceInterface.Messages.League;
-
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceInterface.Extensions;
+using forderebackend.ServiceInterface.LeagueExecution;
+using forderebackend.ServiceInterface.LeagueExecution.Standings;
+using forderebackend.ServiceModel.Dtos;
+using forderebackend.ServiceModel.Messages.Competition;
+using forderebackend.ServiceModel.Messages.League;
 using ServiceStack;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     
     public class LeagueService : BaseService

@@ -1,4 +1,4 @@
-﻿namespace Fordere.RestService.Sms
+﻿namespace forderebackend.ServiceInterface.Sms
 {
     public class PhoneNumberFormatter
     {

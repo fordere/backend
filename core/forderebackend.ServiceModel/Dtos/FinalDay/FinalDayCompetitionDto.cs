@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using forderebackend.ServiceModel.Messages.Final;
+using forderebackend.ServiceModel.Messages.Table;
 
-using Fordere.ServiceInterface.Messages.Final;
-using Fordere.ServiceInterface.Messages.Table;
-
-namespace Fordere.ServiceInterface.Dtos.FinalDay
+namespace forderebackend.ServiceModel.Dtos.FinalDay
 {
     public class FinalDayCompetitionDto : NameDto
     {

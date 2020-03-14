@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
-
-
-using Fordere.ServiceInterface.Dtos;
-
+using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Match
+namespace forderebackend.ServiceModel.Messages.Match
 {
     [Route("/matches/recent", "GET", Summary = "Recent played matches (7 days).")]
     

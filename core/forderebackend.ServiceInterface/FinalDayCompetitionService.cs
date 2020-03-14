@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using Fordere.RestService.Entities;
-using Fordere.RestService.Entities.Final;
-using Fordere.RestService.FinalDay;
-using Fordere.ServiceInterface.Dtos;
-using Fordere.ServiceInterface.Dtos.FinalDay;
-using Fordere.ServiceInterface.Messages.Final;
-
+using forderebackend.ServiceInterface.Entities;
+using forderebackend.ServiceInterface.Entities.Final;
+using forderebackend.ServiceInterface.FinalDay;
+using forderebackend.ServiceModel.Dtos;
+using forderebackend.ServiceModel.Dtos.FinalDay;
+using forderebackend.ServiceModel.Messages.Final;
 using ServiceStack;
 using ServiceStack.OrmLite;
 
-namespace Fordere.RestService
+namespace forderebackend.ServiceInterface
 {
     public class FinalDayCompetitionService : BaseService
     {

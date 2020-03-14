@@ -1,12 +1,10 @@
 using System.Collections.Generic;
-
-using Fordere.RestService.Entities.Final;
-using Fordere.ServiceInterface.Dtos;
-
+using forderebackend.ServiceInterface.Entities.Final;
+using forderebackend.ServiceModel.Dtos;
 using ServiceStack.Auth;
 using ServiceStack.DataAnnotations;
 
-namespace Fordere.RestService.Entities
+namespace forderebackend.ServiceInterface.Entities
 {
     public class Team : IFordereObjectWithName
     {

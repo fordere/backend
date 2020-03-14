@@ -2,7 +2,7 @@
 
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.Calendar
+namespace forderebackend.ServiceModel.Messages.Calendar
 {
     [Route("/calendar/{Id}", "GET", Summary = "Get calendar ICS stream by Id.")]
     

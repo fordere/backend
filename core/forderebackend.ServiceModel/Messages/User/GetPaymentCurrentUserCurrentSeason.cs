@@ -1,6 +1,6 @@
 using ServiceStack;
 
-namespace Fordere.ServiceInterface.Messages.User
+namespace forderebackend.ServiceModel.Messages.User
 {
     [Route("/payments/currentUserCurrentSeason", "GET")]
     public class GetPaymentCurrentUserCurrentSeason
