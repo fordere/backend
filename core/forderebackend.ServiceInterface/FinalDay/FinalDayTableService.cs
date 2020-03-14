@@ -5,9 +5,9 @@ using forderebackend.ServiceModel.Messages.Final;
 using ServiceStack;
 using ServiceStack.OrmLite;
 
-namespace forderebackend.ServiceInterface
+namespace forderebackend.ServiceInterface.FinalDay
 {
-    public class FinaldayTableService : BaseService
+    public class FinalDayTableService : BaseService
     {
         [Authenticate]
         [RequiredRole(RoleNames.Admin)]

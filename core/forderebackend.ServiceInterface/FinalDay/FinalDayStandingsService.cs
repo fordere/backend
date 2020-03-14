@@ -9,7 +9,7 @@ using forderebackend.ServiceModel.Messages.Season;
 using ServiceStack;
 using ServiceStack.OrmLite;
 
-namespace forderebackend.ServiceInterface
+namespace forderebackend.ServiceInterface.FinalDay
 {
     public class FinalDayStandingsService : BaseService
     {

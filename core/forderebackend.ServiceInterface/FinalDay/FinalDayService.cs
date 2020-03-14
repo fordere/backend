@@ -3,7 +3,7 @@ using forderebackend.ServiceModel.Messages.Final;
 using ServiceStack;
 using ServiceStack.OrmLite;
 
-namespace forderebackend.ServiceInterface
+namespace forderebackend.ServiceInterface.FinalDay
 {
     internal class FinalDayService : BaseService
     {

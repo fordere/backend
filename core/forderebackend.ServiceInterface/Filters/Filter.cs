@@ -33,18 +33,6 @@ namespace forderebackend.ServiceInterface.Filters
         }
 
         /// <summary>
-        /// Ensures the Captcha is filled in correctly.
-        /// </summary>
-        public static void Captcha(IRequest request, IResponse response, ICaptchaRequest dtoRequest)
-        {
-            if (!CaptchaSolver.Solve(request.RemoteIp, dtoRequest.Captcha))
-            {
-                throw new ArgumentException(
-                    "Spamschutz wurde falsch ausgefüllt! Versuchs nocheinmal oder wende dich direkt per Mail an uns!");
-            }
-        }
-
-        /// <summary>
         /// Remove all the user specific details from the teamdto when the user is not authenticated
         /// </summary>
         public static void TeamPlayerDetails(IRequest request, IResponse response, TeamDto team)

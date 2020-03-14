@@ -98,7 +98,6 @@ namespace forderebackend
                 DebugMode = appSettings.Get("Debug", false)
             });
 
-            RegisterTypedRequestFilter<ICaptchaRequest>(Filter.Captcha);
             RegisterTypedRequestFilter<EnterMatchAppointmentRequest>(Filter.EnterMatchAppointment);
             RegisterTypedRequestFilter<EnterMatchResultRequest>(Filter.EnterMatchResult);
 

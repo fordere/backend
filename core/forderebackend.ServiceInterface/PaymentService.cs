@@ -10,6 +10,7 @@ using forderebackend.ServiceModel.Messages.User;
 using ServiceStack;
 using ServiceStack.Logging;
 using ServiceStack.OrmLite;
+using ServiceStack.Stripe;
 using ServiceStack.Stripe.Types;
 
 namespace forderebackend.ServiceInterface
@@ -77,7 +78,9 @@ namespace forderebackend.ServiceInterface
                 .Aggregate((i, j) => i + ", " + j);
 
             var division = Db.LoadSingleById<Division>(DivisionId);
-            var gateway = new FordereStripeGateway(division.PrivateStripeKey);
+            
+            var gateway = new StripeGateway(division.PrivateStripeKey);
+            
             gateway.Post(new ChargeStripeCustomer()
             {
                 Amount = request.Amount,

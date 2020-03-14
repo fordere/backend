@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using forderebackend.ServiceInterface.Entities;
 using forderebackend.ServiceInterface.Entities.Final;
-using forderebackend.ServiceInterface.FinalDay;
 using forderebackend.ServiceModel.Dtos;
 using forderebackend.ServiceModel.Dtos.FinalDay;
 using forderebackend.ServiceModel.Messages.Final;
 using ServiceStack;
 using ServiceStack.OrmLite;
 
-namespace forderebackend.ServiceInterface
+namespace forderebackend.ServiceInterface.FinalDay
 {
     public class FinalDayCompetitionService : BaseService
     {

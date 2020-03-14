@@ -8,7 +8,7 @@ using ServiceStack.OrmLite;
 
 namespace forderebackend.ServiceInterface
 {
-    public class EinteilungService : BaseService
+    public class ClassificationService : BaseService
     {
         public object Get(EinteilungenRequest request)
         {
