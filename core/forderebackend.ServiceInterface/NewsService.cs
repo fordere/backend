@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using forderebackend.ServiceInterface.Entities;
@@ -37,10 +38,10 @@ namespace forderebackend.ServiceInterface
             foreach (var news in newsEntities)
             {
                 if (string.IsNullOrEmpty(news.Summary))
-                    // TODO use Humanizer
                 {
+                    // TODO use Humanizer
                     news.Summary =
-                        news.Content.Substring(0, 200); //news.Content.Truncate(30, Truncator.FixedNumberOfWords);
+                        news.Content.Substring(0, Math.Min(200, news.Content.Length)); //news.Content.Truncate(30, Truncator.FixedNumberOfWords);
                 }
 
                 var dto = news.ConvertTo<NewsDto>();
