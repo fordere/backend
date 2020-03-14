@@ -1,4 +1,4 @@
-﻿using Fordere.RestService.Properties;
+﻿
 using Fordere.ServiceInterface.Dtos.FinalDay;
 using Fordere.ServiceInterface.Messages.Final;
 

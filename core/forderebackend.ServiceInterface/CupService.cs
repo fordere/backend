@@ -3,7 +3,7 @@ using System.Linq;
 
 using Fordere.RestService.Entities;
 using Fordere.RestService.LeagueExecution;
-using Fordere.RestService.Properties;
+
 using Fordere.ServiceInterface.Dtos;
 using Fordere.ServiceInterface.Messages.Cup;
 using ServiceStack;

@@ -1,7 +1,7 @@
 using System;
 
 using Fordere.RestService.LeagueExecution.Standings;
-using Fordere.RestService.Properties;
+
 using Fordere.ServiceInterface.Messages.Table;
 
 using ServiceStack.DataAnnotations;

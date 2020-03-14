@@ -1,4 +1,4 @@
-﻿using Fordere.RestService.Properties;
+﻿
 using Fordere.RestService.Smtp;
 using Fordere.ServiceInterface.Messages;
 

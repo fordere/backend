@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 
 using Fordere.RestService.Entities.Final;
-using Fordere.RestService.Properties;
+
 using Fordere.ServiceInterface.Dtos.FinalDay;
 using Fordere.ServiceInterface.Messages.Final;
 

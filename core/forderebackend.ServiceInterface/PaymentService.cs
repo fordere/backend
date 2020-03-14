@@ -6,7 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 
 using Fordere.RestService.Entities;
 using Fordere.RestService.Extensions;
-using Fordere.RestService.Properties;
+
 using Fordere.ServiceInterface.Messages.Season;
 using Fordere.ServiceInterface.Messages.User;
 

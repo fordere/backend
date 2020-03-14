@@ -5,7 +5,7 @@ using Fordere.RestService.Entities;
 using Fordere.RestService.Extensions;
 using Fordere.RestService.LeagueExecution;
 using Fordere.RestService.LeagueExecution.Standings;
-using Fordere.RestService.Properties;
+
 using Fordere.ServiceInterface.Dtos;
 using Fordere.ServiceInterface.Messages.Competition;
 using Fordere.ServiceInterface.Messages.League;

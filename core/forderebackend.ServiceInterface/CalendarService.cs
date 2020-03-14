@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 
 using Fordere.RestService.Entities;
-using Fordere.RestService.Properties;
+
 using Fordere.RestService.Utilities;
 using Fordere.ServiceInterface.Messages.Calendar;
 

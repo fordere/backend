@@ -1,4 +1,4 @@
-using Fordere.RestService.Properties;
+
 using Fordere.ServiceInterface.Messages.Table;
 
 using ServiceStack.DataAnnotations;

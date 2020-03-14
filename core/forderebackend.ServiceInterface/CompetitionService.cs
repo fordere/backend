@@ -8,7 +8,7 @@ using Fordere.RestService.Entities;
 using Fordere.RestService.Extensions;
 using Fordere.RestService.LeagueExecution;
 using Fordere.RestService.LeagueExecution.Standings;
-using Fordere.RestService.Properties;
+
 using Fordere.RestService.Smtp;
 using Fordere.ServiceInterface.Dtos;
 using Fordere.ServiceInterface.Messages.Competition;
@@ -22,7 +22,6 @@ using ServiceStack.OrmLite;
 
 namespace Fordere.RestService
 {
-    [UsedImplicitly(ImplicitUseTargetFlags.Members)]
     public class CompetitionService : BaseService
     {
         [Authenticate]
