@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A2088CD9-9586-40F0-82F5-1860F27202EC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fordere.ServiceInterface</RootNamespace>
+    <AssemblyName>Fordere.ServiceInterface</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ServiceStack, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.5.5.0\lib\net45\ServiceStack.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Client, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Client.5.5.0\lib\net45\ServiceStack.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Common.5.5.0\lib\net45\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Interfaces.5.5.0\lib\net45\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Text.5.5.0\lib\net45\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.2\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Threading" />
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dtos\BarDto.cs" />
+    <Compile Include="Dtos\BaseDto.cs" />
+    <Compile Include="Dtos\ChallengeDto.cs" />
+    <Compile Include="Dtos\CompetitionDto.cs" />
+    <Compile Include="Dtos\CompetitionPlayerStandingDto.cs" />
+    <Compile Include="Dtos\CompetitionStateDto.cs" />
+    <Compile Include="Dtos\CompetitionStandingDto.cs" />
+    <Compile Include="Dtos\CompetitionTeamStandingGroupDto.cs" />
+    <Compile Include="Dtos\CompetitionTeamStandingViewDto.cs" />
+    <Compile Include="Dtos\DivisionDto.cs" />
+    <Compile Include="Dtos\DivisionPaymentInfosDto.cs" />
+    <Compile Include="Dtos\FinalDay\FinalDayPlayerInCompetitionDto.cs" />
+    <Compile Include="Dtos\FinalDay\FinalDayTableDto.cs" />
+    <Compile Include="Dtos\Cup2Dto.cs" />
+    <Compile Include="Dtos\CupDto.cs" />
+    <Compile Include="Dtos\ExtendedMatchDto.cs" />
+    <Compile Include="Dtos\FinalDay\FinalDayCompetitionProgressDto.cs" />
+    <Compile Include="Dtos\FinalDay\FinalDayDto.cs" />
+    <Compile Include="Dtos\FinalDay\FinalDayCompetitionDto.cs" />
+    <Compile Include="Dtos\FinalDay\GroupDto.cs" />
+    <Compile Include="Dtos\FinalDay\TeamInGroupViewDto.cs" />
+    <Compile Include="Dtos\ForumPostDto.cs" />
+    <Compile Include="Dtos\ForumThreadDto.cs" />
+    <Compile Include="Dtos\LeagueDto.cs" />
+    <Compile Include="Dtos\LeagueMatchCreationMode.cs" />
+    <Compile Include="Dtos\MatchDto.cs" />
+    <Compile Include="Dtos\NameDto.cs" />
+    <Compile Include="Dtos\NewsDto.cs" />
+    <Compile Include="Dtos\OpenRegistrationCompetitionDto.cs" />
+    <Compile Include="Dtos\PaymentDto.cs" />
+    <Compile Include="Dtos\QualifiedForFinalDay.cs" />
+    <Compile Include="Dtos\SeasonDto.cs" />
+    <Compile Include="Dtos\TableAvailabilityDto.cs" />
+    <Compile Include="Dtos\TableDto.cs" />
+    <Compile Include="Dtos\TableEntryDto.cs" />
+    <Compile Include="Dtos\TableEntryViewDto.cs" />
+    <Compile Include="Dtos\TeamDto.cs" />
+    <Compile Include="Dtos\TeamInscriptionDto.cs" />
+    <Compile Include="Dtos\TeamRegistrationDto.cs" />
+    <Compile Include="Dtos\TeamViewDto.cs" />
+    <Compile Include="Dtos\TeamWithMatchesDto.cs" />
+    <Compile Include="Dtos\TournamentRegistrationDto.cs" />
+    <Compile Include="Dtos\UserMailsDto.cs" />
+    <Compile Include="Dtos\UserDto.cs" />
+    <Compile Include="Messages\Bar\GetAllBarsWithTableAvailability.cs" />
+    <Compile Include="Messages\Bar\GetAllDivisionsRequest.cs" />
+    <Compile Include="Messages\Bar\GetBarByIdRequest.cs" />
+    <Compile Include="Messages\Bar\GetPaymentInformationsRequest.cs" />
+    <Compile Include="Messages\Bar\UpdateBarRequest.cs" />
+    <Compile Include="Messages\Calendar\GetCalendarStreamByIdRequest.cs" />
+    <Compile Include="Messages\Challenge\CreateChallengeRequest.cs" />
+    <Compile Include="Messages\Challenge\GetChallengesForTeamRequest.cs" />
+    <Compile Include="Messages\Competition\CreateTeamAndMatchFromTeamInscriptionRequest.cs" />
+    <Compile Include="Messages\Competition\GetAllCompetitionsInCurrentRequest.cs" />
+    <Compile Include="Messages\Competition\GetAllCompetitionsInSeasonRequest.cs" />
+    <Compile Include="Messages\Competition\GetAllCompetitionsRequest.cs" />
+    <Compile Include="Messages\Competition\GetCompetitionStateRequest.cs" />
+    <Compile Include="Messages\Competition\GetStandingsFromCompetitionsRequest.cs" />
+    <Compile Include="Messages\Competition\GetStandingsFromSeasonRequest.cs" />
+    <Compile Include="Messages\Competition\GetTeamsFromCompetitionsRequest.cs" />
+    <Compile Include="Messages\Final\AddFinalDayCompetitionRequest.cs" />
+    <Compile Include="Messages\Final\AddFinalDayTableRequest.cs" />
+    <Compile Include="Messages\Final\AddGroupRequest.cs" />
+    <Compile Include="Messages\Final\CompetitionMode.cs" />
+    <Compile Include="Messages\Final\CreateNewRoundRequest.cs" />
+    <Compile Include="Messages\Final\DeleteFinalDayCompetitionRequest.cs" />
+    <Compile Include="Messages\Final\DeleteFinalDayTableRequest.cs" />
+    <Compile Include="Messages\Final\FinalDayCompetitionState.cs" />
+    <Compile Include="Messages\Final\GetAllFinalDayCompetitionsRequest.cs" />
+    <Compile Include="Messages\Final\DeleteGroupRequest.cs" />
+    <Compile Include="Messages\Final\DeleteTeamFromGroupRequest.cs" />
+    <Compile Include="Messages\Final\GetAllFinalDayTablesRequest.cs" />
+    <Compile Include="Messages\Final\GetFinalDayCompetitionRequest.cs" />
+    <Compile Include="Messages\Final\GetFinalDayProgressRequest.cs" />
+    <Compile Include="Messages\Final\GetFinalDayRequest.cs" />
+    <Compile Include="Messages\Final\GetFinalDayStandingsRequest.cs" />
+    <Compile Include="Messages\Final\GetFinalDayTableRequest.cs" />
+    <Compile Include="Messages\Final\GetFinishedFinalDayCompetitions.cs" />
+    <Compile Include="Messages\Final\GetFinishedFinalDayMatchesRequest.cs" />
+    <Compile Include="Messages\Final\GetGroupsByCompetitionRequest.cs" />
+    <Compile Include="Messages\Final\GetRecentFinalDayMatchesRequest.cs" />
+    <Compile Include="Messages\Final\GetRunningFinalDayMatchesRequest.cs" />
+    <Compile Include="Messages\Final\MoveTeamInGroupRequest.cs" />
+    <Compile Include="Messages\Final\OvertakeForderePlayerRequest.cs" />
+    <Compile Include="Messages\Final\PlayersInFinalDayCompetitionRequest.cs" />
+    <Compile Include="Messages\Final\PutTeamOverToFinalDayCompetitionRequest.cs" />
+    <Compile Include="Messages\Final\SaveFinalDayCompetitionRequest.cs" />
+    <Compile Include="Messages\Final\SaveGroupRequest.cs" />
+    <Compile Include="Messages\Final\UpdateFinalDayCompetitionNameRequest.cs" />
+    <Compile Include="Messages\Final\UpdateFinalDayCompetitionStateRequest.cs" />
+    <Compile Include="Messages\Final\UpdateFinalDayTableNumberRequest.cs" />
+    <Compile Include="Messages\Final\UpdateFinalDayTableDisabledRequest.cs" />
+    <Compile Include="Messages\Forum\CreatePostRequest.cs" />
+    <Compile Include="Messages\Forum\CreateThreadRequest.cs" />
+    <Compile Include="Messages\Final\GetUpcommingFinalDayMatchesRequest.cs" />
+    <Compile Include="Messages\League\AddLeagueRequest.cs" />
+    <Compile Include="Messages\League\GetLeagueByIdRequest.cs" />
+    <Compile Include="Messages\League\UpdateLeagueRequest.cs" />
+    <Compile Include="Messages\Match\ResetMatchRequest.cs" />
+    <Compile Include="Messages\Match\UpdateKozoomMatchRequest.cs" />
+    <Compile Include="Messages\Match\UpdateMatchRequest.cs" />
+    <Compile Include="Messages\Season\GetCurrentSeasonRequest.cs" />
+    <Compile Include="Messages\Season\GetLeaguesBySeasonRequest.cs" />
+    <Compile Include="Messages\League\MoveTeamToLeagueRequest.cs" />
+    <Compile Include="Messages\MailingList\GetAllPlayersInCompetitionMailsRequest.cs" />
+    <Compile Include="Messages\MailingList\GetAllPlayersInLeagueMailsRequest.cs" />
+    <Compile Include="Messages\MailingList\GetAllPlayersInSeasonRequest.cs" />
+    <Compile Include="Messages\Forum\GetAllThreadsRequest.cs" />
+    <Compile Include="Messages\MailingList\GetAllUsersMailsRequest.cs" />
+    <Compile Include="Messages\Forum\GetPostsOfThreadRequest.cs" />
+    <Compile Include="Messages\Match\DeleteMatchAppointmentRequest.cs" />
+    <Compile Include="Messages\Match\DeleteMatchResultRequest.cs" />
+    <Compile Include="Messages\Match\GetMatchesForTeamRequest.cs" />
+    <Compile Include="Messages\Match\GetUserMailsForOpenMatchesInLeagueRequest.cs" />
+    <Compile Include="Messages\GetAllStatisticsRequest.cs" />
+    <Compile Include="Messages\Season\GetAllArchivedSeasonsRequest.cs" />
+    <Compile Include="Messages\Season\GetAllTeamsInSeasonRequest.cs" />
+    <Compile Include="Messages\Season\GetSeasonById.cs" />
+    <Compile Include="Messages\Season\SaveSeasonRequest.cs" />
+    <Compile Include="Messages\Season\SeasonState.cs" />
+    <Compile Include="Messages\Skills\CalculateSkillsRequest.cs" />
+    <Compile Include="Messages\Sms\SendSmsRequest.cs" />
+    <Compile Include="Messages\Table\AddTableAvailabilityRequest.cs" />
+    <Compile Include="Messages\Table\DeleteTableAvailabilityRequest.cs" />
+    <Compile Include="Messages\Table\GetAllTableAvailabilitiesRequest.cs" />
+    <Compile Include="Messages\Table\GetAllTablesRequest.cs" />
+    <Compile Include="Messages\Table\GetTableByIdRequest.cs" />
+    <Compile Include="Messages\Table\GetTablesInBarForCompetitionRequest.cs" />
+    <Compile Include="Messages\Table\GetTablesInBarForCupRequest.cs" />
+    <Compile Include="Messages\Table\GetTablesInBarRequest.cs" />
+    <Compile Include="Messages\Table\TableType.cs" />
+    <Compile Include="Messages\Table\TimeSlotRequest.cs" />
+    <Compile Include="Messages\Competition\CreateTeamsAndMatchesRequest.cs" />
+    <Compile Include="Messages\Competition\SetMatchesNotPlayedRequest.cs" />
+    <Compile Include="Messages\Competition\GetCompetitionByIdRequest.cs" />
+    <Compile Include="Messages\Cup\CreateCupFromLeagueRequest.cs" />
+    <Compile Include="Messages\Cup\GetCupByIdRequest.cs" />
+    <Compile Include="Messages\Cup\GetCupMatchesRequest.cs" />
+    <Compile Include="Messages\Cup\CreateCupRoundRequest.cs" />
+    <Compile Include="Messages\LeagueRegistration\GetCompetitionsOpenForRegistration.cs" />
+    <Compile Include="Messages\LeagueRegistration\UpdateAssignedLeagueRequest.cs" />
+    <Compile Include="Messages\League\GetLeagueByCompetitionIdRequest.cs" />
+    <Compile Include="Messages\Match\GetMatchesByCompetitionRequest.cs" />
+    <Compile Include="Messages\Match\GetMatchesByLeagueRequest.cs" />
+    <Compile Include="Messages\Table\CreateTableRequest.cs" />
+    <Compile Include="Messages\Table\UpdateTableRequest.cs" />
+    <Compile Include="Messages\TeamInscription\DeleteTeamInscriptionRequest.cs" />
+    <Compile Include="Messages\TeamInscription\NotAssignedTeamInscriptionsByCompetition.cs" />
+    <Compile Include="Messages\TeamInscription\TeamInscriptionsByLeagueRegistration.cs" />
+    <Compile Include="Messages\LeagueRegistration\CompetitionRegisterRequest.cs" />
+    <Compile Include="Messages\Match\EnterMatchAppointmentRequest.cs" />
+    <Compile Include="Messages\Match\EnterMatchResultRequest.cs" />
+    <Compile Include="Messages\Match\GetMatchByIdRequest.cs" />
+    <Compile Include="Messages\Match\RecentMatchesRequest.cs" />
+    <Compile Include="Messages\News\AddNewsRequest.cs" />
+    <Compile Include="Messages\News\GetNewsByIdRequest.cs" />
+    <Compile Include="Messages\News\GetAllNewsRequest.cs" />
+    <Compile Include="Messages\News\UpdateIsPublishedRequest.cs" />
+    <Compile Include="Messages\News\UpdateNewsRequest.cs" />
+    <Compile Include="Messages\Season\GetAllSeasonsRequest.cs" />
+    <Compile Include="Messages\ContactRequest.cs" />
+    <Compile Include="Messages\Bar\GetAllBarsRequest.cs" />
+    <Compile Include="Messages\Cup\GetAllCupsRequest.cs" />
+    <Compile Include="Messages\Match\UpcommingMatchesRequest.cs" />
+    <Compile Include="Messages\Team\DeleteTeamRequest.cs" />
+    <Compile Include="Messages\Team\GetTeamByIdRequest.cs" />
+    <Compile Include="Messages\Team\UpdateTeamRequest.cs" />
+    <Compile Include="Messages\TournamentRegistrationRequest.cs" />
+    <Compile Include="Messages\User\CreateUserRequest.cs" />
+    <Compile Include="Messages\User\GetAllPossiblePartners.cs" />
+    <Compile Include="Messages\User\GetAllUsersRequest.cs" />
+    <Compile Include="Messages\PagedRequest.cs" />
+    <Compile Include="Messages\PagedResponse.cs" />
+    <Compile Include="Messages\User\GetDonePayments.cs" />
+    <Compile Include="Messages\User\GetMyUserDetailsRequest.cs" />
+    <Compile Include="Messages\User\GetMyUserProfileRequest.cs" />
+    <Compile Include="Messages\User\GetOpenPayments.cs" />
+    <Compile Include="Messages\User\GetPaymentCurrentUserCurrentSeason.cs" />
+    <Compile Include="Messages\User\GetPaymentInformationsRequest.cs" />
+    <Compile Include="Messages\User\GetUserOpenPaymentsForCurrentSeason.cs" />
+    <Compile Include="Messages\User\GetUserProfileRequest.cs" />
+    <Compile Include="Messages\User\MyMatchesTodayRequest.cs" />
+    <Compile Include="Messages\ICaptchaRequest.cs" />
+    <Compile Include="Messages\User\OpenUserPaymentResponse.cs" />
+    <Compile Include="Messages\User\PaymentInformationsDto.cs" />
+    <Compile Include="Messages\User\PayRequest.cs" />
+    <Compile Include="Messages\User\ResetPasswordRequest.cs" />
+    <Compile Include="Messages\User\SavePayment.cs" />
+    <Compile Include="Messages\User\SetNewPasswordRequest.cs" />
+    <Compile Include="Messages\User\MatchesResponse.cs" />
+    <Compile Include="Messages\User\UpdateUserProfileRequest.cs" />
+    <Compile Include="Messages\User\UpdateUserRequest.cs" />
+    <Compile Include="Messages\User\UserMatchesCurrentSeasonRequest.cs" />
+    <Compile Include="Messages\User\UserMatchesRequest.cs" />
+    <Compile Include="Messages\User\UserOpenMatchesRequest.cs" />
+    <Compile Include="Messages\User\UserProfileResponse.cs" />
+    <Compile Include="Messages\User\UsersResponse.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Messages\User\GetUserByIdRequest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

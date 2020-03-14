@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0D94B864-6B7D-461E-A41C-14759E75EA36}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fordere.RestService</RootNamespace>
+    <AssemblyName>Fordere.RestService</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Google.Protobuf, Version=3.7.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.7.0\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="Humanizer, Version=2.6.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Humanizer.Core.2.6.2\lib\netstandard1.0\Humanizer.dll</HintPath>
+    </Reference>
+    <Reference Include="Ical.Net, Version=4.1.8.0, Culture=neutral, PublicKeyToken=65c0446cd019ea53, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ical.Net.4.1.11\lib\net46\Ical.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.15.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.15\lib\net452\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NodaTime, Version=2.0.2.0, Culture=neutral, PublicKeyToken=4226afe0d9b296d1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NodaTime.2.0.2\lib\net45\NodaTime.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.5.5.0\lib\net45\ServiceStack.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Client, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Client.5.5.0\lib\net45\ServiceStack.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Common.5.5.0\lib\net45\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Interfaces.5.5.0\lib\net45\ServiceStack.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.OrmLite.5.5.0\lib\net45\ServiceStack.OrmLite.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.OrmLite.MySql, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.OrmLite.MySql.5.5.0\lib\net452\ServiceStack.OrmLite.MySql.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Text.5.5.0\lib\net45\ServiceStack.Text.dll</HintPath>
+    </Reference>
+    <Reference Include="Stripe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=02c12cbda47e6587, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Stripe.5.5.0\lib\net45\Stripe.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.2\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.TypeExtensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.TypeExtensions.4.1.0\lib\net462\System.Reflection.TypeExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.1\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Extensions, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Extensions.4.3.1\lib\net462\System.Runtime.Extensions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Primitives">
+      <HintPath>..\packages\System.Runtime.Serialization.Primitives.4.3.0\lib\net46\System.Runtime.Serialization.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.1\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.2\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Threading" />
+    <Reference Include="System.Threading.Tasks" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.ReaderWriter.4.3.1\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CalendarService.cs" />
+    <Compile Include="CaptchaSolver.cs" />
+    <Compile Include="ChallengeService.cs" />
+    <Compile Include="CompetitionService.cs" />
+    <Compile Include="CompetitionState.cs" />
+    <Compile Include="ContactService.cs" />
+    <Compile Include="BarService.cs" />
+    <Compile Include="BaseService.cs" />
+    <Compile Include="CupService.cs" />
+    <Compile Include="DivisionService.cs" />
+    <Compile Include="EinteilungService.cs" />
+    <Compile Include="Entities\Bar.cs" />
+    <Compile Include="Entities\Challenge.cs" />
+    <Compile Include="Entities\Competition.cs" />
+    <Compile Include="Entities\Division.cs" />
+    <Compile Include="Entities\Final\CompetitionPlayerStanding.cs" />
+    <Compile Include="Entities\Final\CompetitionTeamStanding.cs" />
+    <Compile Include="Entities\Final\CompetitionTeamStandingView.cs" />
+    <Compile Include="Entities\Final\FinalDay.cs" />
+    <Compile Include="Entities\Cup.cs" />
+    <Compile Include="Entities\CupRound.cs" />
+    <Compile Include="Entities\Final\FinalDayCompetition.cs" />
+    <Compile Include="Entities\Final\FinalDayTable.cs" />
+    <Compile Include="Entities\Final\PlayerInFinalDayCompetition.cs" />
+    <Compile Include="Entities\Forum\ForumThread.cs" />
+    <Compile Include="Entities\Forum\ForumPost.cs" />
+    <Compile Include="Entities\Final\Group.cs" />
+    <Compile Include="Entities\IFordereObject.cs" />
+    <Compile Include="Entities\FordereObjectWithName.cs" />
+    <Compile Include="Entities\League.cs" />
+    <Compile Include="Entities\Match.cs" />
+    <Compile Include="Entities\MatchView.cs" />
+    <Compile Include="Entities\News.cs" />
+    <Compile Include="Entities\Payment.cs" />
+    <Compile Include="Entities\Season.cs" />
+    <Compile Include="Entities\Skill.cs" />
+    <Compile Include="Entities\Table.cs" />
+    <Compile Include="Entities\TableAvailability.cs" />
+    <Compile Include="Entities\TableEntry.cs" />
+    <Compile Include="Entities\TableEntryView.cs" />
+    <Compile Include="Entities\TableTypeInCompetition.cs" />
+    <Compile Include="Entities\Team.cs" />
+    <Compile Include="Entities\Final\TeamInGroup.cs" />
+    <Compile Include="Entities\Final\TeamInGroupView.cs" />
+    <Compile Include="Entities\TeamInscription.cs" />
+    <Compile Include="Entities\TeamRegistration.cs" />
+    <Compile Include="Entities\TeamView.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Extensions\PaymentExtensions.cs" />
+    <Compile Include="Extensions\ServiceStackExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\TypeExtensions.cs" />
+    <Compile Include="Extensions\UserAuth.cs" />
+    <Compile Include="Filters\Filter.cs" />
+    <Compile Include="FinalDayCompetitionService.cs" />
+    <Compile Include="FinalDayService.cs" />
+    <Compile Include="FinalDayStandingsService.cs" />
+    <Compile Include="FinaldayTableService.cs" />
+    <Compile Include="FinalDay\CompetitionModeFactory.cs" />
+    <Compile Include="FinalDay\CompetitionPlayerStandingsCalculator.cs" />
+    <Compile Include="FinalDay\CompetitionTeamStandingsSorter.cs" />
+    <Compile Include="FinalDay\CrazyDypCompetitionMode.cs" />
+    <Compile Include="FinalDay\DoubleKoCompetitionMode.cs" />
+    <Compile Include="FinalDay\GroupCompetitionMode.cs" />
+    <Compile Include="FinalDay\ICompetitionMode.cs" />
+    <Compile Include="FinalDay\MatchService.cs" />
+    <Compile Include="FinalDay\SingleKoCompetitionMode.cs" />
+    <Compile Include="FinalDay\CompetitionTeamStandingsCalculator.cs" />
+    <Compile Include="FinalDay\UpcommingMatchSorter.cs" />
+    <Compile Include="FordereAuthEventHandler.cs" />
+    <Compile Include="FordereStripeGateway.cs" />
+    <Compile Include="ForumService.cs" />
+    <Compile Include="GroupService.cs" />
+    <Compile Include="KozoomService.cs" />
+    <Compile Include="LeagueExecution\DoubleRoundMatchCreator.cs" />
+    <Compile Include="LeagueExecution\IMatchCreator.cs" />
+    <Compile Include="LeagueExecution\SingleRoundMatchCreator.cs" />
+    <Compile Include="LeagueExecution\Standings\OrderRules\GoalDifferenceOrderRule.cs" />
+    <Compile Include="LeagueExecution\Standings\OrderRules\IOrderRule.cs" />
+    <Compile Include="LeagueExecution\Standings\OrderRules\MatchNotPlayedOrderRule.cs" />
+    <Compile Include="LeagueExecution\Standings\OrderRules\MatchResultOrderRule.cs" />
+    <Compile Include="LeagueExecution\Standings\OrderRules\NumberOfMatchsWonOrderRule.cs" />
+    <Compile Include="LeagueExecution\Standings\OrderRules\NumberOfPointsOrderRule.cs" />
+    <Compile Include="LeagueExecution\Standings\OrderRules\NumberOfSetsWonOrderRule.cs" />
+    <Compile Include="LeagueExecution\Standings\OrderRules\OrderRuleFactory.cs" />
+    <Compile Include="LeagueService.cs" />
+    <Compile Include="MailListService.cs" />
+    <Compile Include="Mapping.cs" />
+    <Compile Include="LeagueExecution\MatchFactory.cs" />
+    <Compile Include="LeagueExecution\Standings\StandingsCalculator.cs" />
+    <Compile Include="LeagueExecution\TeamInscriptionExtensions.cs" />
+    <Compile Include="MatchEvents.cs" />
+    <Compile Include="MatchService.cs" />
+    <Compile Include="NewsService.cs" />
+    <Compile Include="PatchMatchRequest.cs" />
+    <Compile Include="PaymentService.cs" />
+    <Compile Include="PlayerContacter.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrationService.cs" />
+    <Compile Include="SeasonService.cs" />
+    <Compile Include="SmsService.cs" />
+    <Compile Include="Sms\PhoneNumberFormatter.cs" />
+    <Compile Include="Sms\SmsSender.cs" />
+    <Compile Include="Smtp\MailSender.cs" />
+    <Compile Include="Smtp\SmtpClientWrapper.cs" />
+    <Compile Include="StatisticsService.cs" />
+    <Compile Include="TableAvailabilityService.cs" />
+    <Compile Include="TableService.cs" />
+    <Compile Include="TeamInscriptionService.cs" />
+    <Compile Include="TeamService.cs" />
+    <Compile Include="TimeSlotFactory.cs" />
+    <Compile Include="UserService.cs" />
+    <Compile Include="Utilities\StringCipher.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fordere.ServiceInterface\Fordere.ServiceInterface.csproj">
+      <Project>{A2088CD9-9586-40F0-82F5-1860F27202EC}</Project>
+      <Name>Fordere.ServiceInterface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
