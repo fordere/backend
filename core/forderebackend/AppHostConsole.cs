@@ -30,6 +30,7 @@ namespace forderebackend
         public override void Configure(Container container)
         {
             JsConfig.DateHandler = DateHandler.ISO8601;
+            JsConfig.AssumeUtc = true;
 
             var appSettings = new AppSettings();
 
@@ -40,14 +41,8 @@ namespace forderebackend
                 return null;
             });
 
-
             container.Register<ICacheClient>(new MemoryCacheClient {FlushOnDispose = false});
-
-            JsConfig.AssumeUtc = true;
-
             container.RegisterAs<FordereAuthEventHandler, IAuthEvents>();
-
-
             container.Register<IDbConnectionFactory>(
                 new OrmLiteConnectionFactory(
                     string.Format("Server = {0}; Port = {1}; Database = {2}; Uid = {3}; Pwd = {4}",
@@ -59,20 +54,18 @@ namespace forderebackend
                     MySqlDialect.Provider));
 
             container.Register<IUserAuthRepository>(c => new OrmLiteAuthRepository(c.Resolve<IDbConnectionFactory>()));
-
-            var authProvider = new IAuthProvider[]
-            {
-                new CredentialsAuthProvider(),
-                new JwtAuthProvider(appSettings),
-            }.ToList();
-
+            
             if (appSettings.Get("Debug", false))
             {
-                authProvider.Add(new BasicAuthProvider());
+                Plugins.Add(new PostmanFeature());
             }
 
             Plugins.Add(new RegistrationFeature());
-            Plugins.Add(new AuthFeature(() => new FordereAuthUserService(), authProvider.ToArray()));
+            Plugins.Add(new AuthFeature(() => new FordereAuthUserService(), new IAuthProvider[]
+            {
+                new CredentialsAuthProvider(),
+                new JwtAuthProvider(appSettings),
+            }));
 
             Plugins.Add(new RequestLogsFeature
             {
@@ -91,10 +84,6 @@ namespace forderebackend
                         true));
             }
 
-            if (appSettings.Get("Debug", false))
-            {
-                Plugins.Add(new PostmanFeature());
-            }
             // TODO Core Migration OpenApi Support?
             //this.Plugins.Add(new OpenApiFeature());
 
