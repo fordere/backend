@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using forderebackend.ServiceInterface.Entities;
 using forderebackend.ServiceInterface.Entities.Forum;
+using forderebackend.ServiceInterface.Extensions;
 using forderebackend.ServiceModel.Dtos;
 using ServiceStack;
 
