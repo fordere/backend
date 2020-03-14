@@ -10,6 +10,8 @@ using Funq;
 using Microsoft.Extensions.Configuration;
 using ServiceStack;
 using Fordere.RestService;
+using ServiceStack.Text;
+using Fordere.WebConsole;
 
 namespace forderebackend
 {
@@ -41,14 +43,14 @@ namespace forderebackend
         {
             Licensing.RegisterLicenseFromFile("./licence.txt");
 
-
-            app.UseServiceStack(new AppHost());
+            app.UseServiceStack(new AppHostConsole());
 
             app.Run(context =>
             {
                 context.Response.Redirect("/metadata");
                 return Task.FromResult(0);
             });
+
         }
     }
 
