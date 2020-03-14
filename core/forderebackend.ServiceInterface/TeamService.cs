@@ -45,7 +45,9 @@ namespace forderebackend.ServiceInterface
             Db.Save(originalTeam);
 
             if (shouldUpdateStandings && originalTeam.LeagueId.HasValue)
+            {
                 StandingsCalculator.Calculate(Db, originalTeam.LeagueId.Value);
+            }
 
             return Db.SingleById<Team>(request.Id).ConvertTo<TeamDto>();
         }
@@ -90,7 +92,10 @@ namespace forderebackend.ServiceInterface
                 }
 
 
-                if (leagueId != default(int)) StandingsCalculator.Calculate(Db, leagueId);
+                if (leagueId != default(int))
+                {
+                    StandingsCalculator.Calculate(Db, leagueId);
+                }
 
                 transaction.Commit();
             }

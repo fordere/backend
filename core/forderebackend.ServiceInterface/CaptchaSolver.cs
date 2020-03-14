@@ -22,7 +22,10 @@ namespace forderebackend.ServiceInterface
 
             var responseParts = stringResponse.Split('\n');
 
-            if (responseParts.Length < 2) return false;
+            if (responseParts.Length < 2)
+            {
+                return false;
+            }
 
             return bool.Parse(responseParts[0]);
         }

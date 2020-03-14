@@ -11,7 +11,9 @@ namespace forderebackend.ServiceInterface.LeagueExecution
             foreach (var team in teams)
             foreach (var opponent in teams)
                 if (team.Id != opponent.Id)
+                {
                     matches.Add(new Match {HomeTeamId = team.Id, GuestTeamId = opponent.Id, PlayDate = null});
+                }
 
             return matches;
         }

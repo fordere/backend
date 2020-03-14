@@ -29,15 +29,27 @@ namespace forderebackend.ServiceInterface.Entities
         {
             get
             {
-                if (HomeTeamId == default(int)) return 0;
+                if (HomeTeamId == default(int))
+                {
+                    return 0;
+                }
 
-                if (homeTeamScore.HasValue == false && GuestTeamId == default(int)) return 1;
+                if (homeTeamScore.HasValue == false && GuestTeamId == default(int))
+                {
+                    return 1;
+                }
 
                 if (HomeTeam != null && GuestTeam != null)
                 {
-                    if (HomeTeam.IsForfaitOut) return StandingsCalculator.SetsLossForfait;
+                    if (HomeTeam.IsForfaitOut)
+                    {
+                        return StandingsCalculator.SetsLossForfait;
+                    }
 
-                    if (GuestTeam.IsForfaitOut && !HomeTeam.IsForfaitOut) return StandingsCalculator.SetsWinForfait;
+                    if (GuestTeam.IsForfaitOut && !HomeTeam.IsForfaitOut)
+                    {
+                        return StandingsCalculator.SetsWinForfait;
+                    }
                 }
 
                 return homeTeamScore;
@@ -49,15 +61,27 @@ namespace forderebackend.ServiceInterface.Entities
         {
             get
             {
-                if (GuestTeamId == default(int)) return 0;
+                if (GuestTeamId == default(int))
+                {
+                    return 0;
+                }
 
-                if (guestTeamScore.HasValue == false && HomeTeamId == default(int)) return 1;
+                if (guestTeamScore.HasValue == false && HomeTeamId == default(int))
+                {
+                    return 1;
+                }
 
                 if (GuestTeam != null && HomeTeam != null)
                 {
-                    if (GuestTeam.IsForfaitOut) return StandingsCalculator.SetsLossForfait;
+                    if (GuestTeam.IsForfaitOut)
+                    {
+                        return StandingsCalculator.SetsLossForfait;
+                    }
 
-                    if (HomeTeam.IsForfaitOut && !GuestTeam.IsForfaitOut) return StandingsCalculator.SetsWinForfait;
+                    if (HomeTeam.IsForfaitOut && !GuestTeam.IsForfaitOut)
+                    {
+                        return StandingsCalculator.SetsWinForfait;
+                    }
                 }
 
                 return guestTeamScore;
@@ -98,7 +122,10 @@ namespace forderebackend.ServiceInterface.Entities
         {
             get
             {
-                if (HasResult) return HomeTeamScore.GetValueOrDefault() == GuestTeamScore.GetValueOrDefault();
+                if (HasResult)
+                {
+                    return HomeTeamScore.GetValueOrDefault() == GuestTeamScore.GetValueOrDefault();
+                }
 
                 return false;
             }
@@ -111,7 +138,9 @@ namespace forderebackend.ServiceInterface.Entities
             {
                 if (HasResult)
                     // TODO Number of win sets should somehow be configurable
+                {
                     return HomeTeamScore.GetValueOrDefault() + GuestTeamScore.GetValueOrDefault() == 5;
+                }
 
                 return false;
             }
@@ -122,11 +151,20 @@ namespace forderebackend.ServiceInterface.Entities
         {
             get
             {
-                if (HasResult == false) return 0;
+                if (HasResult == false)
+                {
+                    return 0;
+                }
 
-                if (HomeTeamScore.GetValueOrDefault() > GuestTeamScore.GetValueOrDefault()) return HomeTeamId;
+                if (HomeTeamScore.GetValueOrDefault() > GuestTeamScore.GetValueOrDefault())
+                {
+                    return HomeTeamId;
+                }
 
-                if (HomeTeamScore.GetValueOrDefault() < GuestTeamScore.GetValueOrDefault()) return GuestTeamId;
+                if (HomeTeamScore.GetValueOrDefault() < GuestTeamScore.GetValueOrDefault())
+                {
+                    return GuestTeamId;
+                }
 
                 return 0;
             }
@@ -138,9 +176,15 @@ namespace forderebackend.ServiceInterface.Entities
         {
             get
             {
-                if (HasResult == false) return 0;
+                if (HasResult == false)
+                {
+                    return 0;
+                }
 
-                if (WinnerTeamId == HomeTeamId) return GuestTeamId;
+                if (WinnerTeamId == HomeTeamId)
+                {
+                    return GuestTeamId;
+                }
 
                 return HomeTeamId;
             }
@@ -151,13 +195,18 @@ namespace forderebackend.ServiceInterface.Entities
         {
             get
             {
-                if (HasResult == false) return false;
+                if (HasResult == false)
+                {
+                    return false;
+                }
 
                 if (HomeTeamScore.GetValueOrDefault() == StandingsCalculator.SetsWinOvertime &&
                     GuestTeamScore.GetValueOrDefault() == StandingsCalculator.SetsLossOvertime ||
                     GuestTeamScore.GetValueOrDefault() == StandingsCalculator.SetsWinOvertime &&
                     HomeTeamScore.GetValueOrDefault() == StandingsCalculator.SetsLossOvertime)
+                {
                     return true;
+                }
 
                 return false;
             }

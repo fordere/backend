@@ -20,7 +20,10 @@ namespace forderebackend.ServiceInterface.Smtp
             var path = Path.Combine(templateRoot, GetTemplateName(divisionId, template));
 
             // First line of the template is the subject
-            if (File.Exists(path)) return File.ReadLines(path).First();
+            if (File.Exists(path))
+            {
+                return File.ReadLines(path).First();
+            }
 
             log.ErrorFormat("E-Mail Template not found: '{0}'", path);
 
@@ -29,7 +32,10 @@ namespace forderebackend.ServiceInterface.Smtp
 
         private static string GetTemplateName(int? divisionId, string template)
         {
-            if (divisionId.HasValue) return divisionId.Value + "_" + template;
+            if (divisionId.HasValue)
+            {
+                return divisionId.Value + "_" + template;
+            }
 
             return template;
         }
@@ -143,9 +149,13 @@ namespace forderebackend.ServiceInterface.Smtp
             log.InfoFormat("Sending Contact Mail of {0} ({1})", name, userMail);
             if (divisionId == 3)
                 // TODO this info should be moved into the divisions-table
+            {
                 SmtpClientWrapper.Send("info.luzern@fordere.ch", subject, body, replyTo);
+            }
             else
+            {
                 SmtpClientWrapper.Send("info@fordere.ch", subject, body, replyTo);
+            }
         }
 
         public static void SendPasswordRecoveryMail(UserAuth user)
@@ -211,7 +221,10 @@ namespace forderebackend.ServiceInterface.Smtp
 
         private static string GetDivisionMail(int? divisionId)
         {
-            if (divisionId == null) return "info@fordere.ch";
+            if (divisionId == null)
+            {
+                return "info@fordere.ch";
+            }
 
             switch (divisionId)
             {

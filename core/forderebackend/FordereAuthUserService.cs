@@ -50,7 +50,10 @@ namespace forderebackend
 
             int divisionId;
 
-            if (int.TryParse(divisionIdRaw, out divisionId)) return divisionId;
+            if (int.TryParse(divisionIdRaw, out divisionId))
+            {
+                return divisionId;
+            }
 
             return null;
         }

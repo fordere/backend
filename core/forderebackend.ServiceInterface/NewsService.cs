@@ -18,9 +18,15 @@ namespace forderebackend.ServiceInterface
             var newsQuery = Db.From<News>().Where(x => x.DivisionId == DivisionId || x.DivisionId == null)
                 .OrderByDescending(p => p.PostDate);
 
-            if (IsAdmin == false) newsQuery = newsQuery.Where(p => p.IsPublished);
+            if (IsAdmin == false)
+            {
+                newsQuery = newsQuery.Where(p => p.IsPublished);
+            }
 
-            if (request.PagingRequested) newsQuery = newsQuery.Limit(request.Offset, request.PageSize);
+            if (request.PagingRequested)
+            {
+                newsQuery = newsQuery.Limit(request.Offset, request.PageSize);
+            }
 
             var newsEntities = Db.Select(newsQuery);
 
@@ -32,8 +38,10 @@ namespace forderebackend.ServiceInterface
             {
                 if (string.IsNullOrEmpty(news.Summary))
                     // TODO use Humanizer
+                {
                     news.Summary =
                         news.Content.Substring(0, 200); //news.Content.Truncate(30, Truncator.FixedNumberOfWords);
+                }
 
                 var dto = news.ConvertTo<NewsDto>();
                 dto.User = users[news.UserAuthId].ToDto();
@@ -48,7 +56,10 @@ namespace forderebackend.ServiceInterface
         {
             var news = Db.SingleById<News>(request.Id);
 
-            if (news.IsPublished == false && IsAdmin == false) news = null;
+            if (news.IsPublished == false && IsAdmin == false)
+            {
+                news = null;
+            }
 
             news.Throw404NotFoundIfNull("News not found");
 

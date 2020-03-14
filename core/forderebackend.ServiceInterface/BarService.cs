@@ -14,7 +14,10 @@ namespace forderebackend.ServiceInterface
         {
             var bar = Db.SingleById<Bar>(request.Id);
 
-            if (bar == null) throw HttpError.NotFound("Bar not found");
+            if (bar == null)
+            {
+                throw HttpError.NotFound("Bar not found");
+            }
 
             return bar;
         }
@@ -37,7 +40,10 @@ namespace forderebackend.ServiceInterface
         public object Post(UpdateBarRequest request)
         {
             var barToUpdate = new Bar();
-            if (request.Id != 0) barToUpdate = Db.LoadSingleById<Bar>(request.Id);
+            if (request.Id != 0)
+            {
+                barToUpdate = Db.LoadSingleById<Bar>(request.Id);
+            }
 
             barToUpdate.PopulateWith(request);
             barToUpdate.DivisionId = DivisionId;

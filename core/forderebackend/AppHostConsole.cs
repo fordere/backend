@@ -66,16 +66,13 @@ namespace forderebackend
                 new JwtAuthProvider(appSettings),
             }.ToList();
 
-            if (appSettings.Get("Debug", false)) authProvider.Add(new BasicAuthProvider());
-
-            var authFeature = new AuthFeature(() => new FordereAuthUserService(), authProvider.ToArray());
-
-
-            //authFeature.AuthEvents.Add(new WebSudoFeature());
+            if (appSettings.Get("Debug", false))
+            {
+                authProvider.Add(new BasicAuthProvider());
+            }
 
             Plugins.Add(new RegistrationFeature());
-            Plugins.Add(authFeature);
-
+            Plugins.Add(new AuthFeature(() => new FordereAuthUserService(), authProvider.ToArray()));
 
             Plugins.Add(new RequestLogsFeature
             {
@@ -85,19 +82,26 @@ namespace forderebackend
             });
 
             if (appSettings.Get("CORS.Enabled", false))
+            {
                 Plugins.Add(
                     new CorsFeature(
                         appSettings.GetString("CORS.AllowedOrigins"),
                         "OPTIONS,GET,POST,PUT,DELETE,PATCH",
                         "Content-Type,Authorization,division_id",
                         true));
+            }
 
             if (appSettings.Get("Debug", false))
+            {
                 Plugins.Add(new PostmanFeature());
+            }
             // TODO Core Migration OpenApi Support?
             //this.Plugins.Add(new OpenApiFeature());
 
-            if (appSettings.Get("Debug", false) == false) Plugins.RemoveAll(x => x is MetadataFeature);
+            if (appSettings.Get("Debug", false) == false)
+            {
+                Plugins.RemoveAll(x => x is MetadataFeature);
+            }
 
             SetConfig(new HostConfig
             {
@@ -114,7 +118,10 @@ namespace forderebackend
 
             PreRequestFilters.Add((httpReq, httpRes) =>
             {
-                if (httpReq.Verb.ToUpper() == "PATCH") httpReq.UseBufferedStream = true;
+                if (httpReq.Verb.ToUpper() == "PATCH")
+                {
+                    httpReq.UseBufferedStream = true;
+                }
             });
         }
     }

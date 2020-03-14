@@ -45,7 +45,11 @@ namespace forderebackend.ServiceInterface
             var user = Db.LoadSingleById<UserAuth>(userId);
 
             var calendarName = $"Fordere {user.FirstName} {user.LastName}";
-            if (userId == 107) calendarName = "Fordere Flo - Dümmscht - Schwendener";
+            if (userId == 107)
+            {
+                calendarName = "Fordere Flo - Dümmscht - Schwendener";
+            }
+
             calendar.Properties.Add(new CalendarProperty("X-WR-CALNAME", calendarName));
             calendar.Properties.Add(new CalendarProperty("CALSCALE", "GREGORIAN"));
             calendar.Properties.Add(new CalendarProperty("METHOD", "PUBLISH"));

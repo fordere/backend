@@ -4,13 +4,22 @@
     {
         public static string Format(string input)
         {
-            if (input == null) return string.Empty;
+            if (input == null)
+            {
+                return string.Empty;
+            }
 
             var cleanInput = RemoveUnknownCharacters(input);
 
-            if (cleanInput.StartsWith("0041")) cleanInput = "+41" + cleanInput.Substring(4);
+            if (cleanInput.StartsWith("0041"))
+            {
+                cleanInput = "+41" + cleanInput.Substring(4);
+            }
 
-            if (cleanInput.Length > 0 && cleanInput[0] == '0') cleanInput = "+41" + cleanInput.Substring(1);
+            if (cleanInput.Length > 0 && cleanInput[0] == '0')
+            {
+                cleanInput = "+41" + cleanInput.Substring(1);
+            }
 
             return cleanInput;
         }

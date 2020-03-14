@@ -46,9 +46,13 @@ namespace forderebackend.ServiceInterface.Sms
 
             string opponentTeam;
             if (match.HomeTeam.Player1Id == user.Id || match.HomeTeam.Player2Id == user.Id)
+            {
                 opponentTeam = match.GuestTeam.Name;
+            }
             else
+            {
                 opponentTeam = match.HomeTeam.Name;
+            }
 
             message = message.Replace("%OPPONENT%", opponentTeam);
 

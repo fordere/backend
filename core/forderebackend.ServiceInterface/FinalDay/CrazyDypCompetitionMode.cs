@@ -66,7 +66,9 @@ namespace forderebackend.ServiceInterface.FinalDay
         public List<Match> GenerateMatchAfterMatchResultEntered(Match match)
         {
             if (match.FinalDayCompetitionId.HasValue)
+            {
                 CompetitionPlayerStandingsCalculator.Calculate(dbConnection, match.FinalDayCompetitionId.Value);
+            }
 
             // By Default no new Matches are generated -> This only happens on a new Crazy-DYP Round
             return new List<Match>();

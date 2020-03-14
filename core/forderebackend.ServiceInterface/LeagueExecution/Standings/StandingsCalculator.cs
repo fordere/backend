@@ -45,9 +45,7 @@ namespace forderebackend.ServiceInterface.LeagueExecution.Standings
 
             var orderedTableEntries = tableEntries.OrderBy(x => x.Team.IsForfaitOut);
             foreach (var orderRule in orderRules)
-            {
                 orderedTableEntries = orderedTableEntries.ThenByDescending(x => x, orderRule);
-            }
 
             foreach (var tableEntry in orderedTableEntries)
             {
@@ -110,10 +108,10 @@ namespace forderebackend.ServiceInterface.LeagueExecution.Standings
                 var draws = playedMatchesOfTeam.Count(p => p.IsDraw);
 
 
-                tableEntry.Points = (winsWithoutOvertime * PointsWin) + (winsInOvertime * PointsWinOvertime) +
-                                    (draws * PointsDraw) + (lossInOvertime * PointsLossOvertime) +
-                                    (homeTeamNotPlayed * PointsHomeTeamNotPlayedMatch) +
-                                    (guestTeamNotPlayed * PointsGuestTeamNotPlayedMatch);
+                tableEntry.Points = winsWithoutOvertime * PointsWin + winsInOvertime * PointsWinOvertime +
+                                    draws * PointsDraw + lossInOvertime * PointsLossOvertime +
+                                    homeTeamNotPlayed * PointsHomeTeamNotPlayedMatch +
+                                    guestTeamNotPlayed * PointsGuestTeamNotPlayedMatch;
 
                 db.Update(tableEntry, p => p.Id == tableEntry.Id);
             }

@@ -65,15 +65,23 @@ namespace forderebackend.ServiceInterface
             foreach (var match in allPlayedMatches)
             {
                 if (matchesInBar.ContainsKey(match.BarId.Value))
+                {
                     matchesInBar[match.BarId.Value]++;
+                }
                 else
+                {
                     matchesInBar.Add(match.BarId.Value, 1);
+                }
 
                 var playDate = string.Format("{0:dd.MM.yyyy}", GetMonday(match.PlayDate));
                 if (matchesInWeek.ContainsKey(playDate))
+                {
                     matchesInWeek[playDate]++;
+                }
                 else
+                {
                     matchesInWeek.Add(playDate, 1);
+                }
 
                 ++matchesPerWeekday[weekdayTranslation[match.PlayDate.Value.DayOfWeek]];
             }

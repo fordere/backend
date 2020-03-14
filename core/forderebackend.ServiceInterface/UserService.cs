@@ -106,11 +106,16 @@ namespace forderebackend.ServiceInterface
         [Authenticate]
         public object Put(UpdateUserProfileRequest request)
         {
-            if (request.Id == default(int)) request.Id = SessionUserId;
+            if (request.Id == default(int))
+            {
+                request.Id = SessionUserId;
+            }
 
             if (SessionUserId != request.Id)
                 // Only admins may change other users profile
+            {
                 EnsureIsAdmin();
+            }
 
             var userAuth = Db.SingleById<UserAuth>(request.Id);
             var userAuthUpdated = Db.SingleById<UserAuth>(request.Id).PopulateWith(request);
@@ -121,9 +126,13 @@ namespace forderebackend.ServiceInterface
             userAuthUpdated.SetDivision(UserAuthMetaKeys.DivisionWinti, request.DivisionWinti);
 
             if (string.IsNullOrWhiteSpace(request.Password))
+            {
                 userAuthRepository.UpdateUserAuth(userAuth, userAuthUpdated);
+            }
             else
+            {
                 userAuthRepository.UpdateUserAuth(userAuth, userAuthUpdated, request.Password);
+            }
 
 
             return Db.SingleById<UserAuth>(request.Id).ToUserProfileResponse();
@@ -141,9 +150,13 @@ namespace forderebackend.ServiceInterface
             user.PopulateWith(request);
 
             if (string.IsNullOrWhiteSpace(request.Password))
+            {
                 userAuthRepository.UpdateUserAuth(userAuth, user);
+            }
             else
+            {
                 userAuthRepository.UpdateUserAuth(userAuth, user, request.Password);
+            }
         }
 
         [Authenticate]
@@ -222,12 +235,17 @@ namespace forderebackend.ServiceInterface
 
             if (user.Roles != null && user.Roles.Contains(RoleNames.Admin) == false && request.Roles != null &&
                 request.Roles.Contains(RoleNames.Admin))
+            {
                 LogManager.GetLogger(GetType())
                     .Info("{0} adds admin role to {1}".Fmt(sessionUser.ToDisplay(), user.ToDisplay()));
+            }
+
             if (user.Roles != null && user.Roles.Contains(RoleNames.Admin) && request.Roles != null &&
                 request.Roles.Contains(RoleNames.Admin) == false)
+            {
                 LogManager.GetLogger(GetType())
                     .Info("{0} removes admin role from {1}".Fmt(sessionUser.ToDisplay(), user.ToDisplay()));
+            }
         }
     }
 }

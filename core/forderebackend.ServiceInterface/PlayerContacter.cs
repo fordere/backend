@@ -13,16 +13,26 @@ namespace forderebackend.ServiceInterface
         {
             foreach (var user in users)
                 if (HasValidMobileNumber(user))
+                {
                     await new SmsSender().SendMatchRecall(user, match);
-                else if (HasValidMail(user)) MailSender.SendMatchRecall(user.MailAddress, match);
+                }
+                else if (HasValidMail(user))
+                {
+                    MailSender.SendMatchRecall(user.MailAddress, match);
+                }
         }
 
         public async Task SendMatchAssigned(List<UserAuth> users, Match match)
         {
             foreach (var user in users)
                 if (HasValidMobileNumber(user))
+                {
                     await new SmsSender().SendMatchAssigned(user, match);
-                else if (HasValidMail(user)) MailSender.SendMatchAssigend(user.MailAddress, match);
+                }
+                else if (HasValidMail(user))
+                {
+                    MailSender.SendMatchAssigend(user.MailAddress, match);
+                }
         }
 
         private static bool HasValidMail(UserAuth user)

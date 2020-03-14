@@ -54,8 +54,10 @@ namespace forderebackend.ServiceInterface.FinalDay
 
                 var response = CreatePagedResponse<MatchesResponse>(request, sortedUpcommingMatches.Count);
                 if (request.PageSize.HasValue)
+                {
                     sortedUpcommingMatches = sortedUpcommingMatches.Skip(request.Offset).Take(request.PageSize.Value)
                         .ToList();
+                }
 
                 response.Matches = sortedUpcommingMatches.ConvertAll(x => x.ConvertTo<MatchViewDto>());
 
@@ -77,13 +79,17 @@ namespace forderebackend.ServiceInterface.FinalDay
                     x.HomeTeamScore != null));
 
                 if (!string.IsNullOrEmpty(request.TeamFilter))
+                {
                     query = query.Where(x =>
                         x.HomeTeamName.Contains(request.TeamFilter) || x.GuestTeamName.Contains(request.TeamFilter));
+                }
 
                 var finishedMatches = query.ToList();
                 var response = CreatePagedResponse<MatchesResponse>(request, finishedMatches.Count);
                 if (request.PageSize.HasValue)
+                {
                     finishedMatches = finishedMatches.Skip(request.Offset).Take(request.PageSize.Value).ToList();
+                }
 
                 response.Matches = finishedMatches.ConvertAll(x => x.ConvertTo<MatchViewDto>());
 

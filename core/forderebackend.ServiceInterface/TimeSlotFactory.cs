@@ -18,7 +18,10 @@ namespace forderebackend.ServiceInterface
             {
                 dayDifference++;
                 firstTimeSlotDayOfWeek++;
-                if (firstTimeSlotDayOfWeek == 7) firstTimeSlotDayOfWeek = 0;
+                if (firstTimeSlotDayOfWeek == 7)
+                {
+                    firstTimeSlotDayOfWeek = 0;
+                }
             }
 
             var nextTimeSlot = new DateTime(date.Year, date.Month, date.Day, availability.FirstTimeSlot.Hour,

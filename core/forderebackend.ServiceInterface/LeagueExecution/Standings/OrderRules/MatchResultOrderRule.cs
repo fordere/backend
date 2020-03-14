@@ -17,7 +17,10 @@ namespace forderebackend.ServiceInterface.LeagueExecution.Standings.OrderRules
 
         public int Compare(TableEntry x, TableEntry y)
         {
-            if (x.TeamId == y.TeamId) return 0;
+            if (x.TeamId == y.TeamId)
+            {
+                return 0;
+            }
 
             var matches = db.LoadSelect<Match>(sql =>
                 sql.LeagueId == x.LeagueId && (sql.HomeTeamId == x.TeamId && sql.GuestTeamId == y.TeamId ||
@@ -25,16 +28,28 @@ namespace forderebackend.ServiceInterface.LeagueExecution.Standings.OrderRules
             if (matches.Count == 1)
             {
                 var match = matches.Single();
-                if (match.WinnerTeamId == x.TeamId) return 1;
+                if (match.WinnerTeamId == x.TeamId)
+                {
+                    return 1;
+                }
 
-                if (match.WinnerTeamId == y.TeamId) return -1;
+                if (match.WinnerTeamId == y.TeamId)
+                {
+                    return -1;
+                }
 
                 return 0;
             }
 
-            if (HasMoreWins(x.TeamId, matches)) return 1;
+            if (HasMoreWins(x.TeamId, matches))
+            {
+                return 1;
+            }
 
-            if (HasMoreWins(y.TeamId, matches)) return -1;
+            if (HasMoreWins(y.TeamId, matches))
+            {
+                return -1;
+            }
 
             return 0;
         }
@@ -44,9 +59,13 @@ namespace forderebackend.ServiceInterface.LeagueExecution.Standings.OrderRules
             var wins = new Dictionary<int, int>();
             foreach (var match in matches)
                 if (wins.ContainsKey(match.WinnerTeamId))
+                {
                     wins[match.WinnerTeamId]++;
+                }
                 else
+                {
                     wins.Add(match.WinnerTeamId, 1);
+                }
 
             return wins.Aggregate((l, r) => l.Value > r.Value ? l : r).Key == teamId;
         }

@@ -51,10 +51,7 @@ namespace forderebackend.ServiceInterface
             return response;
         }
 
-        protected int SessionUserId
-        {
-            get { return Convert.ToInt32(GetSession().UserAuthId); }
-        }
+        protected int SessionUserId => Convert.ToInt32(GetSession().UserAuthId);
 
         public override void Dispose()
         {

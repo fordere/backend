@@ -8,7 +8,10 @@
         {
             get
             {
-                if (page.HasValue == false) return 1;
+                if (page.HasValue == false)
+                {
+                    return 1;
+                }
 
                 return page;
             }
@@ -23,7 +26,10 @@
             {
                 var pagesToSkip = 0;
 
-                if (Page.HasValue) pagesToSkip = Page.Value - 1;
+                if (Page.HasValue)
+                {
+                    pagesToSkip = Page.Value - 1;
+                }
 
                 return pagesToSkip * PageSize.GetValueOrDefault();
             }
@@ -33,7 +39,10 @@
 
         public void SetLimitIfNoPagingRequested(int max)
         {
-            if (PagingRequested == false) PageSize = max;
+            if (PagingRequested == false)
+            {
+                PageSize = max;
+            }
         }
     }
 }

@@ -101,12 +101,14 @@ namespace forderebackend.ServiceInterface
         public object Get(UserMatchesRequest request)
         {
             if (request.SeasonId.HasValue)
+            {
                 return Db.Select(
                     Db.From<MatchView>().Where(
                         p =>
                             p.SeasonId == request.SeasonId.Value
                             && (p.GuestPlayer1Id == request.UserId || p.GuestPlayer2Id == request.UserId ||
                                 p.HomePlayer1Id == request.UserId || p.HomePlayer2Id == request.UserId)));
+            }
 
             return
                 Db.Select(
@@ -134,7 +136,10 @@ namespace forderebackend.ServiceInterface
             var season = (SeasonDto) base.ResolveService<SeasonService>().Get(new GetCurrentSeasonRequest());
 
 
-            if (season == null) throw new HttpError(HttpStatusCode.NotFound, "There is no current season");
+            if (season == null)
+            {
+                throw new HttpError(HttpStatusCode.NotFound, "There is no current season");
+            }
 
             var request2 = new UserMatchesRequest {SeasonId = season.Id, UserId = request.Id};
 
@@ -249,7 +254,10 @@ namespace forderebackend.ServiceInterface
 
                 EnsureUserMayEnterMatchResult(match);
 
-                if (match.PlayDate == null) Db.Update<Match>(new {PlayDate = DateTime.UtcNow}, p => p.Id == request.Id);
+                if (match.PlayDate == null)
+                {
+                    Db.Update<Match>(new {PlayDate = DateTime.UtcNow}, p => p.Id == request.Id);
+                }
 
                 Db.Update<Match>(new {request.HomeTeamScore, request.GuestTeamScore, ResultDate = DateTime.UtcNow},
                     p => p.Id == request.Id);
@@ -270,30 +278,44 @@ namespace forderebackend.ServiceInterface
             if (match.CompetitionId.HasValue)
             {
                 if (request.HomeTeamScore > 3 || request.GuestTeamScore > 3)
+                {
                     throw new ArgumentException("Mehr als drei Sätze kann ein Team nicht gewinnen!");
+                }
 
                 var numberOfPlayedSets = request.HomeTeamScore + request.GuestTeamScore;
                 if (numberOfPlayedSets != 3 && numberOfPlayedSets != 4 && numberOfPlayedSets != 5)
+                {
                     throw new ArgumentException("Du hast eine unmögliche Anzahl an gespielter Sätze eingegeben!");
+                }
 
                 if (numberOfPlayedSets == 5 && (request.HomeTeamScore > 3 || request.GuestTeamScore > 3))
+                {
                     throw new ArgumentException(
                         "Wenn ein Entscheidungssatz gespielt wurde kannst du nicht mehr als drei Sätze gewonnen haben");
+                }
 
                 if (numberOfPlayedSets == 4 && (request.HomeTeamScore == 4 || request.GuestTeamScore == 4))
+                {
                     throw new ArgumentException(
                         "Bei einem Best of 5 ist das Spiel bei 3:0 beendet. Trage bitte 3:0 als Resultat ein.");
+                }
             }
             else
             {
                 if (request.HomeTeamScore != 10 && request.GuestTeamScore != 10)
+                {
                     throw new ArgumentException("Mindest ein Team muss 10 Tore geschossen haben");
+                }
 
                 if (request.HomeTeamScore == request.GuestTeamScore)
+                {
                     throw new ArgumentException("Ein Unentschieden ist im Cup nicht möglich!");
+                }
 
                 if (request.HomeTeamScore > 10 || request.GuestTeamScore > 10)
+                {
                     throw new ArgumentException("Mehr als 10 Tore ist nicht möglich!");
+                }
             }
         }
 
@@ -304,10 +326,15 @@ namespace forderebackend.ServiceInterface
             var matchToUpdate = Db.SingleById<Match>(request.Id);
             matchToUpdate.PopulateWith(request);
 
-            if (matchToUpdate.HasResult && !matchToUpdate.ResultDate.HasValue) matchToUpdate.ResultDate = DateTime.Now;
+            if (matchToUpdate.HasResult && !matchToUpdate.ResultDate.HasValue)
+            {
+                matchToUpdate.ResultDate = DateTime.Now;
+            }
 
             if (matchToUpdate.PlayDate.HasValue && !matchToUpdate.RegisterDate.HasValue)
+            {
                 matchToUpdate.ResultDate = matchToUpdate.PlayDate;
+            }
 
             matchToUpdate.IsNotPlayedMatch = false;
 
@@ -339,47 +366,71 @@ namespace forderebackend.ServiceInterface
         {
             if (new[] {"PlayDate", "RegisterDate", "FinalDayTableId"}.All(incommingFields.Contains) &&
                 incommingFields.Count == 3 && match.FinalDayTableId.HasValue)
+            {
                 await new MatchEvents().TableAssigned(match, dbConnection);
+            }
             else if (incommingFields.Count == 1 && incommingFields.Contains("PlayDate"))
+            {
                 await new MatchEvents().Recall(match, dbConnection);
+            }
             else if (new[] {"ResultDate", "HomeTeamScore", "GuestTeamScore"}.All(incommingFields.Contains) &&
                      incommingFields.Count == 3)
+            {
                 MatchEvents.MatchResultChanged(match, dbConnection);
+            }
             else if (new[] {"ResultDate", "HomeTeamScore", "GuestTeamScore", "PlayDate", "FinalDayTableId"}.All(
-                incommingFields.Contains) && incommingFields.Count == 5) MatchEvents.MatchReset(match, dbConnection);
+                incommingFields.Contains) && incommingFields.Count == 5)
+            {
+                MatchEvents.MatchReset(match, dbConnection);
+            }
         }
 
         #region Security
 
         private void EnsureUserMayEnterMatchAppointment(Match match)
         {
-            if (IsAdmin) return;
+            if (IsAdmin)
+            {
+                return;
+            }
 
-            if (match.ResultDate.HasValue) throw new UnauthorizedAccessException();
+            if (match.ResultDate.HasValue)
+            {
+                throw new UnauthorizedAccessException();
+            }
 
             if (match.GuestTeam.Player1Id == SessionUserId ||
                 match.GuestTeam.Player2Id == SessionUserId ||
                 match.HomeTeam.Player1Id == SessionUserId ||
                 match.HomeTeam.Player2Id == SessionUserId)
+            {
                 return;
+            }
 
             throw new UnauthorizedAccessException();
         }
 
         private void EnsureUserMayEnterMatchResult(Match match)
         {
-            if (IsAdmin) return;
+            if (IsAdmin)
+            {
+                return;
+            }
 
             if (match.ResultDate.HasValue && DateTime.UtcNow.Subtract(match.ResultDate.Value) > TimeSpan.FromMinutes(10)
             )
+            {
                 throw new UnauthorizedAccessException(
                     "10 Minuten sind abgelaufen. Du kannst das Resultat nicht mehr ändern.");
+            }
 
             if (match.GuestTeam.Player1Id == SessionUserId ||
                 match.GuestTeam.Player2Id == SessionUserId ||
                 match.HomeTeam.Player1Id == SessionUserId ||
                 match.HomeTeam.Player2Id == SessionUserId)
+            {
                 return;
+            }
 
             throw new UnauthorizedAccessException();
         }

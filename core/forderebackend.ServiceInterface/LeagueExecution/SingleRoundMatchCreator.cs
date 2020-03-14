@@ -39,7 +39,9 @@ namespace forderebackend.ServiceInterface.LeagueExecution
 
             foreach (var team in existingTeamsInLeague)
                 if (team.Id != movedTeam.Id)
+                {
                     newMatches.Add(CreateMatch(homeGameTickets.Pop(0), movedTeam, team));
+                }
 
             return newMatches;
         }

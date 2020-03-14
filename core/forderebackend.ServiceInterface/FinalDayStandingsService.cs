@@ -17,10 +17,14 @@ namespace forderebackend.ServiceInterface
         {
             Season season;
             if (request.SeasonId.HasValue)
+            {
                 season = Db.LoadSingleById<Season>(request.SeasonId.Value);
+            }
             else
+            {
                 season = Db.LoadSelect(Db.From<Season>()
                     .Where(x => x.State != SeasonState.Archived && x.DivisionId == DivisionId)).SingleOrDefault();
+            }
 
             var competitions = Db.Select(Db.From<FinalDayCompetition>().Where(x => x.FinalDayId == season.FinalDay.Id));
             var competitionStandingDtos = new List<CompetitionStandingDto>();

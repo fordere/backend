@@ -26,7 +26,10 @@ namespace forderebackend.ServiceInterface
         {
             base.OnAuthenticated(httpReq, session, authService, tokens, authInfo);
 
-            if (session.Roles == null) session.Roles = new List<string>();
+            if (session.Roles == null)
+            {
+                session.Roles = new List<string>();
+            }
         }
 
         #endregion

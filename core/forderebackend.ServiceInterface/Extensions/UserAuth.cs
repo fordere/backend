@@ -21,7 +21,10 @@ namespace forderebackend.ServiceInterface.Extensions
     {
         public static bool GetHasMeta(this UserAuth user, string key)
         {
-            if (user.Meta == null) return false;
+            if (user.Meta == null)
+            {
+                return false;
+            }
 
             return user.Meta.ContainsKey(key);
         }
@@ -30,7 +33,10 @@ namespace forderebackend.ServiceInterface.Extensions
         {
             if (value && (user.Meta == null || !user.Meta.ContainsKey(key)))
             {
-                if (user.Meta == null) user.Meta = new Dictionary<string, string>();
+                if (user.Meta == null)
+                {
+                    user.Meta = new Dictionary<string, string>();
+                }
 
                 user.Meta.Add(key, "true");
             }
@@ -44,7 +50,10 @@ namespace forderebackend.ServiceInterface.Extensions
         {
             if (value && (user.Meta == null || !user.Meta.ContainsKey(UserAuthMetaKeys.Newsletter)))
             {
-                if (user.Meta == null) user.Meta = new Dictionary<string, string>();
+                if (user.Meta == null)
+                {
+                    user.Meta = new Dictionary<string, string>();
+                }
 
                 user.Meta.Add(UserAuthMetaKeys.Newsletter, string.Empty);
             }

@@ -77,7 +77,10 @@ namespace forderebackend.ServiceInterface
             var existingGroups = Db.Select<Group>(x => x.FinalDayCompetitionId == request.FinalDayCompetitionId);
             var nextGroupNumber = 1;
 
-            if (existingGroups.Any()) nextGroupNumber = existingGroups.Max(x => x.Number) + 1;
+            if (existingGroups.Any())
+            {
+                nextGroupNumber = existingGroups.Max(x => x.Number) + 1;
+            }
 
             var groupToAdd = new Group
                 {Number = nextGroupNumber, FinalDayCompetitionId = request.FinalDayCompetitionId};

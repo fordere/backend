@@ -6,9 +6,15 @@ namespace forderebackend.ServiceInterface.LeagueExecution.Standings.OrderRules
     {
         public int Compare(TableEntry x, TableEntry y)
         {
-            if (x.SetsWon > y.SetsWon) return 1;
+            if (x.SetsWon > y.SetsWon)
+            {
+                return 1;
+            }
 
-            if (y.SetsWon > x.SetsWon) return -1;
+            if (y.SetsWon > x.SetsWon)
+            {
+                return -1;
+            }
 
             return 0;
         }

@@ -98,9 +98,13 @@ namespace forderebackend.ServiceInterface.FinalDay
         private static void CountPlayer(IDictionary<int, int> userOpenGames, int playerId)
         {
             if (userOpenGames.ContainsKey(playerId))
+            {
                 userOpenGames[playerId] = userOpenGames[playerId] + 1;
+            }
             else
+            {
                 userOpenGames[playerId] = 1;
+            }
         }
     }
 }

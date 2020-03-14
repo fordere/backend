@@ -71,7 +71,10 @@ namespace forderebackend.ServiceInterface.FinalDay
 
         private List<Match> GenerateMatchesForGroup(List<TeamInGroup> teams, int finalDayCompetitionId)
         {
-            if (teams == null) return new List<Match>();
+            if (teams == null)
+            {
+                return new List<Match>();
+            }
 
             var orderedTeams = teams.OrderBy(x => x.Settlement).ToList();
             var bracketSize = FindSmallestPossibleBracket(teams.Count);
@@ -125,7 +128,10 @@ namespace forderebackend.ServiceInterface.FinalDay
 
         private bool IsFreeTicket(TeamInGroup team)
         {
-            if (team.Team != null) return team.Team.IsFreeTicket;
+            if (team.Team != null)
+            {
+                return team.Team.IsFreeTicket;
+            }
 
             return dbConnection.SingleById<Team>(team.TeamId).IsFreeTicket;
         }
@@ -133,13 +139,21 @@ namespace forderebackend.ServiceInterface.FinalDay
         public List<Match> GenerateMatchAfterMatchResultEntered(Match match)
         {
             var correspondingMatch = FindCorrespondingMatch(match);
-            if (correspondingMatch == null || !match.HasResult) return new List<Match>();
+            if (correspondingMatch == null || !match.HasResult)
+            {
+                return new List<Match>();
+            }
 
-            if (!match.RoundOrder.HasValue || !correspondingMatch.RoundOrder.HasValue) return new List<Match>();
+            if (!match.RoundOrder.HasValue || !correspondingMatch.RoundOrder.HasValue)
+            {
+                return new List<Match>();
+            }
 
             if (IsFinal(match.FinalDayCompetitionId.Value, match.CupRound))
                 // Nothing to generate after final matches
+            {
                 return new List<Match>();
+            }
 
             var nextRoundOrder = Math.Max(match.RoundOrder.Value, correspondingMatch.RoundOrder.Value) / 2;
             var nextCupRound = match.CupRound + 1;
@@ -149,10 +163,14 @@ namespace forderebackend.ServiceInterface.FinalDay
             {
                 if (furtherMatch.HomeTeamId != match.WinnerTeamId ||
                     furtherMatch.GuestTeamId != correspondingMatch.WinnerTeamId)
+                {
                     DeleteAllFurtherMatches(nextCupRound, nextRoundOrder, match.FinalDayCompetitionId.Value);
+                }
                 else
                     // Do nothing, result has changed but winner is the same...
+                {
                     return new List<Match>();
+                }
             }
 
             var upcommingMatches = new List<Match>();
@@ -201,10 +219,14 @@ namespace forderebackend.ServiceInterface.FinalDay
             foreach (var matchWithResult in matches.Where(x => x.HasResult))
             {
                 if (teamsMatchesCreatedFor.Contains(matchWithResult.HomeTeamId) ||
-                    teamsMatchesCreatedFor.Contains(matchWithResult.GuestTeamId)) continue;
+                    teamsMatchesCreatedFor.Contains(matchWithResult.GuestTeamId))
+                {
+                    continue;
+                }
 
                 var matchesToAdd = GenerateMatchAfterMatchResultEntered(matchWithResult);
                 if (matchesToAdd.Any())
+                {
                     foreach (var match in matchesToAdd)
                     {
                         newMatches.Add(match);
@@ -212,6 +234,7 @@ namespace forderebackend.ServiceInterface.FinalDay
                         teamsMatchesCreatedFor.Add(match.HomeTeamId);
                         teamsMatchesCreatedFor.Add(match.GuestTeamId);
                     }
+                }
             }
 
             dbConnection.SaveAll(newMatches);
@@ -242,10 +265,14 @@ namespace forderebackend.ServiceInterface.FinalDay
                 roundOrder = (int) Math.Ceiling((decimal) roundOrder / 2);
 
                 if (IsFinal(matchToDelete.FinalDayCompetitionId.Value, matchToDelete.CupRound.Value))
+                {
                     matchToDelete = LoadMatch(matchToDelete.CupRound.Value, matchToDelete.RoundOrder + 1,
                         finalDayCompetitionId);
+                }
                 else
+                {
                     matchToDelete = LoadMatch(cupRound, roundOrder, finalDayCompetitionId);
+                }
             }
         }
 
@@ -258,16 +285,25 @@ namespace forderebackend.ServiceInterface.FinalDay
 
         private Match FindCorrespondingMatch(Match match)
         {
-            if (!match.RoundOrder.HasValue) return null;
+            if (!match.RoundOrder.HasValue)
+            {
+                return null;
+            }
 
             var expectedRoundOrder = match.RoundOrder.Value - 1;
-            if (match.RoundOrder % 2 == 0) expectedRoundOrder = match.RoundOrder.Value + 1;
+            if (match.RoundOrder % 2 == 0)
+            {
+                expectedRoundOrder = match.RoundOrder.Value + 1;
+            }
 
             var matchingMatches = dbConnection.Select<Match>(x =>
                 x.RoundOrder == expectedRoundOrder && x.CupRound == match.CupRound && x.Id != match.Id &&
                 x.FinalDayCompetitionId == match.FinalDayCompetitionId && x.HomeTeamScore != null &&
                 x.GuestTeamScore != null);
-            if (matchingMatches.Any()) return matchingMatches.Single();
+            if (matchingMatches.Any())
+            {
+                return matchingMatches.Single();
+            }
 
             return null;
         }

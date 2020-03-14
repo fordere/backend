@@ -156,7 +156,10 @@ namespace forderebackend.ServiceInterface
                     break;
                 case FinalDayCompetitionState.Running:
                     if (currentFinalDayCompetition.State == FinalDayCompetitionState.Ready)
+                    {
                         CreateFinalDayMatches(request.Id);
+                    }
+
                     break;
                 case FinalDayCompetitionState.Ready:
                     DeleteFinalDayMatches(request.Id);
@@ -239,7 +242,10 @@ namespace forderebackend.ServiceInterface
         {
             if (Db.Select(Db.From<PlayerInFinalDayCompetition>().Where(x =>
                     x.FinalDayCompetitionId == request.FinalDayCompetitionId && x.PlayerId == request.PlayerId))
-                .Any()) return null;
+                .Any())
+            {
+                return null;
+            }
 
             var id = Db.Insert(
                 new PlayerInFinalDayCompetition
@@ -255,21 +261,33 @@ namespace forderebackend.ServiceInterface
         public void Post(PutTeamOverToFinalDayCompetitionRequest request)
         {
             if (request.FinalDayCompetitionId.HasValue)
+            {
                 PutTeamOverFromOtherCompetition(request.Id, request.FinalDayCompetitionId.Value);
+            }
 
-            if (request.WalkoverInGroupId.HasValue) InsertWalkoverInGroup(request.WalkoverInGroupId.Value);
+            if (request.WalkoverInGroupId.HasValue)
+            {
+                InsertWalkoverInGroup(request.WalkoverInGroupId.Value);
+            }
 
-            if (request.LeagueId.HasValue) PutOverTeamsFromLeague(request.LeagueId.Value, request.Id);
+            if (request.LeagueId.HasValue)
+            {
+                PutOverTeamsFromLeague(request.LeagueId.Value, request.Id);
+            }
 
             if (request.TeamId.HasValue && request.GroupId.HasValue)
+            {
                 PutOverSpecificTeam(request.TeamId.Value, request.GroupId.Value);
+            }
         }
 
         private void PutTeamOverFromOtherCompetition(int targetFinalDayCompetitionId, int sourceFinalDayCompetitionId)
         {
             var sourceFinalDayCompetition = Db.SingleById<FinalDayCompetition>(sourceFinalDayCompetitionId);
             if (sourceFinalDayCompetition.CompetitionMode != CompetitionMode.Group)
+            {
                 throw new Exception("Source Final Day Competition must be played in Group-Mode");
+            }
 
             var groups = Db.LoadSelect<Group>(sql => sql.FinalDayCompetitionId == sourceFinalDayCompetitionId);
             var teams = new List<Team>();
@@ -313,12 +331,15 @@ namespace forderebackend.ServiceInterface
                 .Where(x => x.QualifiedForFinalDay == QualifiedForFinalDay.Yes).ToList();
 
             if (groups.Count == 1)
+            {
                 for (var index = 0; index < allTeams.Count; index++)
                 {
                     var team = allTeams[index];
                     Db.Insert(new TeamInGroup {TeamId = team.Id, GroupId = groups.Single().Id, Settlement = index + 1});
                 }
+            }
             else
+            {
                 for (var index = 0; index < allTeams.Count; index++)
                 {
                     var team = allTeams[index];
@@ -326,6 +347,7 @@ namespace forderebackend.ServiceInterface
                     Db.Insert(new TeamInGroup
                         {TeamId = team.Id, GroupId = groups[groupIndex].Id, Settlement = index + 1});
                 }
+            }
 
             UpdateSettlementForGroups(targetFinalDayCompetitionId);
         }
@@ -334,7 +356,10 @@ namespace forderebackend.ServiceInterface
         {
             var maxSettlementInGroup = 0;
             var existingTeamsInGroup = Db.Select<TeamInGroup>(x => x.GroupId == groupId);
-            if (existingTeamsInGroup.Any()) maxSettlementInGroup = existingTeamsInGroup.Max(x => x.Settlement);
+            if (existingTeamsInGroup.Any())
+            {
+                maxSettlementInGroup = existingTeamsInGroup.Max(x => x.Settlement);
+            }
 
             var teamInGroup = new TeamInGroup
                 {TeamId = teamId, GroupId = groupId, Settlement = maxSettlementInGroup + 1};

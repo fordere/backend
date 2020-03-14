@@ -39,7 +39,9 @@ namespace forderebackend.ServiceInterface.FinalDay
             if (teamsInGroup == null)
                 // Wenn keine Teams der Gruppe zugewiesen wurden müssen
                 // auch keine Matches erstellt werden
+            {
                 return new List<Match>();
+            }
 
             var teams = dbConnection.SelectByIds<Team>(teamsInGroup.Select(x => x.TeamId));
             return new SingleRoundMatchCreator().CreateMatches(teams);

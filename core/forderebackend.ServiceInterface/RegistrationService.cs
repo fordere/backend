@@ -11,11 +11,17 @@ namespace forderebackend.ServiceInterface
 
             foreach (var registration in request.Tournaments)
             {
-                if (!string.IsNullOrEmpty(tournaments)) tournaments += ", ";
+                if (!string.IsNullOrEmpty(tournaments))
+                {
+                    tournaments += ", ";
+                }
 
                 tournaments += registration.TournamentIdentifier.ToUpper();
 
-                if (!string.IsNullOrEmpty(registration.TeamMate)) tournaments += " mit " + registration.TeamMate;
+                if (!string.IsNullOrEmpty(registration.TeamMate))
+                {
+                    tournaments += " mit " + registration.TeamMate;
+                }
             }
 
             MailSender.SendTournamentRegistrationStsMail(request.UserMail, request.UserName, tournaments);

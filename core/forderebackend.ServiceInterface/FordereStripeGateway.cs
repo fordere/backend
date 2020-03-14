@@ -46,9 +46,15 @@ namespace forderebackend.ServiceInterface
             req.Accept = "application/json";
             req.Credentials = Credentials;
             if (method == "POST" || method == "PUT")
+            {
                 req.ContentType = "application/x-www-form-urlencoded";
+            }
+
             if (!string.IsNullOrWhiteSpace(idempotencyKey))
+            {
                 req.Headers["Idempotency-Key"] = idempotencyKey;
+            }
+
             req.Headers["Stripe-Version"] = "2015-10-16";
             var pclExport = PclExport.Instance;
             var req1 = req;
@@ -67,10 +73,12 @@ namespace forderebackend.ServiceInterface
             var status = HttpUtils.GetStatus(ex);
             var httpStatusCode = status.HasValue ? status.GetValueOrDefault() : HttpStatusCode.BadRequest;
             if (HttpUtils.IsAny400((Exception) ex))
+            {
                 throw new StripeException(StringExtensions.FromJson<StripeErrors>(responseBody).Error)
                 {
                     StatusCode = httpStatusCode
                 };
+            }
         }
 
         protected virtual string Send(string relativeUrl, string method, string body, string idempotencyKey)
@@ -90,10 +98,13 @@ namespace forderebackend.ServiceInterface
                 var status = HttpUtils.GetStatus(ex);
                 var httpStatusCode = status.HasValue ? status.GetValueOrDefault() : HttpStatusCode.BadRequest;
                 if (HttpUtils.IsAny400((Exception) ex))
+                {
                     throw new StripeException(StringExtensions.FromJson<StripeErrors>(responseBody).Error)
                     {
                         StatusCode = httpStatusCode
                     };
+                }
+
                 throw;
             }
         }
@@ -116,7 +127,10 @@ namespace forderebackend.ServiceInterface
             {
                 var ex2 = TaskExtensions.UnwrapIfSingleException(ex1) as WebException;
                 if (ex2 != null)
+                {
                     HandleStripeException(ex2);
+                }
+
                 throw;
             }
 
@@ -159,9 +173,15 @@ namespace forderebackend.ServiceInterface
         private static string GetMethod<T>(IReturn<T> request)
         {
             if (request is IPost)
+            {
                 return "POST";
+            }
+
             if (request is IPut)
+            {
                 return "PUT";
+            }
+
             return !(request is IDelete) ? "GET" : "DELETE";
         }
 

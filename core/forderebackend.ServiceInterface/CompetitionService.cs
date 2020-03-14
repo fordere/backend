@@ -50,16 +50,25 @@ namespace forderebackend.ServiceInterface
 
             var leagues = Db.LoadSelect<League>(x => x.CompetitionId == competitionId);
             var hasGeneratedTeams = leagues.Where(x => x.Teams != null).SelectMany(x => x.Teams).Any();
-            if (hasGeneratedTeams) return new CompetitionStateDto {Value = (int) CompetitionState.Running};
+            if (hasGeneratedTeams)
+            {
+                return new CompetitionStateDto {Value = (int) CompetitionState.Running};
+            }
 
             // Any not assigned teaminscriptions?
             var hasNotAssigendTeams =
                 Db.Select<TeamInscription>(t => t.CompetitionId == competitionId && t.AssignedLeagueId == null).Any();
 
-            if (hasNotAssigendTeams) return new CompetitionStateDto {Value = (int) CompetitionState.NotAssignedTeams};
+            if (hasNotAssigendTeams)
+            {
+                return new CompetitionStateDto {Value = (int) CompetitionState.NotAssignedTeams};
+            }
 
             var hasGeneratedMatches = Db.Select<MatchView>(x => x.CompetitionId == competitionId).Any();
-            if (!hasGeneratedMatches) return new CompetitionStateDto {Value = (int) CompetitionState.ReadyForGenerate};
+            if (!hasGeneratedMatches)
+            {
+                return new CompetitionStateDto {Value = (int) CompetitionState.ReadyForGenerate};
+            }
 
             // TODO: Finished... 
             return new CompetitionStateDto {Value = (int) CompetitionState.Running};
@@ -103,7 +112,10 @@ namespace forderebackend.ServiceInterface
             var teamInscription = Db.Single<TeamInscription>(x =>
                 (x.Player1Id == SessionUserId || x.Player2Id == SessionUserId) && x.CompetitionId == competitionId);
 
-            if (teamInscription == null) return null;
+            if (teamInscription == null)
+            {
+                return null;
+            }
 
             teamInscription.Player1 = Db.SingleById<UserAuth>(teamInscription.Player1Id);
             teamInscription.Player2 = Db.SingleById<UserAuth>(teamInscription.Player2Id);
@@ -203,7 +215,10 @@ namespace forderebackend.ServiceInterface
 
             var leagueIds = competition.Leagues.Select(s => s.Id).ToList();
 
-            if (!leagueIds.Any()) return null;
+            if (!leagueIds.Any())
+            {
+                return null;
+            }
 
             var allTeams = Db.Select(Db.From<TeamView>().Where(p => Sql.In(p.LeagueId, leagueIds)));
 
@@ -228,16 +243,25 @@ namespace forderebackend.ServiceInterface
 
             var competition = Db.LoadSingleById<Competition>(request.CompetitionId);
 
-            if (competition == null) throw HttpError.NotFound("League Registration not found");
+            if (competition == null)
+            {
+                throw HttpError.NotFound("League Registration not found");
+            }
 
             if (request.Player1Id == request.Player2Id)
+            {
                 throw new ArgumentException("Sorry you're skill level is too low");
+            }
 
             if (!CheckPlayersNotAlreadyRegistered(request.Player1Id, request.Player2Id, request.CompetitionId))
+            {
                 throw new ArgumentException("One of the players is already registered");
+            }
 
             if (request.Player1Id != SessionUserId && request.Player2Id != SessionUserId)
+            {
                 throw new ArgumentException("You try to register a team you are not a member of...");
+            }
 
             var entity = request.ConvertTo<TeamInscription>();
 
@@ -262,7 +286,9 @@ namespace forderebackend.ServiceInterface
         private void CreatePaymentEntry(UserAuth user, int seasonId)
         {
             if (!Db.Select<Payment>().Any(x => x.UserId == user.Id && x.SeasonId == seasonId))
+            {
                 Db.Insert(new Payment {UserId = user.Id, SeasonId = seasonId});
+            }
         }
 
         private bool CheckPlayersNotAlreadyRegistered(int player1, int player2, int competitionId)

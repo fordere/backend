@@ -28,10 +28,15 @@ namespace forderebackend.ServiceInterface
                 return MapToSeasonDto(season);
             }
 
-            if (currentSeasons.Count == 0) return null;
+            if (currentSeasons.Count == 0)
+            {
+                return null;
+            }
 
             if (currentSeasons.Any(x => x.State == SeasonState.Running))
+            {
                 return MapToSeasonDto(currentSeasons.First(x => x.State == SeasonState.Running));
+            }
 
             return MapToSeasonDto(currentSeasons.First());
         }
@@ -84,9 +89,13 @@ namespace forderebackend.ServiceInterface
             var season = request.ConvertTo<Season>();
 
             if (DivisionId.HasValue)
+            {
                 season.DivisionId = DivisionId.Value;
+            }
             else
+            {
                 throw new ArgumentException("No Division ID set on Season manipulation");
+            }
 
             if (season.Id == 0)
             {
