@@ -1,12 +1,9 @@
 using System;
 using System.IO;
 using System.Reflection;
-using System.Threading.Tasks;
 using forderebackend.ServiceInterface;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.DependencyInjection;
 using Funq;
 using Microsoft.Extensions.Configuration;
 using ServiceStack;
@@ -26,40 +23,6 @@ namespace forderebackend
                 .Build();
 
             host.Run();
-        }
-    }
-
-    public class Startup : ModularStartup
-    {
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
-        public new void ConfigureServices(IServiceCollection services)
-        {
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            Licensing.RegisterLicenseFromFile("./licence.txt");
-
-            app.UseServiceStack(new AppHostConsole());
-
-            app.Run(context =>
-            {
-                context.Response.Redirect("/metadata");
-                return Task.FromResult(0);
-            });
-
-        }
-    }
-
-    public class AppHost : AppHostBase
-    {
-        public AppHost()
-            : base("forderebackend", typeof(FinaldayTableService).Assembly) { }
-
-        public override void Configure(Container container)
-        {
         }
     }
 }

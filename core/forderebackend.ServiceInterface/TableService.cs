@@ -8,7 +8,6 @@ using ServiceStack.OrmLite;
 
 namespace forderebackend.ServiceInterface
 {
-    
     public class TableService : BaseService
     {
         [Authenticate]
@@ -19,7 +18,9 @@ namespace forderebackend.ServiceInterface
             var competition = Db.LoadSingleById<Competition>(request.CompetitionId);
             competition.Throw404NotFoundIfNull("Competition not found");
 
-            var tables = allTablesInBar.Where(x => competition.TableTypes.Any(t => t.TableTypeValue == x.TableTypeValue)).Select(x => x.ToDto());
+            var tables = allTablesInBar
+                .Where(x => competition.TableTypes.Any(t => t.TableTypeValue == x.TableTypeValue))
+                .Select(x => x.ToDto());
             return tables;
         }
 
@@ -32,7 +33,8 @@ namespace forderebackend.ServiceInterface
             var cup = Db.LoadSingleById<Cup>(request.CupId).Competition;
             cup.Throw404NotFoundIfNull("Cup not found");
 
-            return allTablesInBar.Where(x => cup.TableTypes.Any(t => t.TableTypeValue == x.TableTypeValue)).Select(x => x.ToDto());
+            return allTablesInBar.Where(x => cup.TableTypes.Any(t => t.TableTypeValue == x.TableTypeValue))
+                .Select(x => x.ToDto());
         }
 
         [Authenticate]
@@ -75,7 +77,5 @@ namespace forderebackend.ServiceInterface
             Db.Save(tableToUpdate);
             return tableToUpdate.ConvertTo<TableDto>();
         }
-
-
     }
 }

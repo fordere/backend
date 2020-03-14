@@ -5,7 +5,6 @@ using ServiceStack;
 namespace forderebackend.ServiceModel.Messages.Table
 {
     [Route("/tables/{TableId}/{Day}/timeslots", "GET", Summary = "Get timeslots for a specific day.")]
-    
     public class TimeSlotRequest : IReturn<List<string>>
     {
         public int TableId { get; set; }
@@ -14,9 +13,7 @@ namespace forderebackend.ServiceModel.Messages.Table
 
     // TODO Fix Return type
     [Route("/bars/timeslots", "GET", Summary = "Gets all bars with timeslots")]
-    
     public class BarTimeSlotsRequest : IReturnVoid
     {
-        
     }
 }

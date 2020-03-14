@@ -5,10 +5,8 @@ using ServiceStack.OrmLite;
 
 namespace forderebackend.ServiceInterface
 {
-    
-    class FinalDayService : BaseService
+    internal class FinalDayService : BaseService
     {
-
         [Authenticate]
         [RequiredRole(RoleNames.Admin)]
         public object Get(GetFinalDayRequest request)

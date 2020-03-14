@@ -4,7 +4,8 @@ using ServiceStack;
 
 namespace forderebackend.ServiceModel.Messages.Final
 {
-    [Route("/finalday/competition/{FinalDayCompetitionId}/group/moveteam/{TeamInGroupId}", "POST", Summary = "Moves a TeamInGroup (Settlement)")]
+    [Route("/finalday/competition/{FinalDayCompetitionId}/group/moveteam/{TeamInGroupId}", "POST",
+        Summary = "Moves a TeamInGroup (Settlement)")]
     public class MoveTeamInGroupRequest : IReturn<List<TeamInGroupViewDto>>
     {
         public int FinalDayCompetitionId { get; set; }

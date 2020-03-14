@@ -23,7 +23,8 @@ namespace forderebackend.ServiceInterface
         {
             var teamInGroup = Db.SingleById<TeamInGroup>(request.TeamInGroupId);
 
-            var teamsToUpdate = Db.Select<TeamInGroup>(x => x.Settlement > teamInGroup.Settlement && x.GroupId == teamInGroup.GroupId);
+            var teamsToUpdate = Db.Select<TeamInGroup>(x =>
+                x.Settlement > teamInGroup.Settlement && x.GroupId == teamInGroup.GroupId);
             teamsToUpdate.ForEach(x => x.Settlement--);
             Db.SaveAll(teamsToUpdate);
 
@@ -39,11 +40,13 @@ namespace forderebackend.ServiceInterface
         public object Post(MoveTeamInGroupRequest request)
         {
             var sourceTeamInGroup = Db.SingleById<TeamInGroup>(request.TeamInGroupId);
-            var teamsToMoveSource = Db.Select<TeamInGroup>(sql => sql.GroupId == sourceTeamInGroup.GroupId && sql.Settlement >= sourceTeamInGroup.Settlement);
+            var teamsToMoveSource = Db.Select<TeamInGroup>(sql =>
+                sql.GroupId == sourceTeamInGroup.GroupId && sql.Settlement >= sourceTeamInGroup.Settlement);
             teamsToMoveSource.ForEach(x => x.Settlement--);
             Db.SaveAll(teamsToMoveSource);
 
-            var teamsToMoveTarget = Db.Select<TeamInGroup>(sql => sql.GroupId == request.TargetGroupId && sql.Settlement >= request.TargetSettlement);
+            var teamsToMoveTarget = Db.Select<TeamInGroup>(sql =>
+                sql.GroupId == request.TargetGroupId && sql.Settlement >= request.TargetSettlement);
             teamsToMoveTarget.ForEach(x => x.Settlement++);
             Db.SaveAll(teamsToMoveTarget);
 
@@ -72,14 +75,12 @@ namespace forderebackend.ServiceInterface
         public object Post(AddGroupRequest request)
         {
             var existingGroups = Db.Select<Group>(x => x.FinalDayCompetitionId == request.FinalDayCompetitionId);
-            int nextGroupNumber = 1;
+            var nextGroupNumber = 1;
 
-            if (existingGroups.Any())
-            {
-                nextGroupNumber = existingGroups.Max(x => x.Number) + 1;
-            }
+            if (existingGroups.Any()) nextGroupNumber = existingGroups.Max(x => x.Number) + 1;
 
-            var groupToAdd = new Group { Number = nextGroupNumber, FinalDayCompetitionId = request.FinalDayCompetitionId };
+            var groupToAdd = new Group
+                {Number = nextGroupNumber, FinalDayCompetitionId = request.FinalDayCompetitionId};
             var groupId = Db.Insert(groupToAdd, true);
 
             return Db.SingleById<Group>(groupId).ConvertTo<GroupDto>();
@@ -91,9 +92,7 @@ namespace forderebackend.ServiceInterface
         {
             var groups = Db.Select<Group>(sql => sql.FinalDayCompetitionId == request.FinalDayCompetitionId).ToList();
             foreach (var competitionGroup in groups)
-            {
                 competitionGroup.Teams = Db.LoadSelect<TeamInGroup>(sql => sql.GroupId == competitionGroup.Id).ToList();
-            }
 
             var groupDtos = new List<GroupDto>();
             foreach (var competitionGroup in groups)
@@ -106,6 +105,5 @@ namespace forderebackend.ServiceInterface
 
             return groupDtos;
         }
-
     }
 }

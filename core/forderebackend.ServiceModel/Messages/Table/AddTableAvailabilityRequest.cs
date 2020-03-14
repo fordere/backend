@@ -5,7 +5,6 @@ using ServiceStack;
 namespace forderebackend.ServiceModel.Messages.Table
 {
     [Route("/tables/{TableId}/availabilities", "PUT", Summary = "Get all tables available in a bar")]
-    
     public class AddTableAvailabilityRequest : IReturn<TableAvailabilityDto>
     {
         public int TableId { get; set; }

@@ -1,8 +1,5 @@
-﻿
-
-namespace forderebackend.ServiceModel.Dtos
+﻿namespace forderebackend.ServiceModel.Dtos
 {
-    
     public class BarDto : NameDto
     {
         public string Adresse { get; set; }
@@ -13,7 +10,7 @@ namespace forderebackend.ServiceModel.Dtos
 
         public override string ToString()
         {
-            return $"{this.Name} [{this.Id}]";
+            return $"{Name} [{Id}]";
         }
     }
 }

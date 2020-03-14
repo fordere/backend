@@ -42,5 +42,4 @@ namespace forderebackend.ServiceModel.Messages
 
         public string Abo { get; set; }
     }
-
 }

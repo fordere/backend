@@ -7,7 +7,7 @@ namespace forderebackend.ServiceModel.Dtos
     {
         public NewsDto()
         {
-            this.User = new UserDto();
+            User = new UserDto();
         }
 
         public string Id { get; set; }
@@ -21,7 +21,7 @@ namespace forderebackend.ServiceModel.Dtos
 
         public override string ToString()
         {
-            return string.Format("{0} - {1} [{2}]", this.PostDate.ToString("d"), this.Title, this.Id);
+            return string.Format("{0} - {1} [{2}]", PostDate.ToString("d"), Title, Id);
         }
     }
 

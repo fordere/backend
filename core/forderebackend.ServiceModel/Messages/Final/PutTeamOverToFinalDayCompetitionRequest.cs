@@ -1,11 +1,9 @@
-﻿
-
-using ServiceStack;
+﻿using ServiceStack;
 
 namespace forderebackend.ServiceModel.Messages.Final
 {
-    [Route("/finalday/competition/{Id}/putteamover", "POST", Summary = "Puts teams depending on given parameters into a group/finaldaycompetition")]
-    
+    [Route("/finalday/competition/{Id}/putteamover", "POST",
+        Summary = "Puts teams depending on given parameters into a group/finaldaycompetition")]
     public class PutTeamOverToFinalDayCompetitionRequest : IReturnVoid
     {
         public int Id { get; set; }

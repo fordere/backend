@@ -12,6 +12,5 @@ namespace forderebackend.ServiceModel.Messages
         public string Comment { get; set; }
 
         public string Captcha { get; set; }
-
     }
 }

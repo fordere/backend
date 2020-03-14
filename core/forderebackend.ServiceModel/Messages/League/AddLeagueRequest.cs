@@ -4,7 +4,6 @@ using ServiceStack;
 namespace forderebackend.ServiceModel.Messages.League
 {
     [Route("/leagues", "POST", Summary = "Create league")]
-    
     public class AddLeagueRequest : IReturn<LeagueDto>
     {
         public LeagueMatchCreationMode LeagueMatchCreationMode { get; set; }

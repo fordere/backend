@@ -5,7 +5,6 @@ using ServiceStack;
 namespace forderebackend.ServiceModel.Messages.News
 {
     [Route("/news", "PUT", Summary = "Update a news.")]
-    
     public class UpdateNewsRequest : IReturn<NewsDto>
     {
         public int Id { get; set; }

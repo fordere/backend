@@ -5,8 +5,7 @@ namespace forderebackend.ServiceInterface.Entities
 {
     public class Bar : IFordereObjectWithName
     {
-        [AutoIncrement]
-        public int Id { get; set; }
+        [AutoIncrement] public int Id { get; set; }
         public string Name { get; set; }
         public string Adresse { get; set; }
         public string Url { get; set; }
@@ -18,10 +17,9 @@ namespace forderebackend.ServiceInterface.Entities
 
         public override string ToString()
         {
-            return string.Format("{0} [{1}]", this.Name, this.Id);
+            return string.Format("{0} [{1}]", Name, Id);
         }
 
-        [Reference]
-        public List<Table> Tables { get; set; }
+        [Reference] public List<Table> Tables { get; set; }
     }
 }

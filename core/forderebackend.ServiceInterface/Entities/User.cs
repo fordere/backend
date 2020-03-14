@@ -13,7 +13,7 @@ namespace forderebackend.ServiceInterface.Entities
 
         public string Name
         {
-            get { return this.FirstName + " " + this.LastName; }
+            get => FirstName + " " + LastName;
             set { }
         }
     }
@@ -28,7 +28,7 @@ namespace forderebackend.ServiceInterface.Entities
         public bool IsDeleted { get; set; }
         public List<long> TeamIds { get; set; }
 
-        public List<Team> Teams { get; set; } 
+        public List<Team> Teams { get; set; }
 
         /// <summary>
         /// Legacy id, will be removed
@@ -42,13 +42,13 @@ namespace forderebackend.ServiceInterface.Entities
 
         public User()
         {
-            this.Roles = new List<string>();
-            this.TeamIds = new List<long>();
+            Roles = new List<string>();
+            TeamIds = new List<long>();
         }
 
         public override string ToString()
         {
-            return string.Format("{0} {1} ({2}) [{3}] {4}", this.FirstName, this.LastName, this.EMail, this.Id, this.Phone);
+            return string.Format("{0} {1} ({2}) [{3}] {4}", FirstName, LastName, EMail, Id, Phone);
         }
     }
 }

@@ -12,7 +12,6 @@ namespace forderebackend.ServiceInterface.LeagueExecution
             var teams = new List<Team>(inscriptions.Count());
 
             foreach (var inscription in inscriptions)
-            {
                 teams.Add(new Team
                 {
                     BarId = inscription.BarId,
@@ -23,7 +22,6 @@ namespace forderebackend.ServiceInterface.LeagueExecution
                     SeasonAmbition = inscription.SeasonAmbition,
                     WishPlayDay = inscription.WishPlayDay
                 });
-            }
 
             return teams;
         }

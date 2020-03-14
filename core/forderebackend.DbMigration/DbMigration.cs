@@ -9,7 +9,6 @@ namespace forderebackend.DbMigration
     {
         public static void Main(string[] args)
         {
-     
             var connectionString = args.FirstOrDefault() ??
                                    string.Format("Server = {0}; Port = {1}; Database = {2}; Uid = {3}; Pwd = {4}",
                                        "localhost",

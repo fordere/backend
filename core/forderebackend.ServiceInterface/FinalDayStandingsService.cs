@@ -17,19 +17,15 @@ namespace forderebackend.ServiceInterface
         {
             Season season;
             if (request.SeasonId.HasValue)
-            {
                 season = Db.LoadSingleById<Season>(request.SeasonId.Value);
-            }
             else
-            {
-                season = Db.LoadSelect(Db.From<Season>().Where(x => x.State != SeasonState.Archived && x.DivisionId == DivisionId)).SingleOrDefault();
-            }
+                season = Db.LoadSelect(Db.From<Season>()
+                    .Where(x => x.State != SeasonState.Archived && x.DivisionId == DivisionId)).SingleOrDefault();
 
             var competitions = Db.Select(Db.From<FinalDayCompetition>().Where(x => x.FinalDayId == season.FinalDay.Id));
             var competitionStandingDtos = new List<CompetitionStandingDto>();
 
             foreach (var competition in competitions)
-            {
                 switch (competition.CompetitionMode)
                 {
                     case CompetitionMode.SingleKO:
@@ -45,9 +41,7 @@ namespace forderebackend.ServiceInterface
                         break;
                     case CompetitionMode.Dyp:
                         throw new NotSupportedException("Irgendwer sollte DoubleKO noch implementieren!");
-
                 }
-            }
 
             return competitionStandingDtos;
         }
@@ -63,8 +57,8 @@ namespace forderebackend.ServiceInterface
             };
 
             var sqlExpression = Db.From<CompetitionPlayerStanding>()
-               .Where(x => x.FinalDayCompetitionId == competition.Id)
-               .ThenBy(x => x.Rank);
+                .Where(x => x.FinalDayCompetitionId == competition.Id)
+                .ThenBy(x => x.Rank);
 
             var standings = Db.LoadSelect(sqlExpression).ToList();
             compDto.Players = standings.Select(x => x.ConvertTo<CompetitionPlayerStandingDto>()).ToList();
@@ -73,7 +67,8 @@ namespace forderebackend.ServiceInterface
 
         private CompetitionStandingDto LoadSingleKoStandings(FinalDayCompetition competition)
         {
-            var matches = Db.Select(Db.From<MatchView>().Where(x => x.FinalDayCompetitionId == competition.Id).OrderBy(x => x.CupRound).ThenBy(x => x.RoundOrder)).ToList();
+            var matches = Db.Select(Db.From<MatchView>().Where(x => x.FinalDayCompetitionId == competition.Id)
+                .OrderBy(x => x.CupRound).ThenBy(x => x.RoundOrder)).ToList();
             var dtos = matches.ConvertAll(s => s.ConvertTo<ExtendedMatchDto>());
 
             return new CompetitionStandingDto
@@ -84,7 +79,6 @@ namespace forderebackend.ServiceInterface
                 CompetitionState = competition.State,
                 SingleKoMatches = dtos
             };
-
         }
 
         private CompetitionStandingDto LoadGroupStandings(FinalDayCompetition competition)
@@ -99,9 +93,9 @@ namespace forderebackend.ServiceInterface
             };
 
             var sqlExpression = Db.From<CompetitionTeamStandingView>()
-               .Where(x => x.FinalDayCompetitionId == competition.Id)
-               .OrderBy(x => x.GroupId)
-               .ThenBy(x => x.Rank);
+                .Where(x => x.FinalDayCompetitionId == competition.Id)
+                .OrderBy(x => x.GroupId)
+                .ThenBy(x => x.Rank);
 
             var standings = Db.Select(sqlExpression).ToList();
             compDto.Groups = MapToCompetitionTeamStandingDto(standings);
@@ -109,7 +103,8 @@ namespace forderebackend.ServiceInterface
         }
 
         // TODO SSH: Does this grouping stuff make sense here? Could we use the normal DB infrastructore?
-        private static List<CompetitionTeamStandingGroupDto> MapToCompetitionTeamStandingDto(List<CompetitionTeamStandingView> standings)
+        private static List<CompetitionTeamStandingGroupDto> MapToCompetitionTeamStandingDto(
+            List<CompetitionTeamStandingView> standings)
         {
             var groupDtos = new List<CompetitionTeamStandingGroupDto>();
             var groups = standings.GroupBy(x => x.GroupId);
@@ -122,12 +117,12 @@ namespace forderebackend.ServiceInterface
                     NumberOfSuccessor = firstItem.GroupNumberOfSuccessor
                 };
 
-                groupDto.Standings.AddRange(finalDayCompetitionGroup.ToList().ConvertAll(x => x.ConvertTo<CompetitionTeamStandingViewDto>()));
+                groupDto.Standings.AddRange(finalDayCompetitionGroup.ToList()
+                    .ConvertAll(x => x.ConvertTo<CompetitionTeamStandingViewDto>()));
                 groupDtos.Add(groupDto);
             }
 
             return groupDtos;
-
         }
     }
 }

@@ -1,8 +1,5 @@
-
-
 namespace forderebackend.ServiceInterface.Entities
 {
-    
     public class TeamView
     {
         public int Id { get; set; }

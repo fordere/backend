@@ -4,7 +4,6 @@ using ServiceStack;
 namespace forderebackend.ServiceModel.Messages.League
 {
     [Route("/leagues/{Id}", "PUT", Summary = "Update league")]
-    
     public class UpdateLeagueRequest : IReturn<LeagueDto>
     {
         public int Id { get; set; }

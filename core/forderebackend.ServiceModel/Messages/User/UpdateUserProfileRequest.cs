@@ -2,8 +2,10 @@
 
 namespace forderebackend.ServiceModel.Messages.User
 {
-    [Route("/users/me/profile", "PUT", Summary = "Update user profile (Firstname, Lastname, Email, Password, PhoneNumber).")]
-    [Route("/users/profile", "PUT", Summary = "Update user profile (Firstname, Lastname, E-Mail, Password, PhoneNumber).")]
+    [Route("/users/me/profile", "PUT",
+        Summary = "Update user profile (Firstname, Lastname, Email, Password, PhoneNumber).")]
+    [Route("/users/profile", "PUT",
+        Summary = "Update user profile (Firstname, Lastname, E-Mail, Password, PhoneNumber).")]
     public class UpdateUserProfileRequest : IReturn<UserProfileResponse>
     {
         public int Id { get; set; }

@@ -10,7 +10,7 @@ namespace forderebackend.ServiceModel.Dtos
 
         public TeamRegistrationDto()
         {
-            this.UserIds = new List<string>();
+            UserIds = new List<string>();
         }
     }
 }

@@ -8,7 +8,6 @@ using ServiceStack.OrmLite;
 
 namespace forderebackend.ServiceInterface
 {
-    
     public class ForumService : BaseService
     {
         public object Get(GetAllThreadsRequest request)
@@ -16,13 +15,9 @@ namespace forderebackend.ServiceInterface
             var allThreads = Db.LoadSelect<ForumThread>().ToList();
 
             // TODO: Is there really no better option to do this?
-            foreach (ForumThread thread in allThreads)
-            {
-                foreach (ForumPost post in thread.ForumPosts)
-                {
-                    Db.LoadReferences(post);
-                }
-            }
+            foreach (var thread in allThreads)
+            foreach (var post in thread.ForumPosts)
+                Db.LoadReferences(post);
 
             return allThreads.Select(thread => thread.ToDto()).OrderByDescending(x => x.LastActivityDate);
         }
@@ -38,7 +33,7 @@ namespace forderebackend.ServiceInterface
         {
             var post = request.ConvertTo<ForumPost>();
             post.Date = DateTime.Now;
-            post.UserAuthId = this.SessionUserId;
+            post.UserAuthId = SessionUserId;
 
             var id = Db.Insert(post, true);
 
@@ -52,7 +47,7 @@ namespace forderebackend.ServiceInterface
             var thread = request.ConvertTo<ForumThread>();
             var threadId = Db.Insert(thread, true);
 
-            return Post(new CreatePostRequest { ForumThreadId = (int)threadId, Text = request.Text });
+            return Post(new CreatePostRequest {ForumThreadId = (int) threadId, Text = request.Text});
         }
 
         public object Get(GetSingleThreadRequest request)

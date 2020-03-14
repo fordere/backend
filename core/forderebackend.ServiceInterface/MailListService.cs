@@ -9,7 +9,6 @@ using ServiceStack.OrmLite;
 
 namespace forderebackend.ServiceInterface
 {
-    
     public class MailListService : BaseService
     {
         [Authenticate]
@@ -81,7 +80,9 @@ namespace forderebackend.ServiceInterface
             //Db.SaveAll<UserAuth>(allUsers);
 
 
-            var mailList = Db.Select<UserAuth>().Where(x => x.Email != null && x.Meta != null &&  x.Meta.ContainsKey("division" + DivisionId) && x.Meta["division" + DivisionId] == "true" && !x.Email.EndsWith("@fordere.ch"));
+            var mailList = Db.Select<UserAuth>().Where(x =>
+                x.Email != null && x.Meta != null && x.Meta.ContainsKey("division" + DivisionId) &&
+                x.Meta["division" + DivisionId] == "true" && !x.Email.EndsWith("@fordere.ch"));
             return new UserMailsDto(mailList);
         }
 
@@ -111,7 +112,8 @@ namespace forderebackend.ServiceInterface
         private IEnumerable<UserAuth> GetAllUserMailsInCompetitionForInscriptions(int competitionId)
         {
             var inscriptions = Db.Select<TeamInscription>(sql => sql.CompetitionId == competitionId);
-            var userIds = inscriptions.Select(x => x.Player1Id).Concat(inscriptions.Select(x => x.Player2Id)).Distinct();
+            var userIds = inscriptions.Select(x => x.Player1Id).Concat(inscriptions.Select(x => x.Player2Id))
+                .Distinct();
 
             var mailList = Db.SelectByIds<UserAuth>(userIds);
             return mailList;

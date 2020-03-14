@@ -9,7 +9,7 @@ namespace forderebackend.ServiceModel.Dtos
 
         public Cup2Dto()
         {
-            this.Teams = new List<NameDto>();
+            Teams = new List<NameDto>();
         }
     }
 }

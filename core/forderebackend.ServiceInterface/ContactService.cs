@@ -3,7 +3,6 @@ using forderebackend.ServiceModel.Messages;
 
 namespace forderebackend.ServiceInterface
 {
-    
     public class ContactService : BaseService
     {
         public void Post(ContactRequest contact)

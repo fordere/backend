@@ -6,17 +6,13 @@ namespace forderebackend.ServiceInterface.Entities
 {
     public class Table : IFordereObject
     {
-        [AutoIncrement]
-        public int Id { get; set; }
+        [AutoIncrement] public int Id { get; set; }
 
-        [References(typeof(Bar))]
-        public int BarId { get; set; }
+        [References(typeof(Bar))] public int BarId { get; set; }
 
-        [Reference]
-        public Bar Bar { get; set; }
+        [Reference] public Bar Bar { get; set; }
 
-        [Reference]
-        public List<TableAvailability> TableAvailabilities { get; set; }
+        [Reference] public List<TableAvailability> TableAvailabilities { get; set; }
 
         public string Name { get; set; }
 
@@ -25,8 +21,8 @@ namespace forderebackend.ServiceInterface.Entities
         [Ignore]
         public TableType TableType
         {
-            get { return (TableType)TableTypeValue; }
-            set { TableTypeValue = (int)value; }
+            get => (TableType) TableTypeValue;
+            set => TableTypeValue = (int) value;
         }
     }
 }

@@ -51,10 +51,6 @@ namespace forderebackend.ServiceInterface.Entities
 
         public string QualifiedForFinalDayComment { get; set; }
 
-        [Ignore]
-        public int PlusMinus
-        {
-            get { return SetsWon - SetsLost; }
-        }
+        [Ignore] public int PlusMinus => SetsWon - SetsLost;
     }
 }

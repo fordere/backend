@@ -14,13 +14,12 @@ using ServiceStack.OrmLite;
 
 namespace forderebackend.ServiceInterface
 {
-    
-    class CalendarService : BaseService
+    internal class CalendarService : BaseService
     {
         [AddHeader(ContentType = "text/calendar; charset=UTF-8")]
         public Stream Get(GetCalendarStreamByIdRequest request)
         {
-            var calendarIdEnc = request.Id;//;.ReplaceAll("_", "/");
+            var calendarIdEnc = request.Id; //;.ReplaceAll("_", "/");
 
             var appSettings = new AppSettings();
             var pw = appSettings.Get("Calendar.EncPass");
@@ -35,7 +34,10 @@ namespace forderebackend.ServiceInterface
                 return new MemoryStream();
             }
 
-            var matches = Db.Select<MatchView>(p => p.PlayDate.HasValue && p.PlayDate >= DateTime.Today && (p.GuestPlayer1Id == userId || p.GuestPlayer2Id == userId || p.HomePlayer1Id == userId || p.HomePlayer2Id == userId));
+            var matches = Db.Select<MatchView>(p =>
+                p.PlayDate.HasValue && p.PlayDate >= DateTime.Today &&
+                (p.GuestPlayer1Id == userId || p.GuestPlayer2Id == userId || p.HomePlayer1Id == userId ||
+                 p.HomePlayer2Id == userId));
 
 
             var calendar = new Calendar();
@@ -43,15 +45,12 @@ namespace forderebackend.ServiceInterface
             var user = Db.LoadSingleById<UserAuth>(userId);
 
             var calendarName = $"Fordere {user.FirstName} {user.LastName}";
-            if (userId == 107)
-            {
-                calendarName = "Fordere Flo - Dümmscht - Schwendener";
-            }
+            if (userId == 107) calendarName = "Fordere Flo - Dümmscht - Schwendener";
             calendar.Properties.Add(new CalendarProperty("X-WR-CALNAME", calendarName));
             calendar.Properties.Add(new CalendarProperty("CALSCALE", "GREGORIAN"));
             calendar.Properties.Add(new CalendarProperty("METHOD", "PUBLISH"));
             calendar.Properties.Add(new CalendarProperty("X-PUBLISHED-TTL", "PT12H"));
-           // calendar.Properties.Add(new CalendarProperty("X-WR-TIMEZONE", "PUBLISH"));
+            // calendar.Properties.Add(new CalendarProperty("X-WR-TIMEZONE", "PUBLISH"));
 
 
             foreach (var match in matches)

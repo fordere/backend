@@ -10,7 +10,6 @@ using ServiceStack.OrmLite;
 
 namespace forderebackend.ServiceInterface
 {
-    
     public class TeamInscriptionService : BaseService
     {
         [Authenticate]
@@ -25,8 +24,8 @@ namespace forderebackend.ServiceInterface
         public object Post(CreateTeamInscriptionRequest request)
         {
             var teamInscription = request.ConvertTo<TeamInscription>();
-            var id = (int)Db.Insert(teamInscription, true);
-            return Get(new GetTeamInscriptionByIdRequest { Id = id });
+            var id = (int) Db.Insert(teamInscription, true);
+            return Get(new GetTeamInscriptionByIdRequest {Id = id});
         }
 
         [Authenticate]
@@ -40,7 +39,7 @@ namespace forderebackend.ServiceInterface
 
             Db.Update(teamInscription);
 
-            return Get(new GetTeamInscriptionByIdRequest { Id = request.Id });
+            return Get(new GetTeamInscriptionByIdRequest {Id = request.Id});
         }
 
         [Authenticate]
@@ -56,8 +55,8 @@ namespace forderebackend.ServiceInterface
         [RequiredRole(RoleNames.Admin)]
         public object Get(TeamInscriptionsByCompetition request)
         {
-            var teamInscriptionEntities = this.Db.LoadSelect<TeamInscription>(p => p.CompetitionId == request.CompetitionId);
-            var barEntities = this.Db.SelectByIds<Bar>(teamInscriptionEntities.Select(s => s.BarId).Distinct());
+            var teamInscriptionEntities = Db.LoadSelect<TeamInscription>(p => p.CompetitionId == request.CompetitionId);
+            var barEntities = Db.SelectByIds<Bar>(teamInscriptionEntities.Select(s => s.BarId).Distinct());
 
             var barsLookup = barEntities.ToDictionary(k => k.Id);
 
@@ -81,7 +80,8 @@ namespace forderebackend.ServiceInterface
         public object Get(NotAssignedTeamInscriptionsByCompetition request)
         {
             var competitionId = request.CompetitionId;
-            var teamInscriptionEntities = this.Db.LoadSelect<TeamInscription>(p => p.CompetitionId == competitionId && p.AssignedLeagueId == null);
+            var teamInscriptionEntities =
+                Db.LoadSelect<TeamInscription>(p => p.CompetitionId == competitionId && p.AssignedLeagueId == null);
             return teamInscriptionEntities.Select(x => x.ConvertTo<TeamInscriptionDto>());
         }
 
@@ -95,7 +95,9 @@ namespace forderebackend.ServiceInterface
                 var competition = Db.SingleById<Competition>(teaminscription.CompetitionId);
                 long seasonId = competition.SeasonId;
 
-                Db.Delete<Payment>(x => (x.UserId == teaminscription.Player1Id || x.UserId == teaminscription.Player2Id) && x.SeasonId == seasonId);
+                Db.Delete<Payment>(x =>
+                    (x.UserId == teaminscription.Player1Id || x.UserId == teaminscription.Player2Id) &&
+                    x.SeasonId == seasonId);
 
                 Db.DeleteById<TeamInscription>(request.TeamInscriptionId);
 

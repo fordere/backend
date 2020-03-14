@@ -2,7 +2,6 @@
 
 namespace forderebackend.ServiceModel.Dtos
 {
-    
     public class OpenRegistrationCompetitionDto : NameDto
     {
         public SeasonDto Season { get; set; }

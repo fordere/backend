@@ -46,10 +46,12 @@ namespace forderebackend.ServiceInterface
                 SeasonAmbition = team.SeasonAmbition,
                 IsForfaitOut = team.IsForfaitOut,
                 WishPlayDay = team.WishPlayDay,
-                League = team.LeagueId.HasValue ? new LeagueDto
-                {
-                    Id = team.LeagueId.Value
-                } : null
+                League = team.LeagueId.HasValue
+                    ? new LeagueDto
+                    {
+                        Id = team.LeagueId.Value
+                    }
+                    : null
             };
         }
 

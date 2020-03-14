@@ -12,19 +12,20 @@ namespace forderebackend.ServiceInterface
     {
         public object Get(EinteilungenRequest request)
         {
-            List<IGrouping<League, TeamInscription>> teamInscriptions = Db.LoadSelect(Db.From<TeamInscription>().Where(x => x.CompetitionId == request.CompetitionId)).GroupBy(x => x.AssignedLeague).ToList();
+            var teamInscriptions =
+                Db.LoadSelect(Db.From<TeamInscription>().Where(x => x.CompetitionId == request.CompetitionId))
+                    .GroupBy(x => x.AssignedLeague).ToList();
 
             var dtos = new List<EinteilungLeagueDto>();
-            foreach (IGrouping<League, TeamInscription> group in teamInscriptions)
-            {
-                if (group.Key != null)
+            foreach (var group in teamInscriptions)
+                if (@group.Key != null)
                 {
                     var dto = new EinteilungLeagueDto();
                     dto.Einteilungen = new List<EinteilungDto>();
-                    dto.LeagueGroup = group.Key.Group;
-                    dto.LeagueNumber = group.Key.Number;
+                    dto.LeagueGroup = @group.Key.Group;
+                    dto.LeagueNumber = @group.Key.Number;
 
-                    foreach (var items in group)
+                    foreach (var items in @group)
                     {
                         var itemDto = new EinteilungDto();
                         itemDto.Team = items.Name;
@@ -36,9 +37,9 @@ namespace forderebackend.ServiceInterface
 
                     dtos.Add(dto);
                 }
-            }
 
-            return dtos.OrderBy(x => x.LeagueNumber).ThenBy(x => x.LeagueGroup); ;
+            return dtos.OrderBy(x => x.LeagueNumber).ThenBy(x => x.LeagueGroup);
+            ;
         }
     }
 }

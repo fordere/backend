@@ -20,10 +20,7 @@ namespace forderebackend.ServiceInterface.Smtp
             var path = Path.Combine(templateRoot, GetTemplateName(divisionId, template));
 
             // First line of the template is the subject
-            if (File.Exists(path))
-            {
-                return File.ReadLines(path).First();
-            }
+            if (File.Exists(path)) return File.ReadLines(path).First();
 
             log.ErrorFormat("E-Mail Template not found: '{0}'", path);
 
@@ -32,10 +29,7 @@ namespace forderebackend.ServiceInterface.Smtp
 
         private static string GetTemplateName(int? divisionId, string template)
         {
-            if (divisionId.HasValue)
-            {
-                return divisionId.Value + "_" + template;
-            }
+            if (divisionId.HasValue) return divisionId.Value + "_" + template;
 
             return template;
         }
@@ -75,7 +69,8 @@ namespace forderebackend.ServiceInterface.Smtp
             }
         }
 
-        public static void SendReisliDoubleDoubleRegistrationStsMail(string to, TournamentRegistrationReisliRequest request)
+        public static void SendReisliDoubleDoubleRegistrationStsMail(string to,
+            TournamentRegistrationReisliRequest request)
         {
             var subject = ReadSubject("RegisterDoubleDouble.html");
             var body = ReadBody("RegisterDoubleDouble.html");
@@ -135,7 +130,8 @@ namespace forderebackend.ServiceInterface.Smtp
             SmtpClientWrapper.Send(to, subject, body, "info@fordere.ch");
         }
 
-        public static void SendContactMail(int? divisionId, string name, string userMail, string comment, string replyTo = null)
+        public static void SendContactMail(int? divisionId, string name, string userMail, string comment,
+            string replyTo = null)
         {
             var subject = ReadSubject("Contact.html");
             var body = ReadBody("Contact.html");
@@ -146,15 +142,10 @@ namespace forderebackend.ServiceInterface.Smtp
 
             log.InfoFormat("Sending Contact Mail of {0} ({1})", name, userMail);
             if (divisionId == 3)
-            {
                 // TODO this info should be moved into the divisions-table
                 SmtpClientWrapper.Send("info.luzern@fordere.ch", subject, body, replyTo);
-            }
             else
-            {
                 SmtpClientWrapper.Send("info@fordere.ch", subject, body, replyTo);
-            }
-
         }
 
         public static void SendPasswordRecoveryMail(UserAuth user)
@@ -169,12 +160,14 @@ namespace forderebackend.ServiceInterface.Smtp
                 body = body.Replace("%LASTNAME%", user.LastName);
                 body = body.Replace("%LINK%", link);
 
-                log.InfoFormat("Sending Password Recovery Mail to {0} {1} ({2}) [{3}]", user.FirstName, user.LastName, user.Email, link);
+                log.InfoFormat("Sending Password Recovery Mail to {0} {1} ({2}) [{3}]", user.FirstName, user.LastName,
+                    user.Email, link);
                 SmtpClientWrapper.Send(user.Email, subject, body);
             }
         }
 
-        public static void SendRegistrationConfirmation(int? divisionId, string teamName, string teamMotto, string teamWishPlayDay, UserAuth player1, UserAuth player2, Competition league, Bar homeBar)
+        public static void SendRegistrationConfirmation(int? divisionId, string teamName, string teamMotto,
+            string teamWishPlayDay, UserAuth player1, UserAuth player2, Competition league, Bar homeBar)
         {
             var subject = ReadSubject("RegistrationConfirmation.html", divisionId);
             subject = subject.Replace("%LEAGUENAME%", league.Name);
@@ -184,8 +177,8 @@ namespace forderebackend.ServiceInterface.Smtp
             body = body.Replace("%LEAGUENAME%", league.Name);
             body = body.Replace("%TEAMNAME%", teamName);
             body = body.Replace("%MOTTOSAISONZIEL%", teamMotto);
-			//body = body.Replace("%WUNSCHLIGA%", teamWishLeague);
-			body = body.Replace("%WUNSCHSPIELTAG%", teamWishPlayDay);
+            //body = body.Replace("%WUNSCHLIGA%", teamWishLeague);
+            body = body.Replace("%WUNSCHSPIELTAG%", teamWishPlayDay);
             body = body.Replace("%HOMELOCATION%", homeBar.Name);
             body = body.Replace("%PLAYER1.NAME%", string.Format("{0} {1}", player1.FirstName, player1.LastName));
             body = body.Replace("%PLAYER1.MAIL%", player1.Email);
@@ -194,7 +187,7 @@ namespace forderebackend.ServiceInterface.Smtp
             body = body.Replace("%PLAYER2.MAIL%", player2.Email);
             body = body.Replace("%PLAYER2.PHONE%", player2.PhoneNumber);
 
-            var recipients = new[] { GetDivisionMail(divisionId), player1.Email, player2.Email };
+            var recipients = new[] {GetDivisionMail(divisionId), player1.Email, player2.Email};
             var allRecipients = string.Join(",", recipients);
 
             log.InfoFormat("Sending RegistrationConfirmation for League '{0}' to {1}", league.Name, allRecipients);
@@ -218,10 +211,7 @@ namespace forderebackend.ServiceInterface.Smtp
 
         private static string GetDivisionMail(int? divisionId)
         {
-            if (divisionId == null)
-            {
-                return "info@fordere.ch";
-            }
+            if (divisionId == null) return "info@fordere.ch";
 
             switch (divisionId)
             {

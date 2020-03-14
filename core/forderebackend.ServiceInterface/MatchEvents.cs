@@ -28,7 +28,7 @@ namespace forderebackend.ServiceInterface
 
         private static List<UserAuth> GetPlayersInMatch(Match match, IDbConnection dbConnection)
         {
-            var teamIds = new List<int> { match.HomeTeamId, match.GuestTeamId };
+            var teamIds = new List<int> {match.HomeTeamId, match.GuestTeamId};
             var teams = dbConnection.Select<Team>(x => Sql.In(x.Id, teamIds));
 
             var playerIds = new List<int>();
@@ -49,7 +49,9 @@ namespace forderebackend.ServiceInterface
             upcommingMatches.ForEach(x => dbConnection.Insert(x));
 
             // TODO SSH: Ist das hier am richtigen Ort?
-            if (dbConnection.Count<MatchView>(x => x.FinalDayCompetitionId == match.FinalDayCompetitionId && x.HomeTeamScore == null) == 0 && competitionMode.ShouldFinishCompetitionWhenNoMoreMatchesOpen())
+            if (dbConnection.Count<MatchView>(x =>
+                    x.FinalDayCompetitionId == match.FinalDayCompetitionId && x.HomeTeamScore == null) == 0 &&
+                competitionMode.ShouldFinishCompetitionWhenNoMoreMatchesOpen())
             {
                 var finalDayCompetition = dbConnection.SingleById<FinalDayCompetition>(match.FinalDayCompetitionId);
                 finalDayCompetition.State = FinalDayCompetitionState.Finished;

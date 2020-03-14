@@ -32,7 +32,9 @@ namespace forderebackend.ServiceInterface.FinalDay
         {
             var group = db.LoadSingleById<Group>(groupId);
             var teamIds = group.Teams.Select(x => x.TeamId).ToList();
-            return db.Select<Match>(x => x.FinalDayCompetitionId == group.FinalDayCompetitionId && (Sql.In(x.HomeTeamId, teamIds) || Sql.In(x.GuestTeamId, teamIds)));
+            return db.Select<Match>(x =>
+                x.FinalDayCompetitionId == group.FinalDayCompetitionId &&
+                (Sql.In(x.HomeTeamId, teamIds) || Sql.In(x.GuestTeamId, teamIds)));
         }
 
         private static void UpdateRanks(IDbConnection db, IList<CompetitionTeamStanding> tableEntries, int groupId)
@@ -46,12 +48,13 @@ namespace forderebackend.ServiceInterface.FinalDay
                 var entry = tableEntry;
 
                 tableEntry.Rank = rank;
-                db.Update<CompetitionTeamStanding>(new { Rank = rank }, p => p.Id == entry.Id);
+                db.Update<CompetitionTeamStanding>(new {Rank = rank}, p => p.Id == entry.Id);
                 ++rank;
             }
         }
 
-        private static void UpdateTableEntries(IDbConnection db, IEnumerable<Team> teams, List<Match> matches, List<CompetitionTeamStanding> tableEntries)
+        private static void UpdateTableEntries(IDbConnection db, IEnumerable<Team> teams, List<Match> matches,
+            List<CompetitionTeamStanding> tableEntries)
         {
             foreach (var team in teams)
             {
@@ -67,23 +70,28 @@ namespace forderebackend.ServiceInterface.FinalDay
 
                 tableEntry.GamesLost = playedMatchesOfTeam.Count(p => p.WinnerTeamId != team.Id && !p.IsDraw);
 
-                tableEntry.GoalsScored = playedMatchesOfTeam.Where(p => p.HomeTeamId == team.Id).Sum(s => s.HomeTeamScore.GetValueOrDefault())
-                                         + playedMatchesOfTeam.Where(p => p.GuestTeamId == team.Id).Sum(s => s.GuestTeamScore.GetValueOrDefault());
+                tableEntry.GoalsScored = playedMatchesOfTeam.Where(p => p.HomeTeamId == team.Id)
+                                             .Sum(s => s.HomeTeamScore.GetValueOrDefault())
+                                         + playedMatchesOfTeam.Where(p => p.GuestTeamId == team.Id)
+                                             .Sum(s => s.GuestTeamScore.GetValueOrDefault());
 
-                tableEntry.GoalsConceded = playedMatchesOfTeam.Where(p => p.HomeTeamId == team.Id).Sum(s => s.GuestTeamScore.GetValueOrDefault()) +
-                                           playedMatchesOfTeam.Where(p => p.GuestTeamId == team.Id).Sum(s => s.HomeTeamScore.GetValueOrDefault());
+                tableEntry.GoalsConceded = playedMatchesOfTeam.Where(p => p.HomeTeamId == team.Id)
+                                               .Sum(s => s.GuestTeamScore.GetValueOrDefault()) +
+                                           playedMatchesOfTeam.Where(p => p.GuestTeamId == team.Id)
+                                               .Sum(s => s.HomeTeamScore.GetValueOrDefault());
 
                 var winsWithoutOvertime = playedMatchesOfTeam.Count(p => p.WinnerTeamId == team.Id);
                 var draws = playedMatchesOfTeam.Count(p => p.IsDraw);
 
 
-                tableEntry.Points = (winsWithoutOvertime * PointsWin) + (draws * PointsDraw);
+                tableEntry.Points = winsWithoutOvertime * PointsWin + draws * PointsDraw;
 
                 db.Update(tableEntry, p => p.Id == tableEntry.Id);
             }
         }
 
-        private static void EnsureEachTeamHasTableEntry(IDbConnection db, int groupId, IEnumerable<Team> teams, List<CompetitionTeamStanding> standings)
+        private static void EnsureEachTeamHasTableEntry(IDbConnection db, int groupId, IEnumerable<Team> teams,
+            List<CompetitionTeamStanding> standings)
         {
             foreach (var team in teams)
             {
@@ -91,11 +99,10 @@ namespace forderebackend.ServiceInterface.FinalDay
 
                 if (competitionTeamStanding == null)
                 {
-                    competitionTeamStanding = new CompetitionTeamStanding { GroupId = groupId, TeamId = team.Id };
-                    competitionTeamStanding.Id = (int)db.Insert(competitionTeamStanding, true);
+                    competitionTeamStanding = new CompetitionTeamStanding {GroupId = groupId, TeamId = team.Id};
+                    competitionTeamStanding.Id = (int) db.Insert(competitionTeamStanding, true);
                 }
             }
         }
-
     }
 }

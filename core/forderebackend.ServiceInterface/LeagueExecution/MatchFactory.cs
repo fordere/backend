@@ -11,21 +11,22 @@ namespace forderebackend.ServiceInterface.LeagueExecution
 {
     public static class MatchFactory
     {
-        public static IEnumerable<Match> CreateLeagueMatches(IEnumerable<Team> teams, Func<int, LeagueMatchCreationMode> getMatchCreationMode)
+        public static IEnumerable<Match> CreateLeagueMatches(IEnumerable<Team> teams,
+            Func<int, LeagueMatchCreationMode> getMatchCreationMode)
         {
             var generatedMatches = new List<Match>();
 
             var teamsGroupedByLeague = teams.GroupBy(g => g.LeagueId).ToDictionary(k => k.Key);
 
             foreach (var key in teamsGroupedByLeague.Keys)
-            {
-                CreateLeagueMatches(teamsGroupedByLeague[key].ToList(), generatedMatches, key.Value, getMatchCreationMode);
-            }
+                CreateLeagueMatches(teamsGroupedByLeague[key].ToList(), generatedMatches, key.Value,
+                    getMatchCreationMode);
 
             return generatedMatches;
         }
 
-        public static IEnumerable<Match> CreateMatchesForMovedTeam(Team movedTeam, List<Team> existingTeamsInLeague, League league)
+        public static IEnumerable<Match> CreateMatchesForMovedTeam(Team movedTeam, List<Team> existingTeamsInLeague,
+            League league)
         {
             switch (league.LeagueMatchCreationMode)
             {
@@ -37,8 +38,9 @@ namespace forderebackend.ServiceInterface.LeagueExecution
                     throw new Exception("Unknown mode in team move...");
             }
         }
-       
-        private static void CreateLeagueMatches(IList<Team> teams, ICollection<Match> listOfMatches, int leagueId, Func<int, LeagueMatchCreationMode> getMatchCreationMode)
+
+        private static void CreateLeagueMatches(IList<Team> teams, ICollection<Match> listOfMatches, int leagueId,
+            Func<int, LeagueMatchCreationMode> getMatchCreationMode)
         {
             teams.Shuffle();
 
@@ -88,7 +90,7 @@ namespace forderebackend.ServiceInterface.LeagueExecution
 
             teams.Shuffle();
 
-            int roundOrder = 1;
+            var roundOrder = 1;
             var freeTickets = CreateFreeTickets(teams.Count, db);
 
             while (teams.Any())
@@ -96,12 +98,13 @@ namespace forderebackend.ServiceInterface.LeagueExecution
                 var firstTeam = teams.Pop(0);
                 var secondTeam = freeTickets.Any() ? freeTickets.Pop(0) : teams.Pop(0);
 
-                var match = new Match { CupRound = 1, RoundOrder = roundOrder++, TableId = null, PlayDate = null };
+                var match = new Match {CupRound = 1, RoundOrder = roundOrder++, TableId = null, PlayDate = null};
 
                 var firstTeamLeague = leagues.First(p => p.Id == firstTeam.LeagueId);
                 var secondTeamLeague = leagues.FirstOrDefault(p => p.Id == secondTeam.LeagueId);
 
-                if (secondTeam.IsFreeTicket || (firstTeamLeague.Number == secondTeamLeague.Number || firstTeamLeague.Number > secondTeamLeague.Number))
+                if (secondTeam.IsFreeTicket || firstTeamLeague.Number == secondTeamLeague.Number ||
+                    firstTeamLeague.Number > secondTeamLeague.Number)
                 {
                     match.HomeTeamId = firstTeam.Id;
                     match.HomeTeam = firstTeam;
@@ -124,7 +127,8 @@ namespace forderebackend.ServiceInterface.LeagueExecution
             return listOfMatches;
         }
 
-        public static List<Match> CreateNextCupRound(IEnumerable<Match> previousRound, IEnumerable<Team> teams, IEnumerable<League> leagues, IDbConnection db)
+        public static List<Match> CreateNextCupRound(IEnumerable<Match> previousRound, IEnumerable<Team> teams,
+            IEnumerable<League> leagues, IDbConnection db)
         {
             var matchesOrdered = previousRound.OrderBy(o => o.RoundOrder).ToList();
             var leagueLookup = leagues.ToDictionary(k => k.Id);
@@ -139,7 +143,7 @@ namespace forderebackend.ServiceInterface.LeagueExecution
                 var match1 = matchesOrdered[i];
                 var match2 = matchesOrdered[i + 1];
 
-                var nextMatch = new Match { CupId = cupId, CupRound = round, RoundOrder = roundOrder++, PlayDate = null };
+                var nextMatch = new Match {CupId = cupId, CupRound = round, RoundOrder = roundOrder++, PlayDate = null};
 
                 if (match1.HasResult && match2.HasResult)
                 {
@@ -186,8 +190,8 @@ namespace forderebackend.ServiceInterface.LeagueExecution
                         nextMatch.GuestTeamId = match2.HomeTeamId;
                         nextMatch.GuestTeam = match2.HomeTeam;
 
-                        db.Update<Team>(new { IsFreeTicket = true }, p => p.Id == nextMatch.HomeTeamId);
-                        db.Update<Team>(new { IsFreeTicket = true }, p => p.Id == nextMatch.GuestTeamId);
+                        db.Update<Team>(new {IsFreeTicket = true}, p => p.Id == nextMatch.HomeTeamId);
+                        db.Update<Team>(new {IsFreeTicket = true}, p => p.Id == nextMatch.GuestTeamId);
 
                         SetResultForAbordedMatch(nextMatch);
                     }
@@ -204,8 +208,8 @@ namespace forderebackend.ServiceInterface.LeagueExecution
             SetResultForAbordedMatch(match);
             db.Update(match);
 
-            db.Update<Team>(new { IsFreeTicket = true }, p => p.Id == match.HomeTeamId);
-            db.Update<Team>(new { IsFreeTicket = true }, p => p.Id == match.GuestTeamId);
+            db.Update<Team>(new {IsFreeTicket = true}, p => p.Id == match.HomeTeamId);
+            db.Update<Team>(new {IsFreeTicket = true}, p => p.Id == match.GuestTeamId);
         }
 
         private static void SetResultForAbordedMatch(Match match)
@@ -216,7 +220,8 @@ namespace forderebackend.ServiceInterface.LeagueExecution
             match.RegisterDate = DateTime.UtcNow;
         }
 
-        private static void SetNextMatchTeams(Team match1Team, Match nextMatch, Team match2Team, League team1League, League team2League)
+        private static void SetNextMatchTeams(Team match1Team, Match nextMatch, Team match2Team, League team1League,
+            League team2League)
         {
             if (match2Team.IsFreeTicket)
             {
@@ -274,14 +279,14 @@ namespace forderebackend.ServiceInterface.LeagueExecution
 
         public static List<Team> CreateFreeTickets(int countTeams, IDbConnection db)
         {
-            var countFreeTickets = (int)Math.Pow(2, Math.Ceiling(Math.Log(countTeams, 2))) - countTeams;
+            var countFreeTickets = (int) Math.Pow(2, Math.Ceiling(Math.Log(countTeams, 2))) - countTeams;
 
             var freeTickets = new List<Team>(countFreeTickets);
 
             for (var i = 0; i < countFreeTickets; ++i)
             {
                 var freeTicket = Team.CreateFreeTicket();
-                freeTicket.Id = (int)db.Insert(freeTicket, true);
+                freeTicket.Id = (int) db.Insert(freeTicket, true);
                 freeTickets.Add(freeTicket);
             }
 
@@ -295,8 +300,10 @@ namespace forderebackend.ServiceInterface.LeagueExecution
 
             var time = DateTime.UtcNow.Subtract(TimeSpan.FromMinutes(10));
 
-            homeMatches.ForEach(match => db.Update<Match>(new { HomeTeamScore = 0, GuestTeamScore = 10, PlayDate = time }, p => p.Id == match.Id));
-            guestMatches.ForEach(match => db.Update<Match>(new { HomeTeamScore = 10, GuestTeamScore = 0, PlayDate = time }, p => p.Id == match.Id));
+            homeMatches.ForEach(match => db.Update<Match>(new {HomeTeamScore = 0, GuestTeamScore = 10, PlayDate = time},
+                p => p.Id == match.Id));
+            guestMatches.ForEach(match =>
+                db.Update<Match>(new {HomeTeamScore = 10, GuestTeamScore = 0, PlayDate = time}, p => p.Id == match.Id));
         }
     }
 }

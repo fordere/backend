@@ -5,16 +5,13 @@ namespace forderebackend.ServiceInterface.Entities.Final
 {
     public class CompetitionPlayerStanding
     {
-        [AutoIncrement]
-        public int Id { get; set; }
+        [AutoIncrement] public int Id { get; set; }
 
         public int FinalDayCompetitionId { get; set; }
 
-        [References(typeof(UserAuth))]
-        public int PlayerId { get; set; }
+        [References(typeof(UserAuth))] public int PlayerId { get; set; }
 
-        [Reference]
-        public UserAuth Player { get; set; }
+        [Reference] public UserAuth Player { get; set; }
 
         public int GamesPlayed { get; set; }
 
@@ -32,7 +29,6 @@ namespace forderebackend.ServiceInterface.Entities.Final
 
         public int Rank { get; set; }
 
-        [Ignore]
-        public int PlusMinus => GoalsScored - GoalsConceded;
+        [Ignore] public int PlusMinus => GoalsScored - GoalsConceded;
     }
 }

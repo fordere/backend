@@ -4,8 +4,7 @@ namespace forderebackend.ServiceInterface.Entities
 {
     public class Division
     {
-        [AutoIncrement]
-        public int Id { get; set; }
+        [AutoIncrement] public int Id { get; set; }
 
         public string Name { get; set; }
 

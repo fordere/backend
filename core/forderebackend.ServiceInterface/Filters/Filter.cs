@@ -17,7 +17,8 @@ namespace forderebackend.ServiceInterface.Filters
         /// <summary>
         /// Ensures the authenticated user is either involved in the match or has the admin role.
         /// </summary>
-        public static void EnterMatchAppointment(IRequest request, IResponse response, EnterMatchAppointmentRequest arg3)
+        public static void EnterMatchAppointment(IRequest request, IResponse response,
+            EnterMatchAppointmentRequest arg3)
         {
             // TODO: move the code from the services to here
         }
@@ -37,9 +38,8 @@ namespace forderebackend.ServiceInterface.Filters
         public static void Captcha(IRequest request, IResponse response, ICaptchaRequest dtoRequest)
         {
             if (!CaptchaSolver.Solve(request.RemoteIp, dtoRequest.Captcha))
-            {
-                throw new ArgumentException("Spamschutz wurde falsch ausgefüllt! Versuchs nocheinmal oder wende dich direkt per Mail an uns!");
-            }
+                throw new ArgumentException(
+                    "Spamschutz wurde falsch ausgefüllt! Versuchs nocheinmal oder wende dich direkt per Mail an uns!");
         }
 
         /// <summary>
@@ -47,25 +47,19 @@ namespace forderebackend.ServiceInterface.Filters
         /// </summary>
         public static void TeamPlayerDetails(IRequest request, IResponse response, TeamDto team)
         {
-            if (request.GetSession().HasRole(RoleNames.Admin, HostContext.Resolve<IUserAuthRepository>()))
-            {
-                return;
-            }
+            if (request.GetSession().HasRole(RoleNames.Admin, HostContext.Resolve<IUserAuthRepository>())) return;
 
             if (request.GetSession().IsAuthenticated)
-            {
                 using (var db = HostContext.Resolve<IDbConnectionFactory>().Open())
                 {
                     var currentUserId = Convert.ToInt32(request.GetSession().UserAuthId);
 
-                    var isUserPlayingInTheSameLeague = db.Select<Team>(sql => (sql.Player1Id == currentUserId || sql.Player2Id == currentUserId) && sql.LeagueId == team.League.Id).Any();
+                    var isUserPlayingInTheSameLeague = db.Select<Team>(sql =>
+                        (sql.Player1Id == currentUserId || sql.Player2Id == currentUserId) &&
+                        sql.LeagueId == team.League.Id).Any();
 
-                    if (isUserPlayingInTheSameLeague)
-                    {
-                        return;
-                    }
+                    if (isUserPlayingInTheSameLeague) return;
                 }
-            }
 
             team.Player1.Email = string.Empty;
             team.Player1.PhoneNumber = string.Empty;

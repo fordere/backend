@@ -12,7 +12,7 @@ namespace forderebackend.ServiceInterface.Extensions
 
             while (n > 1)
             {
-                var k = (rnd.Next(0, n)%n);
+                var k = rnd.Next(0, n) % n;
                 n--;
 
                 var value = list[k];
@@ -23,7 +23,7 @@ namespace forderebackend.ServiceInterface.Extensions
 
         public static T Pop<T>(this IList<T> list, int index)
         {
-            T item = list[index];
+            var item = list[index];
             list.Remove(item);
 
             return item;

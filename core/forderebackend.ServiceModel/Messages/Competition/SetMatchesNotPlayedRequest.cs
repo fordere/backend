@@ -1,11 +1,9 @@
-﻿
-
-using ServiceStack;
+﻿using ServiceStack;
 
 namespace forderebackend.ServiceModel.Messages.Competition
 {
-    [Route("/competitions/{CompetitionId}/updateNotPlayed", "GET", Summary = "Sets the not played match on all not played matches in a competition")]
-    
+    [Route("/competitions/{CompetitionId}/updateNotPlayed", "GET",
+        Summary = "Sets the not played match on all not played matches in a competition")]
     public class SetMatchesNotPlayedRequest : IReturnVoid
     {
         public int CompetitionId { get; set; }

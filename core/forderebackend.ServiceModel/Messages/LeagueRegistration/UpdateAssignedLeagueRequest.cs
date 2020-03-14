@@ -5,7 +5,6 @@ using ServiceStack;
 namespace forderebackend.ServiceModel.Messages.LeagueRegistration
 {
     [Route("/teaminscriptions/{Id}/updateassignedleague", "POST", Summary = "Saves a single league registration")]
-    
     public class UpdateAssignedLeagueRequest : IReturnVoid
     {
         public int Id { get; set; }
@@ -42,7 +41,6 @@ namespace forderebackend.ServiceModel.Messages.LeagueRegistration
     }
 
     [Route("/season/einteilungen/{CompetitionId}", "GET")]
-    
     public class EinteilungenRequest : IReturn<EinteilungLeagueDto>
     {
         public int CompetitionId { get; set; }

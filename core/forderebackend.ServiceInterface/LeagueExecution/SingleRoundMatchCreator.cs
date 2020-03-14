@@ -10,21 +10,19 @@ namespace forderebackend.ServiceInterface.LeagueExecution
         public List<Match> CreateMatches(IList<Team> teams)
         {
             var listOfMatches = new List<Match>();
-            int halfNumberOfTeams = teams.Count / 2;
+            var halfNumberOfTeams = teams.Count / 2;
 
-            for (int i = 0; i < teams.Count; i++)
+            for (var i = 0; i < teams.Count; i++)
+            for (var j = 1; j <= halfNumberOfTeams; j++)
             {
-                for (int j = 1; j <= halfNumberOfTeams; j++)
-                {
-                    var firstTeam = teams[i];
-                    int opponentIndex = (i + j) % teams.Count;
-                    var secondTeam = teams[opponentIndex];
+                var firstTeam = teams[i];
+                var opponentIndex = (i + j) % teams.Count;
+                var secondTeam = teams[opponentIndex];
 
-                    if (!DoesMatchAlreadyExist(listOfMatches, firstTeam, secondTeam))
-                    {
-                        var match = new Match { HomeTeamId = firstTeam.Id, GuestTeamId = secondTeam.Id, PlayDate = null };
-                        listOfMatches.Add(match);
-                    }
+                if (!DoesMatchAlreadyExist(listOfMatches, firstTeam, secondTeam))
+                {
+                    var match = new Match {HomeTeamId = firstTeam.Id, GuestTeamId = secondTeam.Id, PlayDate = null};
+                    listOfMatches.Add(match);
                 }
             }
 
@@ -40,19 +38,17 @@ namespace forderebackend.ServiceInterface.LeagueExecution
             var newMatches = new List<Match>(existingTeamsInLeague.Count);
 
             foreach (var team in existingTeamsInLeague)
-            {
                 if (team.Id != movedTeam.Id)
-                {
                     newMatches.Add(CreateMatch(homeGameTickets.Pop(0), movedTeam, team));
-                }
-            }
 
             return newMatches;
         }
 
         private static bool DoesMatchAlreadyExist(IEnumerable<Match> listOfMatches, Team firstTeam, Team secondTeam)
         {
-            return listOfMatches.Any(x => (x.HomeTeamId == firstTeam.Id && x.GuestTeamId == secondTeam.Id) || x.HomeTeamId == secondTeam.Id && x.GuestTeamId == firstTeam.Id);
+            return listOfMatches.Any(x =>
+                x.HomeTeamId == firstTeam.Id && x.GuestTeamId == secondTeam.Id ||
+                x.HomeTeamId == secondTeam.Id && x.GuestTeamId == firstTeam.Id);
         }
 
         private static Match CreateMatch(bool firstTeamIsAtHome, Team firstTeam, Team secondTeam)
@@ -75,18 +71,11 @@ namespace forderebackend.ServiceInterface.LeagueExecution
 
         private static void FillListWithHomeGameTicketsRandomed(IList<Team> existingTeamsInLeague, IList<bool> list)
         {
-            for (var i = 0; i < existingTeamsInLeague.Count / 2; ++i)
-            {
-                list.Add(true);
-            }
+            for (var i = 0; i < existingTeamsInLeague.Count / 2; ++i) list.Add(true);
 
-            for (var i = existingTeamsInLeague.Count / 2; i < existingTeamsInLeague.Count; ++i)
-            {
-                list.Add(false);
-            }
+            for (var i = existingTeamsInLeague.Count / 2; i < existingTeamsInLeague.Count; ++i) list.Add(false);
 
             list.Shuffle();
         }
-
     }
 }

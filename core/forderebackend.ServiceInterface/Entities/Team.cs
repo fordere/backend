@@ -20,37 +20,29 @@ namespace forderebackend.ServiceInterface.Entities
             };
         }
 
-        [AutoIncrement]
-        public int Id { get; set; }
+        [AutoIncrement] public int Id { get; set; }
 
         public string Name { get; set; }
 
         public string SeasonAmbition { get; set; }
 
-        [References(typeof(League))]
-        public int? LeagueId { get; set; }
+        [References(typeof(League))] public int? LeagueId { get; set; }
 
-        [References(typeof(Cup))]
-        public int? CupId { get; set; }
+        [References(typeof(Cup))] public int? CupId { get; set; }
 
-        [References(typeof(Bar))]
-        public int? BarId { get; set; }
+        [References(typeof(Bar))] public int? BarId { get; set; }
 
         public bool IsFreeTicket { get; set; }
 
         public bool IsForfaitOut { get; set; }
 
-        [References(typeof(UserAuth))]
-        public int Player1Id { get; set; }
+        [References(typeof(UserAuth))] public int Player1Id { get; set; }
 
-        [Reference]
-        public UserAuth Player1 { get; set; }
+        [Reference] public UserAuth Player1 { get; set; }
 
-        [References(typeof(UserAuth))]
-        public int Player2Id { get; set; }
+        [References(typeof(UserAuth))] public int Player2Id { get; set; }
 
-        [Reference]
-        public UserAuth Player2 { get; set; }
+        [Reference] public UserAuth Player2 { get; set; }
 
         public int CupOrder { get; set; }
 
@@ -60,11 +52,10 @@ namespace forderebackend.ServiceInterface.Entities
 
         public override string ToString()
         {
-            return string.Format("{0} [{1}] CupOrder: {2}", this.Name, this.Id, this.CupOrder);
+            return string.Format("{0} [{1}] CupOrder: {2}", Name, Id, CupOrder);
         }
 
-        [Reference]
-        public List<TeamInGroup> Groups { get; set; }
+        [Reference] public List<TeamInGroup> Groups { get; set; }
 
         public string WishPlayDay { get; set; }
     }

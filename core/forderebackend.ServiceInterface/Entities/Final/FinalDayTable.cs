@@ -5,11 +5,9 @@ namespace forderebackend.ServiceInterface.Entities.Final
 {
     public class FinalDayTable : IFordereObject
     {
-        [AutoIncrement]
-        public int Id { get; set; }
+        [AutoIncrement] public int Id { get; set; }
 
-        [References(typeof(FinalDay))]
-        public int FinalDayId { get; set; }
+        [References(typeof(FinalDay))] public int FinalDayId { get; set; }
 
         public int Number { get; set; }
 

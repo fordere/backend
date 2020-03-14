@@ -5,8 +5,7 @@ namespace forderebackend.ServiceInterface.Entities
 {
     public class TableAvailability : IFordereObject
     {
-        [AutoIncrement]
-        public int Id { get; set; }
+        [AutoIncrement] public int Id { get; set; }
 
         public int TableId { get; set; }
 

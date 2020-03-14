@@ -38,7 +38,8 @@ namespace forderebackend.ServiceInterface.LeagueExecution.Standings
             UpdateRanks(db, tableEntries, OrderRuleFactory.CreateOrderRules(db, leagueId));
         }
 
-        private static void UpdateRanks(IDbConnection db, IEnumerable<TableEntry> tableEntries, List<IOrderRule> orderRules)
+        private static void UpdateRanks(IDbConnection db, IEnumerable<TableEntry> tableEntries,
+            List<IOrderRule> orderRules)
         {
             var rank = 1;
 
@@ -53,12 +54,13 @@ namespace forderebackend.ServiceInterface.LeagueExecution.Standings
                 var entry = tableEntry;
 
                 tableEntry.Rank = rank;
-                db.Update<TableEntry>(new { Rank = rank }, p => p.Id == entry.Id);
+                db.Update<TableEntry>(new {Rank = rank}, p => p.Id == entry.Id);
                 ++rank;
             }
         }
 
-        private static void UpdateTableEntries(IDbConnection db, IEnumerable<Team> teams, List<Match> matches, List<TableEntry> tableEntries)
+        private static void UpdateTableEntries(IDbConnection db, IEnumerable<Team> teams, List<Match> matches,
+            List<TableEntry> tableEntries)
         {
             foreach (var team in teams)
             {
@@ -74,36 +76,51 @@ namespace forderebackend.ServiceInterface.LeagueExecution.Standings
                 tableEntry.GamesPlayed = playedMatchesOfTeam.Count;
 
                 tableEntry.GamesWon = playedMatchesOfTeam.Count(p => p.WinnerTeamId == team.Id && !p.IsExtensionPlayed);
-                tableEntry.GamesWonExtension = playedMatchesOfTeam.Count(p => p.WinnerTeamId == team.Id && p.IsExtensionPlayed);
+                tableEntry.GamesWonExtension =
+                    playedMatchesOfTeam.Count(p => p.WinnerTeamId == team.Id && p.IsExtensionPlayed);
 
                 tableEntry.GamesDraw = playedMatchesOfTeam.Count(p => p.IsDraw);
 
-                tableEntry.GamesLostExtension = playedMatchesOfTeam.Count(p => p.WinnerTeamId != team.Id && !p.IsDraw && p.IsExtensionPlayed);
-                tableEntry.GamesLost = playedMatchesOfTeam.Count(p => p.WinnerTeamId != team.Id && !p.IsDraw && !p.IsExtensionPlayed);
+                tableEntry.GamesLostExtension =
+                    playedMatchesOfTeam.Count(p => p.WinnerTeamId != team.Id && !p.IsDraw && p.IsExtensionPlayed);
+                tableEntry.GamesLost =
+                    playedMatchesOfTeam.Count(p => p.WinnerTeamId != team.Id && !p.IsDraw && !p.IsExtensionPlayed);
 
-                tableEntry.SetsWon = playedMatchesOfTeam.Where(p => p.HomeTeamId == team.Id).Sum(s => s.HomeTeamScore.GetValueOrDefault())
-                                     + playedMatchesOfTeam.Where(p => p.GuestTeamId == team.Id).Sum(s => s.GuestTeamScore.GetValueOrDefault()) +
-                                      notPlayedMatches.Count(p => p.GuestTeamId == team.Id) * SetsGuestTeamNotPlayedMatch +
-                                      notPlayedMatches.Count(p => p.HomeTeamId == team.Id) * SetsHomeTeamNotPlayedMatch;
+                tableEntry.SetsWon = playedMatchesOfTeam.Where(p => p.HomeTeamId == team.Id)
+                                         .Sum(s => s.HomeTeamScore.GetValueOrDefault())
+                                     + playedMatchesOfTeam.Where(p => p.GuestTeamId == team.Id)
+                                         .Sum(s => s.GuestTeamScore.GetValueOrDefault()) +
+                                     notPlayedMatches.Count(p => p.GuestTeamId == team.Id) *
+                                     SetsGuestTeamNotPlayedMatch +
+                                     notPlayedMatches.Count(p => p.HomeTeamId == team.Id) * SetsHomeTeamNotPlayedMatch;
 
-                tableEntry.SetsLost = playedMatchesOfTeam.Where(p => p.HomeTeamId == team.Id).Sum(s => s.GuestTeamScore.GetValueOrDefault()) +
-                                      playedMatchesOfTeam.Where(p => p.GuestTeamId == team.Id).Sum(s => s.HomeTeamScore.GetValueOrDefault()) +
-                                      notPlayedMatches.Count(p => p.HomeTeamId == team.Id) * SetsGuestTeamNotPlayedMatch +
-                                      notPlayedMatches.Count(p => p.GuestTeamId == team.Id) * SetsHomeTeamNotPlayedMatch;
+                tableEntry.SetsLost = playedMatchesOfTeam.Where(p => p.HomeTeamId == team.Id)
+                                          .Sum(s => s.GuestTeamScore.GetValueOrDefault()) +
+                                      playedMatchesOfTeam.Where(p => p.GuestTeamId == team.Id)
+                                          .Sum(s => s.HomeTeamScore.GetValueOrDefault()) +
+                                      notPlayedMatches.Count(p => p.HomeTeamId == team.Id) *
+                                      SetsGuestTeamNotPlayedMatch +
+                                      notPlayedMatches.Count(p => p.GuestTeamId == team.Id) *
+                                      SetsHomeTeamNotPlayedMatch;
 
-                var winsWithoutOvertime = playedMatchesOfTeam.Count(p => p.Overtime == false && p.WinnerTeamId == team.Id);
+                var winsWithoutOvertime =
+                    playedMatchesOfTeam.Count(p => p.Overtime == false && p.WinnerTeamId == team.Id);
                 var winsInOvertime = playedMatchesOfTeam.Count(p => p.Overtime && p.WinnerTeamId == team.Id);
                 var lossInOvertime = playedMatchesOfTeam.Count(p => p.Overtime && p.WinnerTeamId != team.Id);
                 var draws = playedMatchesOfTeam.Count(p => p.IsDraw);
 
 
-                tableEntry.Points = (winsWithoutOvertime * PointsWin) + (winsInOvertime * PointsWinOvertime) + (draws * PointsDraw) + (lossInOvertime * PointsLossOvertime) + (homeTeamNotPlayed * PointsHomeTeamNotPlayedMatch) + (guestTeamNotPlayed * PointsGuestTeamNotPlayedMatch);
+                tableEntry.Points = (winsWithoutOvertime * PointsWin) + (winsInOvertime * PointsWinOvertime) +
+                                    (draws * PointsDraw) + (lossInOvertime * PointsLossOvertime) +
+                                    (homeTeamNotPlayed * PointsHomeTeamNotPlayedMatch) +
+                                    (guestTeamNotPlayed * PointsGuestTeamNotPlayedMatch);
 
                 db.Update(tableEntry, p => p.Id == tableEntry.Id);
             }
         }
 
-        private static void EnsureEachTeamHasTableEntry(IDbConnection db, int leagueId, IEnumerable<Team> teams, List<TableEntry> tableEntries)
+        private static void EnsureEachTeamHasTableEntry(IDbConnection db, int leagueId, IEnumerable<Team> teams,
+            List<TableEntry> tableEntries)
         {
             foreach (var team in teams)
             {
@@ -111,8 +128,8 @@ namespace forderebackend.ServiceInterface.LeagueExecution.Standings
 
                 if (tableEntry == null)
                 {
-                    tableEntry = new TableEntry { LeagueId = leagueId, TeamId = team.Id };
-                    tableEntry.Id = (int)db.Insert(tableEntry, true);
+                    tableEntry = new TableEntry {LeagueId = leagueId, TeamId = team.Id};
+                    tableEntry.Id = (int) db.Insert(tableEntry, true);
                 }
             }
         }

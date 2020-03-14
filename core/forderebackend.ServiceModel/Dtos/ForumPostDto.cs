@@ -2,7 +2,6 @@
 
 namespace forderebackend.ServiceModel.Dtos
 {
-    
     public class ForumPostDto
     {
         public int Id { get; set; }

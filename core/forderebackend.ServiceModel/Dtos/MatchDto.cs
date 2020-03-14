@@ -45,17 +45,17 @@ namespace forderebackend.ServiceModel.Dtos
         public int? HomeTeamScore { get; set; }
         public int? GuestTeamScore { get; set; }
 
-        public bool IsHomeTeamFreeTicket => this.IsFreeTicket && this.HomeTeamScore < this.GuestTeamScore;
-        public bool IsGuestTeamFreeTicket => this.IsFreeTicket && this.GuestTeamScore < this.HomeTeamScore;
+        public bool IsHomeTeamFreeTicket => IsFreeTicket && HomeTeamScore < GuestTeamScore;
+        public bool IsGuestTeamFreeTicket => IsFreeTicket && GuestTeamScore < HomeTeamScore;
     }
 
     public class MatchDto
     {
         public MatchDto()
         {
-            this.HomeTeam = new TeamDto();
-            this.GuestTeam = new TeamDto();
-            this.Bar = new NameDto();
+            HomeTeam = new TeamDto();
+            GuestTeam = new TeamDto();
+            Bar = new NameDto();
         }
 
         public string Id { get; set; }

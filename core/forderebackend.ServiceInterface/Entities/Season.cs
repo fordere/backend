@@ -6,18 +6,15 @@ namespace forderebackend.ServiceInterface.Entities
 {
     public class Season : IFordereObjectWithName
     {
-        [AutoIncrement]
-        public int Id { get; set; }
+        [AutoIncrement] public int Id { get; set; }
 
         public string Name { get; set; }
 
         public SeasonState State { get; set; }
 
-        [Reference]
-        public List<Competition> Competitions { get; set; }
+        [Reference] public List<Competition> Competitions { get; set; }
 
-        [Reference]
-        public Final.FinalDay FinalDay { get; set; }
+        [Reference] public Final.FinalDay FinalDay { get; set; }
 
         public int DivisionId { get; set; }
 

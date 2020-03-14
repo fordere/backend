@@ -7,9 +7,9 @@ namespace forderebackend.ServiceModel.Messages.User
     {
         public UsersResponse()
         {
-            this.Users = new List<UserDto>();
+            Users = new List<UserDto>();
         }
 
-        public List<UserDto> Users { get; set; } 
+        public List<UserDto> Users { get; set; }
     }
 }

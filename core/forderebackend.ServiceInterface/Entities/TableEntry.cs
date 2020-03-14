@@ -6,14 +6,11 @@ namespace forderebackend.ServiceInterface.Entities
     {
         public int Id { get; set; }
 
-        [References(typeof(League))]
-        public int LeagueId { get; set; }
+        [References(typeof(League))] public int LeagueId { get; set; }
 
-        [References(typeof(Team))]
-        public int TeamId { get; set; }
+        [References(typeof(Team))] public int TeamId { get; set; }
 
-        [Reference]
-        public Team Team { get; set; }
+        [Reference] public Team Team { get; set; }
 
         public int GamesPlayed { get; set; }
 
@@ -39,10 +36,6 @@ namespace forderebackend.ServiceInterface.Entities
 
         public int EstimatedRank { get; set; }
 
-        [Ignore]
-        public int PlusMinus
-        {
-            get { return SetsWon - SetsLost; }
-        }
+        [Ignore] public int PlusMinus => SetsWon - SetsLost;
     }
 }

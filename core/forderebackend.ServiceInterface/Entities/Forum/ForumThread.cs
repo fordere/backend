@@ -9,7 +9,6 @@ namespace forderebackend.ServiceInterface.Entities.Forum
 
         public string Subject { get; set; }
 
-        [Reference]
-        public List<ForumPost> ForumPosts { get; set; }
+        [Reference] public List<ForumPost> ForumPosts { get; set; }
     }
 }

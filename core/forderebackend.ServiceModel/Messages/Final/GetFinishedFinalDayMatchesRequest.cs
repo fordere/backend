@@ -9,6 +9,5 @@ namespace forderebackend.ServiceModel.Messages.Final
         public int FinalDayId { get; set; }
 
         public string TeamFilter { get; set; }
-
     }
 }

@@ -8,7 +8,6 @@ namespace forderebackend.ServiceModel.Dtos
     {
         public UserMailsDto()
         {
-
         }
 
         public UserMailsDto(IEnumerable<UserAuth> mailList)
@@ -17,7 +16,8 @@ namespace forderebackend.ServiceModel.Dtos
                 .Select(g => g.First())
                 .ToList();
 
-            UserMails = "firstname;lastname;mail\r\n" + string.Join("\r\n", distinctUsers.Select(x => x.FirstName + ";" + x.LastName + ";" + x.Email));
+            UserMails = "firstname;lastname;mail\r\n" + string.Join("\r\n",
+                distinctUsers.Select(x => x.FirstName + ";" + x.LastName + ";" + x.Email));
         }
 
         public string UserMails { get; set; }

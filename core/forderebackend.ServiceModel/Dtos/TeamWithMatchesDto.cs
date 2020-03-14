@@ -6,7 +6,7 @@ namespace forderebackend.ServiceModel.Dtos
     {
         public TeamWithMatchesDto()
         {
-            this.UserIds = new List<string>();
+            UserIds = new List<string>();
         }
 
         public string Id { get; set; }
@@ -17,6 +17,6 @@ namespace forderebackend.ServiceModel.Dtos
         public bool IsFreeTicket { get; set; }
         public List<string> UserIds { get; set; }
         public int Group { get; set; }
-        public List<MatchDto> Matches { get; set; } 
+        public List<MatchDto> Matches { get; set; }
     }
 }

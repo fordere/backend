@@ -7,7 +7,6 @@ using ServiceStack.OrmLite;
 
 namespace forderebackend.ServiceInterface
 {
-    
     public class FinaldayTableService : BaseService
     {
         [Authenticate]
@@ -29,7 +28,8 @@ namespace forderebackend.ServiceInterface
         //[RequiredRole(RoleNames.Admin)]
         public object Get(GetAllFinalDayTablesRequest request)
         {
-            var finalDayTables = Db.Select<FinalDayTable>(table => table.FinalDayId == request.FinalDayId).OrderBy(table => table.Number);
+            var finalDayTables = Db.Select<FinalDayTable>(table => table.FinalDayId == request.FinalDayId)
+                .OrderBy(table => table.Number);
             return finalDayTables.Select(s => s.ConvertTo<FinalDayTableDto>());
         }
 
@@ -37,8 +37,13 @@ namespace forderebackend.ServiceInterface
         [RequiredRole(RoleNames.Admin)]
         public object Post(AddFinalDayTableRequest request)
         {
-            var newId = Db.Insert(new FinalDayTable() {FinalDayId = request.FinalDayId, Number = request.Number, TableType = request.TableType, Disabled = false}, true);
-            return Get(new GetFinalDayTableRequest {Id = (int)newId});
+            var newId = Db.Insert(
+                new FinalDayTable()
+                {
+                    FinalDayId = request.FinalDayId, Number = request.Number, TableType = request.TableType,
+                    Disabled = false
+                }, true);
+            return Get(new GetFinalDayTableRequest {Id = (int) newId});
         }
 
         [Authenticate]

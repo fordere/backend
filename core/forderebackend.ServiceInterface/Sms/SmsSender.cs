@@ -15,14 +15,16 @@ namespace forderebackend.ServiceInterface.Sms
             {
                 var from = appSettings.GetString("Sms.From");
                 var formattedNumber = PhoneNumberFormatter.Format(number);
-                
-                return await "http://api.clickatell.com/rest/message ".PostToUrlAsync("{\"text\":\"" + text + "\", \"to\":[\"" + formattedNumber + "\"], \"from\":\"" + from + "\"}", "application/json", req =>
-                  {
-                      req.ContentType = "application/json";
-                      req.Headers.Add("X-Version", "1");
-                      var authToken = appSettings.GetString("Sms.Authorization.Token");
-                      req.Headers.Add("Authorization", authToken);
-                  });
+
+                return await "http://api.clickatell.com/rest/message ".PostToUrlAsync(
+                    "{\"text\":\"" + text + "\", \"to\":[\"" + formattedNumber + "\"], \"from\":\"" + from + "\"}",
+                    "application/json", req =>
+                    {
+                        req.ContentType = "application/json";
+                        req.Headers.Add("X-Version", "1");
+                        var authToken = appSettings.GetString("Sms.Authorization.Token");
+                        req.Headers.Add("Authorization", authToken);
+                    });
             }
 
             return "";
@@ -30,7 +32,7 @@ namespace forderebackend.ServiceInterface.Sms
 
         public async Task<string> SendMatchRecall(UserAuth user, Match match)
         {
-            string message = "RECALL! %FIRSTNAME%, du wirst an Tisch #%TABLENUMBER% vermisst!";
+            var message = "RECALL! %FIRSTNAME%, du wirst an Tisch #%TABLENUMBER% vermisst!";
             message = message.Replace("%TABLENUMBER%", match.FinalDayTable.Number.ToString());
             message = message.Replace("%FIRSTNAME%", user.FirstName);
 
@@ -39,18 +41,14 @@ namespace forderebackend.ServiceInterface.Sms
 
         public Task<string> SendMatchAssigned(UserAuth user, Match match)
         {
-            string message = "Spiel an Tisch #%TABLENUMBER% gegen '%OPPONENT%'";
+            var message = "Spiel an Tisch #%TABLENUMBER% gegen '%OPPONENT%'";
             message = message.Replace("%TABLENUMBER%", match.FinalDayTable.Number.ToString());
 
             string opponentTeam;
             if (match.HomeTeam.Player1Id == user.Id || match.HomeTeam.Player2Id == user.Id)
-            {
                 opponentTeam = match.GuestTeam.Name;
-            }
             else
-            {
                 opponentTeam = match.HomeTeam.Name;
-            }
 
             message = message.Replace("%OPPONENT%", opponentTeam);
 

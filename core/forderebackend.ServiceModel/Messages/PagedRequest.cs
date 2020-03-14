@@ -8,14 +8,11 @@
         {
             get
             {
-                if (this.page.HasValue == false)
-                {
-                    return 1;
-                }
+                if (page.HasValue == false) return 1;
 
-                return this.page;
+                return page;
             }
-            set { this.page = value; }
+            set => page = value;
         }
 
         public int? PageSize { get; set; }
@@ -24,28 +21,19 @@
         {
             get
             {
-                int pagesToSkip = 0;
+                var pagesToSkip = 0;
 
-                if (this.Page.HasValue)
-                {
-                    pagesToSkip = this.Page.Value - 1;
-                }
+                if (Page.HasValue) pagesToSkip = Page.Value - 1;
 
-                return pagesToSkip*this.PageSize.GetValueOrDefault();
+                return pagesToSkip * PageSize.GetValueOrDefault();
             }
         }
 
-        public bool PagingRequested
-        {
-            get { return this.PageSize.HasValue; }
-        }
+        public bool PagingRequested => PageSize.HasValue;
 
         public void SetLimitIfNoPagingRequested(int max)
         {
-            if (this.PagingRequested == false)
-            {
-                this.PageSize = max;
-            }
+            if (PagingRequested == false) PageSize = max;
         }
     }
 }

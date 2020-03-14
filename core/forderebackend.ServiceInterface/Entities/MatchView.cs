@@ -5,7 +5,6 @@ using ServiceStack.DataAnnotations;
 
 namespace forderebackend.ServiceInterface.Entities
 {
-    
     public class MatchView
     {
         private int? homeTeamScore;
@@ -54,44 +53,26 @@ namespace forderebackend.ServiceInterface.Entities
             get
             {
                 // TODO: This logic is duplicted in match.. de ganz Forfait shit is chli müäsam implementiert.. 
-                if (HomeTeamIsForfaitOut)
-                {
-                    return StandingsCalculator.SetsLossForfait;
-                }
+                if (HomeTeamIsForfaitOut) return StandingsCalculator.SetsLossForfait;
 
-                if (GuestTeamIsForfaitOut && !HomeTeamIsForfaitOut)
-                {
-                    return StandingsCalculator.SetsWinForfait;
-                }
+                if (GuestTeamIsForfaitOut && !HomeTeamIsForfaitOut) return StandingsCalculator.SetsWinForfait;
 
                 return homeTeamScore;
             }
-            set
-            {
-                homeTeamScore = value;
-            }
+            set => homeTeamScore = value;
         }
 
         public int? GuestTeamScore
         {
             get
             {
-                if (GuestTeamIsForfaitOut)
-                {
-                    return StandingsCalculator.SetsLossForfait;
-                }
+                if (GuestTeamIsForfaitOut) return StandingsCalculator.SetsLossForfait;
 
-                if (HomeTeamIsForfaitOut && !GuestTeamIsForfaitOut)
-                {
-                    return StandingsCalculator.SetsWinForfait;
-                }
+                if (HomeTeamIsForfaitOut && !GuestTeamIsForfaitOut) return StandingsCalculator.SetsWinForfait;
 
                 return guestTeamScore;
             }
-            set
-            {
-                guestTeamScore = value;
-            }
+            set => guestTeamScore = value;
         }
 
         [Ignore]
@@ -99,40 +80,24 @@ namespace forderebackend.ServiceInterface.Entities
         {
             get
             {
-                if (HasResult)
-                {
-                    return HomeTeamScore.GetValueOrDefault() == GuestTeamScore.GetValueOrDefault();
-                }
+                if (HasResult) return HomeTeamScore.GetValueOrDefault() == GuestTeamScore.GetValueOrDefault();
 
                 return false;
             }
         }
 
-        [Ignore]
-        public bool HasResult
-        {
-            get { return HomeTeamScore.HasValue && GuestTeamScore.HasValue; }
-        }
+        [Ignore] public bool HasResult => HomeTeamScore.HasValue && GuestTeamScore.HasValue;
 
         [Ignore]
         public int WinnerTeamId
         {
             get
             {
-                if (HasResult == false)
-                {
-                    return 0;
-                }
+                if (HasResult == false) return 0;
 
-                if (HomeTeamScore.GetValueOrDefault() > GuestTeamScore.GetValueOrDefault())
-                {
-                    return HomeTeamId;
-                }
+                if (HomeTeamScore.GetValueOrDefault() > GuestTeamScore.GetValueOrDefault()) return HomeTeamId;
 
-                if (HomeTeamScore.GetValueOrDefault() < GuestTeamScore.GetValueOrDefault())
-                {
-                    return GuestTeamId;
-                }
+                if (HomeTeamScore.GetValueOrDefault() < GuestTeamScore.GetValueOrDefault()) return GuestTeamId;
 
                 return 0;
             }
@@ -143,10 +108,7 @@ namespace forderebackend.ServiceInterface.Entities
         {
             get
             {
-                if (WinnerTeamId == HomeTeamId)
-                {
-                    return HomePlayer1Id;
-                }
+                if (WinnerTeamId == HomeTeamId) return HomePlayer1Id;
 
                 return GuestPlayer1Id;
             }
@@ -157,14 +119,10 @@ namespace forderebackend.ServiceInterface.Entities
         {
             get
             {
-                if (WinnerTeamId == HomeTeamId)
-                {
-                    return HomePlayer2Id;
-                }
+                if (WinnerTeamId == HomeTeamId) return HomePlayer2Id;
 
                 return GuestPlayer2Id;
             }
         }
-
     }
 }

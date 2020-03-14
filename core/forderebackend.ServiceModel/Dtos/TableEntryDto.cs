@@ -1,8 +1,5 @@
-﻿
-
-namespace forderebackend.ServiceModel.Dtos
+﻿namespace forderebackend.ServiceModel.Dtos
 {
-    
     public class TableEntryDto
     {
         public int Id { get; set; }

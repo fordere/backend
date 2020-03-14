@@ -2,7 +2,6 @@ using System;
 
 namespace forderebackend.ServiceModel.Dtos
 {
-    
     public class ExtendedMatchDto
     {
         public int Id { get; set; }

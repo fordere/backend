@@ -10,22 +10,21 @@ namespace forderebackend.ServiceInterface
         {
             var possibleTimeSlots = new List<DateTime>();
 
-            int firstTimeSlotDayOfWeek = availability.FirstTimeSlotDayOfWeek;
-            int lastTimeSlotDayOfWeek = availability.LastTimeSlotDayOfWeek;
-            int dayDifference = 0;
+            var firstTimeSlotDayOfWeek = availability.FirstTimeSlotDayOfWeek;
+            var lastTimeSlotDayOfWeek = availability.LastTimeSlotDayOfWeek;
+            var dayDifference = 0;
 
             while (firstTimeSlotDayOfWeek != lastTimeSlotDayOfWeek)
             {
                 dayDifference++;
                 firstTimeSlotDayOfWeek++;
-                if (firstTimeSlotDayOfWeek == 7)
-                {
-                    firstTimeSlotDayOfWeek = 0;
-                }
+                if (firstTimeSlotDayOfWeek == 7) firstTimeSlotDayOfWeek = 0;
             }
 
-            var nextTimeSlot = new DateTime(date.Year, date.Month, date.Day, availability.FirstTimeSlot.Hour, availability.FirstTimeSlot.Minute, 0);
-            var lastTimeSlot = new DateTime(date.Year, date.Month, date.Day, availability.LastTimeSlot.Hour, availability.LastTimeSlot.Minute, 0).AddDays(dayDifference);
+            var nextTimeSlot = new DateTime(date.Year, date.Month, date.Day, availability.FirstTimeSlot.Hour,
+                availability.FirstTimeSlot.Minute, 0);
+            var lastTimeSlot = new DateTime(date.Year, date.Month, date.Day, availability.LastTimeSlot.Hour,
+                availability.LastTimeSlot.Minute, 0).AddDays(dayDifference);
 
             while (nextTimeSlot <= lastTimeSlot)
             {

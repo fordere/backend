@@ -8,21 +8,22 @@ using ServiceStack.OrmLite;
 
 namespace forderebackend.ServiceInterface
 {
-    
     public class TableAvailabilityService : BaseService
     {
         [Authenticate]
         public object Get(TimeSlotRequest request)
         {
             var tableId = request.TableId;
-            var dayOfWeek = (int)request.Day.DayOfWeek;
-            var tableAvailability = this.Db.Single<TableAvailability>(x => x.TableId == request.TableId && x.FirstTimeSlotDayOfWeek == dayOfWeek);
+            var dayOfWeek = (int) request.Day.DayOfWeek;
+            var tableAvailability = Db.Single<TableAvailability>(x =>
+                x.TableId == request.TableId && x.FirstTimeSlotDayOfWeek == dayOfWeek);
 
             tableAvailability.Throw404NotFoundIfNull("An diesem Tag ist dieser Tisch nicht verfügbar!");
 
             var possibleTimeSlots = TimeSlotFactory.GetPossibleTimeSlots(request.Day, tableAvailability);
 
-            List<Match> matches = Db.Select<Match>(sql => sql.PlayDate != null && sql.ResultDate == null && sql.TableId == tableId);
+            var matches = Db.Select<Match>(sql =>
+                sql.PlayDate != null && sql.ResultDate == null && sql.TableId == tableId);
             var filterdTimeSlots = possibleTimeSlots.Except(matches.Select(x => x.PlayDate.Value));
 
             // TODO Add a Z to make it UTC is a huge hack...
@@ -49,7 +50,7 @@ namespace forderebackend.ServiceInterface
         {
             var availability = request.ConvertTo<TableAvailability>();
 
-            var id = (int)Db.Insert(availability, true);
+            var id = (int) Db.Insert(availability, true);
 
             return Db.SingleById<TableAvailability>(id).ToDto();
         }

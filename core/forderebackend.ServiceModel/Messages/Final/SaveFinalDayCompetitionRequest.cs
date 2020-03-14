@@ -5,7 +5,6 @@ using ServiceStack;
 namespace forderebackend.ServiceModel.Messages.Final
 {
     [Route("/finalday/competition/{Id}", "POST", Summary = "Saves a single finalday competition")]
-    
     public class SaveFinalDayCompetitionRequest : IReturn<FinalDayCompetitionDto>
     {
         public int Id { get; set; }

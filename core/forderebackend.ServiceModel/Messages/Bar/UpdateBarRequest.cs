@@ -4,7 +4,6 @@ using ServiceStack;
 namespace forderebackend.ServiceModel.Messages.Bar
 {
     [Route("/bars/{Id}", "POST", Summary = "Update a Bar")]
-    
     public class UpdateBarRequest : IReturn<BarDto>
     {
         public int Id { get; set; }

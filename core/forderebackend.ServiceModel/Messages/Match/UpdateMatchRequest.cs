@@ -5,7 +5,6 @@ using ServiceStack;
 namespace forderebackend.ServiceModel.Messages.Match
 {
     [Route("/matches/{Id}", "PUT")]
-    
     public class UpdateMatchRequest : IReturn<MatchViewDto>
     {
         public int Id { get; set; }

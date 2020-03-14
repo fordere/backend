@@ -19,9 +19,10 @@ namespace forderebackend.ServiceInterface.FinalDay
         // TODO SSH To nod recreate already once played matches
         public List<Match> GenerateMatches(int finalDayCompetitionId)
         {
-            var players = dbConnection.LoadSelect(dbConnection.From<PlayerInFinalDayCompetition>().Where(x => x.IsActive && x.FinalDayCompetitionId == finalDayCompetitionId));
+            var players = dbConnection.LoadSelect(dbConnection.From<PlayerInFinalDayCompetition>()
+                .Where(x => x.IsActive && x.FinalDayCompetitionId == finalDayCompetitionId));
 
-            var groupId = dbConnection.Insert(new Group { FinalDayCompetitionId = finalDayCompetitionId }, true);
+            var groupId = dbConnection.Insert(new Group {FinalDayCompetitionId = finalDayCompetitionId}, true);
 
             players.Shuffle();
 
@@ -29,19 +30,29 @@ namespace forderebackend.ServiceInterface.FinalDay
 
             while (players.Count >= 4)
             {
-                var hometeam = new Team { Player1Id = players[0].PlayerId, Player2Id = players[1].PlayerId, Name = players[0].Player.FirstName + " " + players[0].Player.LastName + " / " + players[1].Player.FirstName + " " + players[1].Player.LastName };
+                var hometeam = new Team
+                {
+                    Player1Id = players[0].PlayerId, Player2Id = players[1].PlayerId,
+                    Name = players[0].Player.FirstName + " " + players[0].Player.LastName + " / " +
+                           players[1].Player.FirstName + " " + players[1].Player.LastName
+                };
                 var homeTeamId = dbConnection.Insert(hometeam, true);
 
-                var guestteam = new Team { Player1Id = players[2].PlayerId, Player2Id = players[3].Player.Id, Name = players[2].Player.FirstName + " " + players[2].Player.LastName + " / " + players[3].Player.FirstName + " " + players[3].Player.LastName };
+                var guestteam = new Team
+                {
+                    Player1Id = players[2].PlayerId, Player2Id = players[3].Player.Id,
+                    Name = players[2].Player.FirstName + " " + players[2].Player.LastName + " / " +
+                           players[3].Player.FirstName + " " + players[3].Player.LastName
+                };
                 var guestTeamId = dbConnection.Insert(guestteam, true);
 
-                dbConnection.Insert(new TeamInGroup { TeamId = (int)homeTeamId, GroupId = (int)groupId });
-                dbConnection.Insert(new TeamInGroup { TeamId = (int)guestTeamId, GroupId = (int)groupId });
+                dbConnection.Insert(new TeamInGroup {TeamId = (int) homeTeamId, GroupId = (int) groupId});
+                dbConnection.Insert(new TeamInGroup {TeamId = (int) guestTeamId, GroupId = (int) groupId});
 
                 matches.Add(new Match
                 {
-                    HomeTeamId = (int)homeTeamId,
-                    GuestTeamId = (int)guestTeamId,
+                    HomeTeamId = (int) homeTeamId,
+                    GuestTeamId = (int) guestTeamId,
                     FinalDayCompetitionId = finalDayCompetitionId
                 });
 
@@ -55,9 +66,7 @@ namespace forderebackend.ServiceInterface.FinalDay
         public List<Match> GenerateMatchAfterMatchResultEntered(Match match)
         {
             if (match.FinalDayCompetitionId.HasValue)
-            {
-                CompetitionPlayerStandingsCalculator.Calculate(this.dbConnection, match.FinalDayCompetitionId.Value);
-            }
+                CompetitionPlayerStandingsCalculator.Calculate(dbConnection, match.FinalDayCompetitionId.Value);
 
             // By Default no new Matches are generated -> This only happens on a new Crazy-DYP Round
             return new List<Match>();
@@ -65,12 +74,13 @@ namespace forderebackend.ServiceInterface.FinalDay
 
         public void AfterMatchSafe(List<Match> dayCompetitionId, int finalDayCompetitionId)
         {
-            CompetitionPlayerStandingsCalculator.Calculate(this.dbConnection, finalDayCompetitionId);
+            CompetitionPlayerStandingsCalculator.Calculate(dbConnection, finalDayCompetitionId);
         }
 
         public long GetNumberOfMatches(int finalDayCompetitionId)
         {
-            return dbConnection.Count(dbConnection.From<MatchView>().Where(x => x.FinalDayCompetitionId == finalDayCompetitionId));
+            return dbConnection.Count(dbConnection.From<MatchView>()
+                .Where(x => x.FinalDayCompetitionId == finalDayCompetitionId));
         }
 
         public bool ShouldFinishCompetitionWhenNoMoreMatchesOpen()

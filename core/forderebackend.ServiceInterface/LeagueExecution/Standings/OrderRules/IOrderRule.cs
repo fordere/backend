@@ -5,6 +5,5 @@ namespace forderebackend.ServiceInterface.LeagueExecution.Standings.OrderRules
 {
     public interface IOrderRule : IComparer<TableEntry>
     {
-
     }
 }

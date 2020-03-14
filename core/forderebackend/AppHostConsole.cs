@@ -22,7 +22,6 @@ namespace forderebackend
         public AppHostConsole()
             : base("Fordere WebService Console", typeof(UserService).Assembly)
         {
-
             // TODO Core Migration Logging
             //LogManager.LogFactory = new NLogFactory();
             //LogManager.GetLogger(typeof(AppHostConsole));
@@ -42,7 +41,7 @@ namespace forderebackend
             });
 
 
-            container.Register<ICacheClient>(new MemoryCacheClient { FlushOnDispose = false });
+            container.Register<ICacheClient>(new MemoryCacheClient {FlushOnDispose = false});
 
             JsConfig.AssumeUtc = true;
 
@@ -52,11 +51,11 @@ namespace forderebackend
             container.Register<IDbConnectionFactory>(
                 new OrmLiteConnectionFactory(
                     string.Format("Server = {0}; Port = {1}; Database = {2}; Uid = {3}; Pwd = {4}",
-                                      "localhost",
-                                      3306,
-                                      "fordere",
-                                      "root",
-                                      "root"),
+                        "localhost",
+                        3306,
+                        "fordere",
+                        "root",
+                        "root"),
                     MySqlDialect.Provider));
 
             container.Register<IUserAuthRepository>(c => new OrmLiteAuthRepository(c.Resolve<IDbConnectionFactory>()));
@@ -67,67 +66,55 @@ namespace forderebackend
                 new JwtAuthProvider(appSettings),
             }.ToList();
 
-            if (appSettings.Get("Debug", false))
-            {
-                authProvider.Add(new BasicAuthProvider());
-            }
+            if (appSettings.Get("Debug", false)) authProvider.Add(new BasicAuthProvider());
 
             var authFeature = new AuthFeature(() => new FordereAuthUserService(), authProvider.ToArray());
 
 
             //authFeature.AuthEvents.Add(new WebSudoFeature());
 
-            this.Plugins.Add(new RegistrationFeature());
-            this.Plugins.Add(authFeature);
+            Plugins.Add(new RegistrationFeature());
+            Plugins.Add(authFeature);
 
 
-            this.Plugins.Add(new RequestLogsFeature
+            Plugins.Add(new RequestLogsFeature
             {
                 // do not log request bodies of requests containing passwords
-                HideRequestBodyForRequestDtoTypes = new[] { typeof(Authenticate), typeof(Register), typeof(UpdateUserProfileRequest) },
+                HideRequestBodyForRequestDtoTypes = new[]
+                    {typeof(Authenticate), typeof(Register), typeof(UpdateUserProfileRequest)},
             });
 
             if (appSettings.Get("CORS.Enabled", false))
-            {
-                this.Plugins.Add(
+                Plugins.Add(
                     new CorsFeature(
-                        allowedOrigins: appSettings.GetString("CORS.AllowedOrigins"),
-                        allowedMethods: "OPTIONS,GET,POST,PUT,DELETE,PATCH",
-                        allowedHeaders: "Content-Type,Authorization,division_id",
-                        allowCredentials: true));
-            }
+                        appSettings.GetString("CORS.AllowedOrigins"),
+                        "OPTIONS,GET,POST,PUT,DELETE,PATCH",
+                        "Content-Type,Authorization,division_id",
+                        true));
 
             if (appSettings.Get("Debug", false))
-            {
-                this.Plugins.Add(new PostmanFeature());
-                // TODO Core Migration OpenApi Support?
-                //this.Plugins.Add(new OpenApiFeature());
-            }
+                Plugins.Add(new PostmanFeature());
+            // TODO Core Migration OpenApi Support?
+            //this.Plugins.Add(new OpenApiFeature());
 
-            if (appSettings.Get("Debug", false) == false)
-            {
-                this.Plugins.RemoveAll(x => x is MetadataFeature);
-            }
+            if (appSettings.Get("Debug", false) == false) Plugins.RemoveAll(x => x is MetadataFeature);
 
-            this.SetConfig(new HostConfig
+            SetConfig(new HostConfig
             {
                 // TODO SSH This sets ss-pid/ss-opt to NOT HttpOnly.. is this a security issue?
                 AllowNonHttpOnlyCookies = true,
                 DebugMode = appSettings.Get("Debug", false)
             });
 
-            this.RegisterTypedRequestFilter<ICaptchaRequest>(Filter.Captcha);
-            this.RegisterTypedRequestFilter<EnterMatchAppointmentRequest>(Filter.EnterMatchAppointment);
-            this.RegisterTypedRequestFilter<EnterMatchResultRequest>(Filter.EnterMatchResult);
+            RegisterTypedRequestFilter<ICaptchaRequest>(Filter.Captcha);
+            RegisterTypedRequestFilter<EnterMatchAppointmentRequest>(Filter.EnterMatchAppointment);
+            RegisterTypedRequestFilter<EnterMatchResultRequest>(Filter.EnterMatchResult);
 
-            this.RegisterTypedResponseFilter<TeamDto>(Filter.TeamPlayerDetails);
+            RegisterTypedResponseFilter<TeamDto>(Filter.TeamPlayerDetails);
 
             PreRequestFilters.Add((httpReq, httpRes) =>
             {
-                if (httpReq.Verb.ToUpper() == "PATCH")
-                {
-                    httpReq.UseBufferedStream = true;
-                }
+                if (httpReq.Verb.ToUpper() == "PATCH") httpReq.UseBufferedStream = true;
             });
         }
     }

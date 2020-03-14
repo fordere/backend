@@ -25,7 +25,6 @@ namespace forderebackend.ServiceInterface.LeagueExecution.Standings.OrderRules
             var orderRules = new List<IOrderRule>();
 
             foreach (var orderRuleIdentifier in orderRuleIdentifiers)
-            {
                 switch (orderRuleIdentifier)
                 {
                     case NumberOfPoints:
@@ -47,7 +46,6 @@ namespace forderebackend.ServiceInterface.LeagueExecution.Standings.OrderRules
                         orderRules.Add(new MatchNotPlayedOrderRule());
                         break;
                 }
-            }
 
             return orderRules;
         }

@@ -10,22 +10,19 @@ namespace forderebackend.ServiceInterface
             var client = new HttpClient();
 
             var content = new FormUrlEncodedContent(new Dictionary<string, string>
-                                                    {
-                                                        { "privatekey", "TODO" },
-                                                        { "remoteip", userIp },
-                                                        { "response", response }
-                                                    });
+            {
+                {"privatekey", "TODO"},
+                {"remoteip", userIp},
+                {"response", response}
+            });
 
             var validationResponsee = client.PostAsync("http://www.google.com/recaptcha/api/verify", content).Result;
 
             var stringResponse = validationResponsee.Content.ReadAsStringAsync().Result;
 
-            string[] responseParts = stringResponse.Split('\n');
+            var responseParts = stringResponse.Split('\n');
 
-            if (responseParts.Length < 2)
-            {
-                return false;
-            }
+            if (responseParts.Length < 2) return false;
 
             return bool.Parse(responseParts[0]);
         }

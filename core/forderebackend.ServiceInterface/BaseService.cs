@@ -25,7 +25,7 @@ namespace forderebackend.ServiceInterface
         {
             get
             {
-                var divisionIdRaw = base.Request.GetHeader("division_id");
+                var divisionIdRaw = Request.GetHeader("division_id");
 
                 int divisionId;
 
@@ -38,7 +38,8 @@ namespace forderebackend.ServiceInterface
             }
         }
 
-        protected TPagedResponse CreatePagedResponse<TPagedResponse>(PagedRequest request, int total) where TPagedResponse : PagedResponse, new()
+        protected TPagedResponse CreatePagedResponse<TPagedResponse>(PagedRequest request, int total)
+            where TPagedResponse : PagedResponse, new()
         {
             var response = new TPagedResponse
             {
@@ -52,12 +53,12 @@ namespace forderebackend.ServiceInterface
 
         protected int SessionUserId
         {
-            get { return Convert.ToInt32(this.GetSession().UserAuthId); }
+            get { return Convert.ToInt32(GetSession().UserAuthId); }
         }
 
         public override void Dispose()
         {
-            this.Db.Dispose();
+            Db.Dispose();
 
             base.Dispose();
         }
@@ -66,7 +67,7 @@ namespace forderebackend.ServiceInterface
         {
             get
             {
-                var session = this.GetSession();
+                var session = GetSession();
 
                 return session.Roles != null && session.Roles.Contains(RoleNames.Admin);
             }
@@ -74,12 +75,12 @@ namespace forderebackend.ServiceInterface
 
         protected void EnsureIsAdmin()
         {
-            if (this.IsAuthenticated == false)
+            if (IsAuthenticated == false)
             {
                 throw new AuthenticationException();
             }
 
-            if (this.IsAdmin == false)
+            if (IsAdmin == false)
             {
                 throw new UnauthorizedAccessException();
             }
@@ -87,7 +88,7 @@ namespace forderebackend.ServiceInterface
 
         protected UserAuth GetAuthenticatedUser()
         {
-            return this.Db.SingleById<UserAuth>(this.SessionUserId);
+            return Db.SingleById<UserAuth>(SessionUserId);
         }
 
         /// <summary>
@@ -110,9 +111,10 @@ namespace forderebackend.ServiceInterface
                 var jsonEntry = jsonObject[field];
 
                 // todo: use changetype() for enums
-                var value = ((JValue)jsonEntry).Value;
+                var value = ((JValue) jsonEntry).Value;
 
-                if (propertyInfo.PropertyType.IsNullableType() && propertyInfo.PropertyType.GenericTypeArguments[0] == typeof(DateTime))
+                if (propertyInfo.PropertyType.IsNullableType() &&
+                    propertyInfo.PropertyType.GenericTypeArguments[0] == typeof(DateTime))
                 {
                     propertyInfo.SetValue(target, value);
                 }

@@ -10,7 +10,7 @@ namespace forderebackend.ServiceInterface.Entities
 
         public TeamRegistration()
         {
-            this.UserAuthIds = new List<int>();
+            UserAuthIds = new List<int>();
         }
     }
 }
