@@ -171,7 +171,6 @@
   <ItemGroup>
     <Compile Include="CalendarService.cs" />
     <Compile Include="CaptchaSolver.cs" />
-    <Compile Include="ChallengeService.cs" />
     <Compile Include="CompetitionService.cs" />
     <Compile Include="CompetitionState.cs" />
     <Compile Include="ContactService.cs" />
@@ -245,7 +244,6 @@
     <Compile Include="FordereStripeGateway.cs" />
     <Compile Include="ForumService.cs" />
     <Compile Include="GroupService.cs" />
-    <Compile Include="KozoomService.cs" />
     <Compile Include="LeagueExecution\DoubleRoundMatchCreator.cs" />
     <Compile Include="LeagueExecution\IMatchCreator.cs" />
     <Compile Include="LeagueExecution\SingleRoundMatchCreator.cs" />

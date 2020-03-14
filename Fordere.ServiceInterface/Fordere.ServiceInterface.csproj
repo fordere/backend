@@ -132,8 +132,6 @@
     <Compile Include="Messages\Bar\GetPaymentInformationsRequest.cs" />
     <Compile Include="Messages\Bar\UpdateBarRequest.cs" />
     <Compile Include="Messages\Calendar\GetCalendarStreamByIdRequest.cs" />
-    <Compile Include="Messages\Challenge\CreateChallengeRequest.cs" />
-    <Compile Include="Messages\Challenge\GetChallengesForTeamRequest.cs" />
     <Compile Include="Messages\Competition\CreateTeamAndMatchFromTeamInscriptionRequest.cs" />
     <Compile Include="Messages\Competition\GetAllCompetitionsInCurrentRequest.cs" />
     <Compile Include="Messages\Competition\GetAllCompetitionsInSeasonRequest.cs" />
