@@ -50,15 +50,9 @@ namespace Fordere.WebConsole
                 return null;
             });
 
-            if (appSettings.Get("Redis.Enabled", false))
-            {
-                container.Register<IRedisClientsManager>(c => new PooledRedisClientManager("{0}:{1}".Fmt(appSettings.Get("Redis.Ip"), appSettings.Get("Redis.Port", 6379))));
-                container.Register(c => c.Resolve<IRedisClientsManager>().GetCacheClient());
-            }
-            else
-            {
-                container.Register<ICacheClient>(new MemoryCacheClient { FlushOnDispose = false });
-            }
+
+            container.Register<ICacheClient>(new MemoryCacheClient { FlushOnDispose = false });
+
 
             JsConfig.AssumeUtc = true;
 
@@ -87,9 +81,6 @@ namespace Fordere.WebConsole
             }
 
             var authFeature = new AuthFeature(() => new FordereAuthUserService(), authProvider.ToArray());
-
-
-            //authFeature.AuthEvents.Add(new WebSudoFeature());
 
             this.Plugins.Add(new RegistrationFeature());
             this.Plugins.Add(authFeature);
