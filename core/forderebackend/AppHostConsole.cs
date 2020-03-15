@@ -6,6 +6,7 @@ using forderebackend.ServiceModel.Messages.Match;
 using forderebackend.ServiceModel.Messages.User;
 using Funq;
 using ServiceStack;
+using ServiceStack.Api.OpenApi;
 using ServiceStack.Auth;
 using ServiceStack.Caching;
 using ServiceStack.Configuration;
@@ -72,6 +73,8 @@ namespace forderebackend
                 HideRequestBodyForRequestDtoTypes = new[]
                     {typeof(Authenticate), typeof(Register), typeof(UpdateUserProfileRequest)},
             });
+            
+            Plugins.Add(new OpenApiFeature());
 
             if (appSettings.Get("CORS.Enabled", false))
             {
