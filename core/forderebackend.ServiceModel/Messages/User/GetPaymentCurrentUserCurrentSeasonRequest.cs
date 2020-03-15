@@ -3,7 +3,7 @@ using ServiceStack;
 namespace forderebackend.ServiceModel.Messages.User
 {
     [Route("/payments/currentUserCurrentSeason", "GET")]
-    public class GetPaymentCurrentUserCurrentSeason
+    public class GetPaymentCurrentUserCurrentSeasonRequest
     {
     }
 }

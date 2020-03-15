@@ -3,7 +3,7 @@
 namespace forderebackend.ServiceModel.Messages.TeamInscription
 {
     [Route("/teaminscriptions/{CompetitionId}/notAssigned")]
-    public class NotAssignedTeamInscriptionsByCompetition
+    public class NotAssignedTeamInscriptionsByCompetitionRequest
     {
         [ApiMember(Name = "CompetitionId", Description = "Id of the Competition", ParameterType = "path",
             DataType = "int", IsRequired = true)]

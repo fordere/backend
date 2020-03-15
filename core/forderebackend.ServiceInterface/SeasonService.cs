@@ -11,7 +11,7 @@ namespace forderebackend.ServiceInterface
 {
     public class SeasonService : BaseService
     {
-        public object Get(GetSeasonById request)
+        public object Get(GetSeasonByIdRequest request)
         {
             return Db.LoadSingleById<Season>(request.Id);
         }

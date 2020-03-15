@@ -77,7 +77,7 @@ namespace forderebackend.ServiceInterface
 
         [Authenticate]
         [RequiredRole(RoleNames.Admin)]
-        public object Get(NotAssignedTeamInscriptionsByCompetition request)
+        public object Get(NotAssignedTeamInscriptionsByCompetitionRequest request)
         {
             var competitionId = request.CompetitionId;
             var teamInscriptionEntities =

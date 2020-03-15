@@ -87,7 +87,7 @@ namespace forderebackend.ServiceInterface
             foreach (var league in competition.Leagues) StandingsCalculator.Calculate(Db, league.Id);
         }
 
-        public object Get(GetCompetitionsOpenForRegistration request)
+        public object Get(GetCompetitionsOpenForRegistrationRequest request)
         {
             // Find all seasons which are currently in registration state
             var seasonsWithActiveRegistrationPeriod = Db.Select(Db.From<Season>()

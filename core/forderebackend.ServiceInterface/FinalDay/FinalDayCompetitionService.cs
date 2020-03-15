@@ -100,7 +100,7 @@ namespace forderebackend.ServiceInterface.FinalDay
 
         [Authenticate]
         [RequiredRole(RoleNames.Admin)]
-        public object Get(GetFinishedFinalDayCompetitions request)
+        public object Get(GetFinishedFinalDayCompetitionsRequest request)
         {
             return Db.Select<FinalDayCompetition>(sql =>
                 sql.State == FinalDayCompetitionState.Finished && sql.FinalDayId == request.FinalDayId &&

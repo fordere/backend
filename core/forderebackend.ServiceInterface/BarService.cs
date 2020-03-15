@@ -28,7 +28,7 @@ namespace forderebackend.ServiceInterface
             return Db.Select(Db.From<Bar>().Where(x => x.DivisionId == DivisionId).OrderBy(o => o.Name));
         }
 
-        public object Get(GetAllBarsWithTableAvailability request)
+        public object Get(GetAllBarsWithTableAvailabilityRequest request)
         {
             var tables = Db.LoadSelect<Table>().ToList();
             return tables.Where(t => t.TableAvailabilities != null).Select(t => t.Bar)

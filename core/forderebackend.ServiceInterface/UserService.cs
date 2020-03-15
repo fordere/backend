@@ -57,7 +57,7 @@ namespace forderebackend.ServiceInterface
         }
 
         [Authenticate]
-        public object Get(GetAllPossiblePartners request)
+        public object Get(GetAllPossiblePartnersRequest request)
         {
             var teamInscriptions = Db.Select<TeamInscription>(s => s.CompetitionId == request.CompetitionId);
 

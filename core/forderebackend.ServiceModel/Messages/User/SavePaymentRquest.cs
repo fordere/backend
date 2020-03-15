@@ -3,7 +3,7 @@
 namespace forderebackend.ServiceModel.Messages.User
 {
     [Route("/payments", "POST", Summary = "Does save the payment-state for a given user")]
-    public class SavePayment : IReturnVoid
+    public class SavePaymentRquest : IReturnVoid
     {
         public int Id { get; set; }
 

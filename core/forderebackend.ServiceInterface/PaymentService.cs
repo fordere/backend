@@ -31,7 +31,7 @@ namespace forderebackend.ServiceInterface
         }
 
         [Authenticate]
-        public object Get(GetPaymentCurrentUserCurrentSeason request)
+        public object Get(GetPaymentCurrentUserCurrentSeasonRequest request)
         {
             // TODO extrag current season resolve into own service...
             var season = Db
@@ -43,7 +43,7 @@ namespace forderebackend.ServiceInterface
         }
 
         [Authenticate]
-        public object Get(GetUserOpenPaymentsForCurrentSeason request)
+        public object Get(GetUserOpenPaymentsForCurrentSeasonRequest request)
         {
             var openPayments = GetOpenPayments();
             return openPayments.Select(payment => new OpenUserPaymentResponse
@@ -136,7 +136,7 @@ namespace forderebackend.ServiceInterface
 
         [Authenticate]
         [RequiredRole(RoleNames.Admin)]
-        public void Post(SavePayment request)
+        public void Post(SavePaymentRquest request)
         {
             var payment = Db.Select<Payment>(x => x.Id == request.Id).SingleOrDefault();
 
