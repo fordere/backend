@@ -83,14 +83,6 @@ namespace forderebackend
                         true));
             }
 
-            // TODO Core Migration OpenApi Support?
-            //this.Plugins.Add(new OpenApiFeature());
-
-            if (appSettings.Get("Debug", false) == false)
-            {
-                Plugins.RemoveAll(x => x is MetadataFeature);
-            }
-
             SetConfig(new HostConfig
             {
                 // TODO SSH This sets ss-pid/ss-opt to NOT HttpOnly.. is this a security issue?
