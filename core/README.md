@@ -19,6 +19,11 @@ Setup a database with the name "fordere". Then excute the SQL-setup script you c
 ### Run the project "forderebackend"
 The backend should now be running on localhost:5001
 
+## Documentation
+Then running a swagger-ui is available:
+http://localhost:5001/swagger-ui
+
+
 ## Notes
 - For most of the requests you have to provide a divison-id. This id has to be set as a header called "divison_id"
 - Currently the complete AppSettings-thing is not yet ported to this version. Therefore alle configurations for sending mails, payment, sms, .. will not be available!
