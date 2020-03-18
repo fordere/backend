@@ -1,4 +1,5 @@
-﻿using forderebackend.ServiceInterface;
+﻿using System.Collections.Generic;
+using forderebackend.ServiceInterface;
 using forderebackend.ServiceInterface.Filters;
 using forderebackend.ServiceModel.Dtos;
 using forderebackend.ServiceModel.Messages;
@@ -7,6 +8,7 @@ using forderebackend.ServiceModel.Messages.User;
 using Funq;
 using ServiceStack;
 using ServiceStack.Api.OpenApi;
+using ServiceStack.Api.OpenApi.Specification;
 using ServiceStack.Auth;
 using ServiceStack.Caching;
 using ServiceStack.Configuration;
@@ -54,7 +56,7 @@ namespace forderebackend
                     MySqlDialect.Provider));
 
             container.Register<IUserAuthRepository>(c => new OrmLiteAuthRepository(c.Resolve<IDbConnectionFactory>()));
-            
+
             if (appSettings.Get("Debug", false))
             {
                 Plugins.Add(new PostmanFeature());
@@ -73,8 +75,23 @@ namespace forderebackend
                 HideRequestBodyForRequestDtoTypes = new[]
                     {typeof(Authenticate), typeof(Register), typeof(UpdateUserProfileRequest)},
             });
-            
-            Plugins.Add(new OpenApiFeature());
+
+            // This is a workaround to cleanup generated api names in openapi definition
+            // https://forums.servicestack.net/t/attributes-modifying-swagger-output-parameters/4787/2
+            Dictionary<string, int> results = new Dictionary<string, int>();
+            void UniquifyCall(string verb, OpenApiOperation op)
+            {
+                if (op == null) return;
+                op.OperationId = op.RequestType.EndsWith("Request")
+                    ? op.RequestType.Substring(0, op.RequestType.Length - 7)
+                    : op.RequestType;
+                if (!results.ContainsKey(op.RequestType))
+                    results.Add(op.RequestType, 1);
+                else
+                    op.OperationId += "_" + verb;
+            }
+
+            Plugins.Add(new OpenApiFeature() {OperationFilter = UniquifyCall});
 
             if (appSettings.Get("CORS.Enabled", false))
             {
