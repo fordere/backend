@@ -62,11 +62,10 @@ namespace forderebackend
                 Plugins.Add(new PostmanFeature());
             }
 
-            Plugins.Add(new RegistrationFeature());
             Plugins.Add(new AuthFeature(() => new FordereAuthUserService(), new IAuthProvider[]
             {
-                new CredentialsAuthProvider(),
-                new JwtAuthProvider(appSettings),
+                new JwtAuthProvider(AppSettings) { AuthKey = AesUtils.CreateKey() },
+                new CredentialsAuthProvider()
             }));
 
             Plugins.Add(new RequestLogsFeature
@@ -92,16 +91,6 @@ namespace forderebackend
             }
 
             Plugins.Add(new OpenApiFeature() {OperationFilter = UniquifyCall});
-
-            if (appSettings.Get("CORS.Enabled", false))
-            {
-                Plugins.Add(
-                    new CorsFeature(
-                        appSettings.GetString("CORS.AllowedOrigins"),
-                        "OPTIONS,GET,POST,PUT,DELETE,PATCH",
-                        "Content-Type,Authorization,division_id",
-                        true));
-            }
 
             SetConfig(new HostConfig
             {
