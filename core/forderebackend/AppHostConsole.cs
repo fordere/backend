@@ -33,7 +33,8 @@ namespace forderebackend
         {
             JsConfig.DateHandler = DateHandler.ISO8601;
             JsConfig.AssumeUtc = true;
-
+            JsConfig.TextCase = TextCase.PascalCase;
+            
             var appSettings = new AppSettings();
 
             ServiceExceptionHandlers.Add((httpReq, request, exception) =>
