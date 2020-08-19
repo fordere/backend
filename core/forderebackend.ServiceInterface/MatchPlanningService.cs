@@ -56,6 +56,13 @@ namespace forderebackend.ServiceInterface
         List<Confrontation> GetConfrontations(Cup cup, Team team);
     }
 
+    interface IConfrontationListDecorator
+    {
+        // Adapt the given confrontations according one or more use case.
+        // For example, put already declined MatchPropositionConsent corresponding confrontations/slots last.
+        List<Confrontation> Apply(List<Confrontation> confrontations);
+    }
+
     interface ISlotProvider
     {
         // Return all remaining slots according Cup TableType.
@@ -63,6 +70,13 @@ namespace forderebackend.ServiceInterface
 
         // Return all remaining slots according Cup TableType and a specific bar.
         List<Slot> GetSlots(Cup cup, DateTime from, DateTime to, Bar bar);
+    }
+
+    interface ISlotListDecorator
+    {
+        // Adapt the given slots according one or more use case.
+        // For example, put upcoming slots first to force filling those first.
+        List<Slot> Apply(List<Slot> slots);
     }
 
     interface IMatchPropositionProvider
@@ -160,7 +174,9 @@ namespace forderebackend.ServiceInterface
     {
         // Those implementations should be injected ?
         IConfrontationProvider confrontationProvider;
+        IConfrontationListDecorator confrontationListDecorators; // One or more, Decorator pattern.
         ISlotProvider slotProvider;
+        ISlotListDecorator slotListDecorators; // One or more, Decorator pattern.
         IMatchPropositionProvider propositionProvider;
         IMatchPropositionManager propositionManager;
         IMatchPropositionConsentProvider consentProvider;
@@ -184,16 +200,22 @@ namespace forderebackend.ServiceInterface
             var confrontations = confrontationProvider.GetConfrontations(cup, initiatorTeam);
             var slots = slotProvider.GetSlots(cup, from, to);
 
-            // 2) Get propositions from the current proposition provider implementation.
+            // 2) Sort/filter confrontations/slots according use case, for example:
+            // Put upcoming slots first.
+            // Put already declined MatchPropositionConsent corresponding confrontations/slots last.
+            confrontations = confrontationListDecorators.Apply(confrontations);
+            slots = slotListDecorators.Apply(slots);
+
+            // 3) Get propositions from the current proposition provider implementation.
             var propositions = propositionProvider.GetPropositions(confrontations, slots);
 
-            // 3) Filter/select one or more propositions.
+            // 4) Filter/select one or more propositions.
             propositions = propositionManager.Select(propositions);
 
-            // 4) Get Consents for one or more propositions.
+            // 5) Get Consents for one or more propositions.
             var neededConsents = consentProvider.GetConsents(propositions, userId);
 
-            // 5) Dispatch Consents.
+            // 6) Dispatch Consents.
             consentManager.Dispatch(neededConsents);
 
             // Then, MatchPropositionConsentService will update MatchProposition|Consent and then continue/finish the planning process.
