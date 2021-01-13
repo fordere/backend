@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Ical.Net" Version="4.1.11" />
-    <PackageReference Include="ServiceStack" Version="5.8.1" />
+    <PackageReference Include="ServiceStack" Version="5.9.2" />
     <PackageReference Include="ServiceStack.OrmLite" Version="5.8.1" />
     <PackageReference Include="ServiceStack.Stripe.Core" Version="5.8.1" />
   </ItemGroup>
